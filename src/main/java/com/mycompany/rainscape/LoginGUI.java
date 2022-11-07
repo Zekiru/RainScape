@@ -4,12 +4,6 @@
  */
 package com.mycompany.rainscape;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Ezekiel
@@ -176,67 +170,13 @@ public class LoginGUI extends javax.swing.JFrame {
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
-        proccess(true);
+        RainScape.loginProcess(true, username.getText(), password.getText());
     }//GEN-LAST:event_loginActionPerformed
 
     private void signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupActionPerformed
         // TODO add your handling code here:
-        proccess(false);
+        RainScape.loginProcess(false, username.getText(), password.getText());
     }//GEN-LAST:event_signupActionPerformed
-
-    public void proccess(boolean login) {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db","root","");
-            String sql;
-            
-            if (login)
-                sql ="select * from rs_accounts where username=? and password=?";
-            else
-                sql ="select * from rs_accounts where username=?";
-            
-            PreparedStatement psmt = conn.prepareStatement(sql);
-            
-            if (login) {
-                psmt.setString(1, username.getText());
-                psmt.setString(2, password.getText());
-            } else {
-                psmt.setString(1, username.getText());
-            }
-            
-            ResultSet rs = psmt.executeQuery();
-            
-            if (login)
-                if (rs.next()==true)
-                    JOptionPane.showMessageDialog(null,"Login Successful.");
-                else if (username.getText().equals("") || password.getText().equals(""))
-                    JOptionPane.showMessageDialog(null,"Fill In The Empty Fields.");
-                else
-                    JOptionPane.showMessageDialog(null,"Login Failed.");
-            else
-                if (rs.next()==true)
-                    JOptionPane.showMessageDialog(null,"Username Already Exists.");
-                else if (username.getText().equals("") || password.getText().equals(""))
-                    JOptionPane.showMessageDialog(null,"Fill In The Empty Fields.");
-                else
-                    try {
-                        sql ="insert into rs_accounts value ( ?, ? )";
-
-                        psmt = conn.prepareStatement(sql);
-
-                        psmt.setString(1, username.getText());
-                        psmt.setString(2, password.getText());
-
-                        psmt.executeUpdate();
-                        JOptionPane.showMessageDialog(null,"Account Created.");
-                    } catch(Exception e) {
-                        JOptionPane.showMessageDialog(null,e);
-                    }
-                    
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,e);
-        }
-    }
     
     /**
      * @param args the command line arguments

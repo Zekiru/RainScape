@@ -13,7 +13,6 @@ public class RainScape {
 
     public static void main(String[] args) {
         System.out.println("Running Project...");
-        
         try {
             LoginGUI.main(args);
             System.out.println("Project Launched.");

@@ -170,7 +170,10 @@ public class LoginGUI extends javax.swing.JFrame {
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
-        RainScape.loginProcess(true, username.getText(), password.getText());
+        boolean pass = RainScape.loginProcess(true, username.getText(), password.getText());
+        
+        if (pass)
+            this.dispose();
     }//GEN-LAST:event_loginActionPerformed
 
     private void signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupActionPerformed

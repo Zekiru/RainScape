@@ -28,7 +28,8 @@ public class RainScape {
         }
     }
     
-    public static void loginProcess(boolean login, String username, String password) {
+    public static boolean loginProcess(boolean login, String username, String password) {
+        boolean pass = false;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db","root","");
@@ -54,21 +55,25 @@ public class RainScape {
                 if (rs.next()==true)
                     if (login) {
                         // Call next GUI here:
-                        
-                        JOptionPane.showMessageDialog(null,"Login Successful.");
+                        String[] args = null;
+                        MainGUI.main(args);
+                        pass = true;
                     } else {
                         JOptionPane.showMessageDialog(null,"Username Already Exists.");
                     }
                 else
                     if (login) {
                         JOptionPane.showMessageDialog(null,"Login Failed.");
-                        // Call next GUI here
                     } else {
                         createAccount(username, password);
                     }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
         }
+        if (pass)
+            return true;
+        else
+            return false;
     }
     
     public static void createAccount(String username, String password) {

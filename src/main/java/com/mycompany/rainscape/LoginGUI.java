@@ -31,11 +31,11 @@ public class LoginGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
-        password = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         login = new javax.swing.JButton();
         signup = new javax.swing.JButton();
+        password = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("RainScape");
@@ -63,13 +63,6 @@ public class LoginGUI extends javax.swing.JFrame {
         username.setCaretColor(new java.awt.Color(255, 255, 255));
         username.setOpaque(true);
         username.setSelectionColor(new java.awt.Color(0, 153, 153));
-
-        password.setBackground(new java.awt.Color(51, 51, 51));
-        password.setForeground(new java.awt.Color(255, 255, 255));
-        password.setBorder(null);
-        password.setCaretColor(new java.awt.Color(255, 255, 255));
-        password.setOpaque(true);
-        password.setSelectionColor(new java.awt.Color(0, 153, 153));
 
         jSeparator1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         jSeparator1.setEnabled(false);
@@ -105,6 +98,12 @@ public class LoginGUI extends javax.swing.JFrame {
             }
         });
 
+        password.setBackground(new java.awt.Color(51, 51, 51));
+        password.setForeground(new java.awt.Color(255, 255, 255));
+        password.setBorder(null);
+        password.setCaretColor(new java.awt.Color(255, 255, 255));
+        password.setSelectionColor(new java.awt.Color(0, 153, 153));
+
         javax.swing.GroupLayout login_bgLayout = new javax.swing.GroupLayout(login_bg);
         login_bg.setLayout(login_bgLayout);
         login_bgLayout.setHorizontalGroup(
@@ -112,7 +111,6 @@ public class LoginGUI extends javax.swing.JFrame {
             .addGroup(login_bgLayout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addGroup(login_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(login_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(login, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -121,7 +119,8 @@ public class LoginGUI extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(signup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSeparator1)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(password, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(70, 70, 70))
         );
         login_bgLayout.setVerticalGroup(
@@ -228,7 +227,7 @@ public class LoginGUI extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton login;
     private javax.swing.JPanel login_bg;
-    private javax.swing.JTextField password;
+    private javax.swing.JPasswordField password;
     private javax.swing.JButton signup;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables

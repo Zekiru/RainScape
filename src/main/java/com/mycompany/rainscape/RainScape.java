@@ -55,8 +55,7 @@ public class RainScape {
                 if (rs.next()==true)
                     if (login) {
                         // Call next GUI here:
-                        String[] args = null;
-                        MainGUI.main(args);
+                        MainGUI.main(null);
                         pass = true;
                     } else {
                         JOptionPane.showMessageDialog(null,"Username Already Exists.");

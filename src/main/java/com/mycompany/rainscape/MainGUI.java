@@ -30,18 +30,21 @@ public class MainGUI extends javax.swing.JFrame {
         content_box_scroll = new javax.swing.JScrollPane();
         content_box_bg = new javax.swing.JPanel();
         logout = new javax.swing.JButton();
+        mainBanner = new javax.swing.JPanel();
+        menuBar = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("RainScape");
+        setPreferredSize(new java.awt.Dimension(1200, 675));
         setResizable(false);
-        setSize(new java.awt.Dimension(960, 540));
+        setSize(new java.awt.Dimension(1200, 675));
 
         content_box_scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         content_box_scroll.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         content_box_scroll.setFocusable(false);
         content_box_scroll.setPreferredSize(new java.awt.Dimension(960, 540));
 
-        content_box_bg.setBackground(new java.awt.Color(231, 231, 231));
+        content_box_bg.setBackground(new java.awt.Color(225, 230, 236));
         content_box_bg.setForeground(new java.awt.Color(0, 0, 0));
 
         logout.setBackground(new java.awt.Color(0, 204, 204));
@@ -56,21 +59,52 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
+        mainBanner.setBackground(new java.awt.Color(153, 204, 255));
+
+        javax.swing.GroupLayout mainBannerLayout = new javax.swing.GroupLayout(mainBanner);
+        mainBanner.setLayout(mainBannerLayout);
+        mainBannerLayout.setHorizontalGroup(
+            mainBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        mainBannerLayout.setVerticalGroup(
+            mainBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 240, Short.MAX_VALUE)
+        );
+
+        menuBar.setBackground(new java.awt.Color(0, 51, 51));
+
+        javax.swing.GroupLayout menuBarLayout = new javax.swing.GroupLayout(menuBar);
+        menuBar.setLayout(menuBarLayout);
+        menuBarLayout.setHorizontalGroup(
+            menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        menuBarLayout.setVerticalGroup(
+            menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout content_box_bgLayout = new javax.swing.GroupLayout(content_box_bg);
         content_box_bg.setLayout(content_box_bgLayout);
         content_box_bgLayout.setHorizontalGroup(
             content_box_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(content_box_bgLayout.createSequentialGroup()
-                .addContainerGap(612, Short.MAX_VALUE)
+            .addComponent(menuBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_box_bgLayout.createSequentialGroup()
+                .addContainerGap(930, Short.MAX_VALUE)
                 .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(160, 160, 160))
+                .addGap(70, 70, 70))
         );
         content_box_bgLayout.setVerticalGroup(
             content_box_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_box_bgLayout.createSequentialGroup()
-                .addContainerGap(688, Short.MAX_VALUE)
+                .addComponent(mainBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(menuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 410, Short.MAX_VALUE)
                 .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69))
+                .addGap(57, 57, 57))
         );
 
         content_box_scroll.setViewportView(content_box_bg);
@@ -79,7 +113,7 @@ public class MainGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(content_box_scroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(content_box_scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,5 +169,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel content_box_bg;
     private javax.swing.JScrollPane content_box_scroll;
     private javax.swing.JButton logout;
+    private javax.swing.JPanel mainBanner;
+    private javax.swing.JPanel menuBar;
     // End of variables declaration//GEN-END:variables
 }

@@ -169,7 +169,7 @@ public class LoginGUI extends javax.swing.JFrame {
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
-        boolean pass = Account.loginProcess(true, username.getText(), password.getText());
+        boolean pass = Account.login(true, username.getText(), password.getText());
         
         if (pass)
             this.dispose();
@@ -177,7 +177,7 @@ public class LoginGUI extends javax.swing.JFrame {
 
     private void signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupActionPerformed
         // TODO add your handling code here:
-        Account.loginProcess(false, username.getText(), password.getText());
+        Account.login(false, username.getText(), password.getText());
     }//GEN-LAST:event_signupActionPerformed
     
     /**

@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class Account {
     
-    public static boolean loginProcess(boolean login, String username, String password) {
+    public static boolean login(boolean login, String username, String password) {
         boolean pass = false;
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -52,7 +52,7 @@ public class Account {
                     if (login) {
                         JOptionPane.showMessageDialog(null,"Login Failed.");
                     } else {
-                        createAccount(username, password);
+                        create(username, password);
                     }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
@@ -60,7 +60,7 @@ public class Account {
         return pass;
     }
     
-    public static void createAccount(String username, String password) {
+    public static void create(String username, String password) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db","root","");

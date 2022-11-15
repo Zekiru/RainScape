@@ -12,7 +12,7 @@ package com.mycompany.rainscape;
 public class RainScape {
 
     public static void main(String[] args) {
-        System.out.println("Initializing Project...");
+        System.out.println("Project Initializing.");
         try {
             LoginGUI.main(args);
             System.out.println("Project Launched.");

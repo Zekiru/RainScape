@@ -37,10 +37,13 @@ public class RainScape {
     
     public static void WeatherAPI() {
         try {
+            String location = "Manila";
+            String url = "https://weatherapi-com.p.rapidapi.com/forecast.json?q=" + location;
+            
             OkHttpClient client = new OkHttpClient();
             
             Request request = new Request.Builder()
-                .url("https://weatherapi-com.p.rapidapi.com/forecast.json?q=Manila&days=3")
+                .url(url)
                 .get()
                 .addHeader("X-RapidAPI-Key", "d2cd26e50fmshb105523acf4dea8p15c5eejsn5766f55f0f75")
                 .addHeader("X-RapidAPI-Host", "weatherapi-com.p.rapidapi.com")
@@ -51,8 +54,16 @@ public class RainScape {
             String weatherData = response.body().string();
             
             JSONObject jsonAPI = new JSONObject(weatherData);
+            JSONObject jsonLocation = new JSONObject(jsonAPI.get("location").toString());
+            JSONObject jsonCurrent = new JSONObject(jsonAPI.get("current").toString());
             
-            System.out.println(jsonAPI.get("location"));
+            System.out.println(jsonLocation.get("region"));
+            System.out.println(jsonLocation.get("country"));
+            
+            System.out.println(jsonCurrent.get("temp_c") + " C");
+            
+            System.out.println("humidity: " + jsonCurrent.get("humidity"));
+            System.out.println("cloud: " + jsonCurrent.get("cloud"));
             
         } catch (IOException e) {
             System.out.println("Error :" + e);

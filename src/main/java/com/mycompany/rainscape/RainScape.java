@@ -5,11 +5,16 @@
 
 package com.mycompany.rainscape;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import org.json.JSONObject;
 
 /**
  *
@@ -25,6 +30,32 @@ public class RainScape {
         } catch (Exception e) {
             System.out.println("Project Not Launched.");
             System.out.println("Exception: " + e);
+        }
+        
+        WeatherAPI();
+    }
+    
+    public static void WeatherAPI() {
+        try {
+            OkHttpClient client = new OkHttpClient();
+            
+            Request request = new Request.Builder()
+                .url("https://weatherapi-com.p.rapidapi.com/forecast.json?q=Manila&days=3")
+                .get()
+                .addHeader("X-RapidAPI-Key", "d2cd26e50fmshb105523acf4dea8p15c5eejsn5766f55f0f75")
+                .addHeader("X-RapidAPI-Host", "weatherapi-com.p.rapidapi.com")
+                .build();
+            
+            Response response = client.newCall(request).execute();
+            
+            String weatherData = response.body().string();
+            
+            JSONObject jsonAPI = new JSONObject(weatherData);
+            
+            System.out.println(jsonAPI.get("location"));
+            
+        } catch (IOException e) {
+            System.out.println("Error :" + e);
         }
     }
     

@@ -30,7 +30,7 @@ public class WeatherAPI {
         System.out.println("WeatherAPI Fetch Initializing.");
         try {
             String area = "Manila"; // Default City/Region
-            String api_url = "https://weatherapi-com.p.rapidapi.com/forecast.json?q=" + area;
+            String api_url = "https://weatherapi-com.p.rapidapi.com/current.json?q=" + area;
             
             OkHttpClient client = new OkHttpClient();
             

@@ -21,10 +21,6 @@ public class RainScape {
             System.out.println("Exception: " + e);
         }
         
-<<<<<<< master
-=======
-        WeatherAPI.fetch();
->>>>>>> Polish Classes
     }
     
 }

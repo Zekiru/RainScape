@@ -31,11 +31,11 @@ public class MainGUI extends javax.swing.JFrame {
         content_box_bg = new javax.swing.JPanel();
         logout = new javax.swing.JButton();
         mainBanner = new javax.swing.JPanel();
+        basicforecast_box = new javax.swing.JPanel();
         menuBar = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("RainScape");
-        setPreferredSize(new java.awt.Dimension(1200, 675));
         setResizable(false);
         setSize(new java.awt.Dimension(1200, 675));
 
@@ -61,15 +61,35 @@ public class MainGUI extends javax.swing.JFrame {
 
         mainBanner.setBackground(new java.awt.Color(153, 204, 255));
 
+        basicforecast_box.setBackground(new java.awt.Color(51, 51, 51));
+        basicforecast_box.setForeground(new java.awt.Color(51, 51, 51));
+
+        javax.swing.GroupLayout basicforecast_boxLayout = new javax.swing.GroupLayout(basicforecast_box);
+        basicforecast_box.setLayout(basicforecast_boxLayout);
+        basicforecast_boxLayout.setHorizontalGroup(
+            basicforecast_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 450, Short.MAX_VALUE)
+        );
+        basicforecast_boxLayout.setVerticalGroup(
+            basicforecast_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 164, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout mainBannerLayout = new javax.swing.GroupLayout(mainBanner);
         mainBanner.setLayout(mainBannerLayout);
         mainBannerLayout.setHorizontalGroup(
             mainBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(mainBannerLayout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addComponent(basicforecast_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         mainBannerLayout.setVerticalGroup(
             mainBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 240, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainBannerLayout.createSequentialGroup()
+                .addContainerGap(42, Short.MAX_VALUE)
+                .addComponent(basicforecast_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42))
         );
 
         menuBar.setBackground(new java.awt.Color(0, 51, 51));
@@ -82,7 +102,7 @@ public class MainGUI extends javax.swing.JFrame {
         );
         menuBarLayout.setVerticalGroup(
             menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGap(0, 56, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout content_box_bgLayout = new javax.swing.GroupLayout(content_box_bg);
@@ -90,11 +110,11 @@ public class MainGUI extends javax.swing.JFrame {
         content_box_bgLayout.setHorizontalGroup(
             content_box_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(menuBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(mainBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_box_bgLayout.createSequentialGroup()
                 .addContainerGap(930, Short.MAX_VALUE)
                 .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70))
+            .addComponent(mainBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         content_box_bgLayout.setVerticalGroup(
             content_box_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,7 +122,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(mainBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(menuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 410, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 510, Short.MAX_VALUE)
                 .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57))
         );
@@ -113,11 +133,17 @@ public class MainGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(content_box_scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(content_box_scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(content_box_scroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(content_box_scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -166,6 +192,7 @@ public class MainGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel basicforecast_box;
     private javax.swing.JPanel content_box_bg;
     private javax.swing.JScrollPane content_box_scroll;
     private javax.swing.JButton logout;

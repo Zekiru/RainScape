@@ -23,7 +23,7 @@ public class WeatherAPI {
     public static String location, temp, status; // Variables for Basic Weather Forecast
     
     public static void autoUpdate() { // Run along with project
-        System.out.println("WeatherAPI Auto Uodate Initialized");
+        System.out.println("WeatherAPI Auto Update Initialized");
         
         while (true) {
             boolean access = RainScape.access;

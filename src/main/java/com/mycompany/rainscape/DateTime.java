@@ -46,10 +46,11 @@ public class DateTime {
         DateFormat dateFormat = new SimpleDateFormat("hh:mm aa");
         Date date = new Date();
         
-        if (dateFormat.format(date).charAt(1) == '0')
+        if (dateFormat.format(date).charAt(0) != '0') {
             return dateFormat.format(date);
-        else
+        } else {
             return dateFormat.format(date).substring(1);
+        }
     }
     
     public static String localDate() {

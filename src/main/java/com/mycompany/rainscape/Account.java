@@ -36,7 +36,7 @@ public class Account {
             
             ResultSet rs = psmt.executeQuery();
             
-            if (username == null || password == null)
+            if (username.equals("") || password.equals(""))
                 JOptionPane.showMessageDialog(null,"Fill In The Empty Fields.");
             else
                 if (rs.next()==true)
@@ -44,6 +44,8 @@ public class Account {
                         // Login Success
                         RainScape.username = username;
                         RainScape.access = true;
+                        
+                        WeatherAPI.fetch(RainScape.username);
                         MainGUI.main(null);
                     } else {
                         JOptionPane.showMessageDialog(null,"Username Already Exists.");

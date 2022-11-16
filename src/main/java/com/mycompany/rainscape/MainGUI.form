@@ -72,12 +72,12 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="menuBar" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="930" max="32767" attributes="0"/>
-                      <Component id="logout" min="-2" pref="188" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                  </Group>
                   <Component id="mainBanner" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="logout" min="-2" pref="188" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -86,9 +86,9 @@
                       <Component id="mainBanner" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       <Component id="menuBar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="502" max="32767" attributes="0"/>
+                      <EmptySpace pref="489" max="32767" attributes="0"/>
                       <Component id="logout" min="-2" pref="60" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -128,14 +128,14 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                           <Component id="basicforecast_box" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="684" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="44" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                           <Component id="basicforecast_box" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       </Group>
@@ -151,20 +151,112 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
+                    <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
 
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="450" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="temp" min="-2" pref="130" max="-2" attributes="0"/>
+                              <EmptySpace pref="44" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="status" max="32767" attributes="0"/>
+                                  <Component id="localdate" max="32767" attributes="0"/>
+                                  <Component id="location" min="-2" pref="214" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="164" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="temp" min="-2" pref="110" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="status" min="-2" pref="32" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="localdate" min="-2" pref="33" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="location" min="-2" pref="28" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace pref="28" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="status">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="f4" green="f9" red="ed" type="rgb"/>
+                        </Property>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="24" style="1"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="f4" green="f9" red="ed" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="XXXXXX XXXXXX"/>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="temp">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="f4" green="f9" red="ed" type="rgb"/>
+                        </Property>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="60" style="1"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="f4" green="f9" red="ed" type="rgb"/>
+                        </Property>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
+                        <Property name="text" type="java.lang.String" value="XX&#xb0;"/>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="localdate">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="f4" green="f9" red="ed" type="rgb"/>
+                        </Property>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="24" style="1"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="f4" green="f9" red="ed" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="XX/XX/XXXX"/>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="location">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="14" style="0"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="f4" green="f9" red="ed" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="XXXXXXXXXXX, XXXXXXXXXXX"/>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
+                    </Component>
+                  </SubComponents>
                 </Container>
               </SubComponents>
             </Container>
@@ -178,15 +270,38 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                          <Component id="localtime" min="-2" pref="170" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
+                      <Component id="localtime" alignment="0" pref="56" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="localtime">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="f4" green="f9" red="ed" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="28" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="f4" green="f9" red="ed" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="XX:XX XX"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
+                </Component>
+              </SubComponents>
             </Container>
           </SubComponents>
         </Container>

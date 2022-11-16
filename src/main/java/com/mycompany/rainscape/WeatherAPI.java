@@ -22,19 +22,24 @@ public class WeatherAPI {
     
     public static String location, temp, status; // Variables for Basic Weather Forecast
     
-    public static void autoFetch() { // Run along with project
-        System.out.println("Auto Fetch Running");
+    public static void autoUpdate() { // Run along with project
+        System.out.println("WeatherAPI Auto Uodate Initialized");
         
         while (true) {
             boolean access = RainScape.access;
             
             if (access) {
-                WeatherAPI.fetch(RainScape.username);
-                
                 try {
-                    Thread.sleep(60000); // Fetch intervals (Default 60 seconds)
+                    Thread.sleep(60000); // Fetch ms intervals, Default = 1 minute
                 } catch (InterruptedException ie) {
                     System.out.println("Interrupted Exception: " + ie);
+                }
+                
+                if (access) {
+                    fetch(RainScape.username);
+                    setValues();
+                    
+                    // System.out.println("API Data Updated");
                 }
             } else {
                 try {
@@ -47,8 +52,6 @@ public class WeatherAPI {
     }
     
     public static void fetch(String username) {
-        System.out.println("WeatherAPI Fetch Initializing.");
-        
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db","root","");
@@ -86,16 +89,32 @@ public class WeatherAPI {
 
                 // Below are the fetched variables:
 
-                location = jsonLocation.get("region").toString() + ", " + jsonLocation.get("country").toString(); // e.g. Manila, Philippines
+                if (jsonLocation.get("name").toString().equals(jsonLocation.get("region").toString()))
+                    location = jsonLocation.get("region").toString() + ", " + jsonLocation.get("country").toString(); // e.g. Manila, Philippines
+                else
+                    location = jsonLocation.get("name").toString() + ", " + jsonLocation.get("region").toString(); // e.g. Makati, Manila, Philippines
+                
                 temp = jsonCurrent.get("temp_c").toString() + "°"; // e.g. 30°
                 status = jsonCondition.get("text").toString(); // e.g. Partly cloudy
 
                 // System.out.println("\n"+location+"\n"+temp+"\n"+status+"\n"); // Print Basic Weather Forecast to Console
 
-                System.out.println("WeatherAPI Fetch Successful.");
+                // System.out.println("WeatherAPI Data Fetched");
             } catch (IOException e) {
                 System.out.println("Exception: " + e);
             }
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+        }
+    }
+    
+    public static void setValues() {
+        try {
+            MainGUI.location.setText(location);
+            MainGUI.temp.setText(temp);
+            MainGUI.status.setText(status);
+
+            // System.out.println("WeatherAPI Data Set");
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         }

@@ -15,7 +15,11 @@ public class MainGUI extends javax.swing.JFrame {
      */
     public MainGUI() {        
         initComponents();
+        this.setLocationRelativeTo(null);
         content_box_scroll.getVerticalScrollBar().setUnitIncrement(16); // Scroll Speed
+        
+        WeatherAPI.setValues();
+        DateTime.setValues();
     }
 
     /**
@@ -32,7 +36,12 @@ public class MainGUI extends javax.swing.JFrame {
         logout = new javax.swing.JButton();
         mainBanner = new javax.swing.JPanel();
         basicforecast_box = new javax.swing.JPanel();
+        status = new javax.swing.JLabel();
+        temp = new javax.swing.JLabel();
+        localdate = new javax.swing.JLabel();
+        location = new javax.swing.JLabel();
         menuBar = new javax.swing.JPanel();
+        localtime = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("RainScape");
@@ -63,16 +72,55 @@ public class MainGUI extends javax.swing.JFrame {
 
         basicforecast_box.setBackground(new java.awt.Color(51, 51, 51));
         basicforecast_box.setForeground(new java.awt.Color(51, 51, 51));
+        basicforecast_box.setFocusable(false);
+
+        status.setBackground(new java.awt.Color(237, 249, 244));
+        status.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        status.setForeground(new java.awt.Color(237, 249, 244));
+        status.setText("XXXXXX XXXXXX");
+
+        temp.setBackground(new java.awt.Color(237, 249, 244));
+        temp.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
+        temp.setForeground(new java.awt.Color(237, 249, 244));
+        temp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        temp.setText("XX°");
+
+        localdate.setBackground(new java.awt.Color(237, 249, 244));
+        localdate.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        localdate.setForeground(new java.awt.Color(237, 249, 244));
+        localdate.setText("XX/XX/XXXX");
+
+        location.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        location.setForeground(new java.awt.Color(237, 249, 244));
+        location.setText("XXXXXXXXXXX, XXXXXXXXXXX");
 
         javax.swing.GroupLayout basicforecast_boxLayout = new javax.swing.GroupLayout(basicforecast_box);
         basicforecast_box.setLayout(basicforecast_boxLayout);
         basicforecast_boxLayout.setHorizontalGroup(
             basicforecast_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, basicforecast_boxLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(temp, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(basicforecast_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(localdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(location, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
         );
         basicforecast_boxLayout.setVerticalGroup(
             basicforecast_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 164, Short.MAX_VALUE)
+            .addGroup(basicforecast_boxLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(basicforecast_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(temp, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(basicforecast_boxLayout.createSequentialGroup()
+                        .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(localdate, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(location, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout mainBannerLayout = new javax.swing.GroupLayout(mainBanner);
@@ -82,27 +130,35 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(mainBannerLayout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(basicforecast_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(684, Short.MAX_VALUE))
         );
         mainBannerLayout.setVerticalGroup(
             mainBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainBannerLayout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
+            .addGroup(mainBannerLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
                 .addComponent(basicforecast_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
         );
 
         menuBar.setBackground(new java.awt.Color(0, 51, 51));
 
+        localtime.setBackground(new java.awt.Color(237, 249, 244));
+        localtime.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        localtime.setForeground(new java.awt.Color(237, 249, 244));
+        localtime.setText("XX:XX XX");
+
         javax.swing.GroupLayout menuBarLayout = new javax.swing.GroupLayout(menuBar);
         menuBar.setLayout(menuBarLayout);
         menuBarLayout.setHorizontalGroup(
             menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(menuBarLayout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(localtime, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         menuBarLayout.setVerticalGroup(
             menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 56, Short.MAX_VALUE)
+            .addComponent(localtime, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout content_box_bgLayout = new javax.swing.GroupLayout(content_box_bg);
@@ -110,11 +166,11 @@ public class MainGUI extends javax.swing.JFrame {
         content_box_bgLayout.setHorizontalGroup(
             content_box_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(menuBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_box_bgLayout.createSequentialGroup()
-                .addContainerGap(930, Short.MAX_VALUE)
-                .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
             .addComponent(mainBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_box_bgLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76))
         );
         content_box_bgLayout.setVerticalGroup(
             content_box_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,9 +178,9 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(mainBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(menuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 502, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 489, Short.MAX_VALUE)
                 .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
+                .addGap(70, 70, 70))
         );
 
         content_box_scroll.setViewportView(content_box_bg);
@@ -148,7 +204,7 @@ public class MainGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
         LoginGUI.main(null);
@@ -197,8 +253,13 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel basicforecast_box;
     private javax.swing.JPanel content_box_bg;
     private javax.swing.JScrollPane content_box_scroll;
+    public static javax.swing.JLabel localdate;
+    public static javax.swing.JLabel localtime;
+    public static javax.swing.JLabel location;
     private javax.swing.JButton logout;
     private javax.swing.JPanel mainBanner;
     private javax.swing.JPanel menuBar;
+    public static javax.swing.JLabel status;
+    public static javax.swing.JLabel temp;
     // End of variables declaration//GEN-END:variables
 }

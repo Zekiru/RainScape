@@ -148,11 +148,17 @@
             <Property name="caretColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="password"/>
+            </Property>
             <Property name="opaque" type="boolean" value="true"/>
             <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="0" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="usernameKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
           <Properties>
@@ -185,9 +191,12 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
-            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="username"/>
+            </Property>
           </Properties>
           <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="loginFocusGained"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loginActionPerformed"/>
           </Events>
         </Component>
@@ -226,10 +235,16 @@
             <Property name="caretColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="login"/>
+            </Property>
             <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="0" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="passwordKeyPressed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

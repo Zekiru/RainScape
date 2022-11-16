@@ -24,7 +24,10 @@ public class RainScape {
 <<<<<<< master
 =======
         WeatherAPI.fetch();
+<<<<<<< HEAD
 >>>>>>> Polish Classes
+=======
+>>>>>>> master
     }
     
 }

@@ -19,13 +19,6 @@ import org.json.JSONObject;
  */
 public class WeatherAPI {
     
-    public static String localDate() {
-        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        Date date = new Date();
-        
-        return dateFormat.format(date);
-    }
-    
     public static void fetch() {
         System.out.println("WeatherAPI Fetch Initializing.");
         try {
@@ -55,9 +48,8 @@ public class WeatherAPI {
             location = jsonLocation.get("region").toString() + ", " + jsonLocation.get("country").toString(); // e.g. Manila, Philippines
             temp = jsonCurrent.get("temp_c").toString() + "°"; // e.g. 30°
             status = jsonCondition.get("text").toString(); // e.g. Partly cloudy
-            local_date = localDate(); // e.g. 11/15/2022
             
-            System.out.println("\n"+location+"\n"+temp+"\n"+status+"\n"+local_date+"\n"); // Print Basic Weather Forecast to Console
+            System.out.println("\n"+location+"\n"+temp+"\n"+status+"\n"); // Print Basic Weather Forecast to Console
             
             System.out.println("WeatherAPI Fetch Successful.");
         } catch (IOException e) {

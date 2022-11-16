@@ -40,7 +40,7 @@ public class Account {
                 JOptionPane.showMessageDialog(null,"Fill In The Empty Fields.");
             else
                 if (rs.next()==true)
-                    if (login) {
+                    if (login && RainScape.access == false) {
                         // Login Success
                         RainScape.username = username;
                         RainScape.access = true;

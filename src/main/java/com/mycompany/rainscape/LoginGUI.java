@@ -28,15 +28,15 @@ public class LoginGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         login_bg = new javax.swing.JPanel();
+        login_tite = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
+        password = new javax.swing.JPasswordField();
         login = new javax.swing.JButton();
         signup = new javax.swing.JButton();
-        password = new javax.swing.JPasswordField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("RainScape");
@@ -47,16 +47,19 @@ public class LoginGUI extends javax.swing.JFrame {
 
         login_bg.setBackground(new java.awt.Color(51, 51, 51));
 
+        login_tite.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        login_tite.setForeground(new java.awt.Color(255, 255, 255));
+        login_tite.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        login_tite.setText("Log In / Sign Up");
+        login_tite.setFocusable(false);
+
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Username");
+        jLabel1.setFocusable(false);
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Password");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Log In / Sign Up");
+        jLabel2.setFocusable(false);
 
         username.setBackground(new java.awt.Color(51, 51, 51));
         username.setForeground(new java.awt.Color(255, 255, 255));
@@ -68,45 +71,6 @@ public class LoginGUI extends javax.swing.JFrame {
         username.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 usernameKeyPressed(evt);
-            }
-        });
-
-        jSeparator1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        jSeparator1.setEnabled(false);
-        jSeparator1.setRequestFocusEnabled(false);
-        jSeparator1.setVerifyInputWhenFocusTarget(false);
-
-        jSeparator2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        jSeparator2.setEnabled(false);
-        jSeparator2.setRequestFocusEnabled(false);
-        jSeparator2.setVerifyInputWhenFocusTarget(false);
-
-        login.setBackground(new java.awt.Color(0, 204, 204));
-        login.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        login.setForeground(new java.awt.Color(255, 255, 255));
-        login.setText("Log In");
-        login.setBorder(null);
-        login.setNextFocusableComponent(username);
-        login.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                loginFocusGained(evt);
-            }
-        });
-        login.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginActionPerformed(evt);
-            }
-        });
-
-        signup.setBackground(new java.awt.Color(68, 68, 68));
-        signup.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        signup.setForeground(new java.awt.Color(0, 204, 204));
-        signup.setText("Sign Up");
-        signup.setBorder(null);
-        signup.setFocusable(false);
-        signup.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signupActionPerformed(evt);
             }
         });
 
@@ -122,6 +86,50 @@ public class LoginGUI extends javax.swing.JFrame {
             }
         });
 
+        login.setBackground(new java.awt.Color(0, 204, 204));
+        login.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        login.setForeground(new java.awt.Color(255, 255, 255));
+        login.setText("Log In");
+        login.setBorder(null);
+        login.setNextFocusableComponent(signup);
+        login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginActionPerformed(evt);
+            }
+        });
+        login.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                loginKeyPressed(evt);
+            }
+        });
+
+        signup.setBackground(new java.awt.Color(68, 68, 68));
+        signup.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        signup.setForeground(new java.awt.Color(0, 204, 204));
+        signup.setText("Sign Up");
+        signup.setBorder(null);
+        signup.setNextFocusableComponent(username);
+        signup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signupActionPerformed(evt);
+            }
+        });
+        signup.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                signupKeyPressed(evt);
+            }
+        });
+
+        jSeparator1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jSeparator1.setEnabled(false);
+        jSeparator1.setRequestFocusEnabled(false);
+        jSeparator1.setVerifyInputWhenFocusTarget(false);
+
+        jSeparator2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jSeparator2.setEnabled(false);
+        jSeparator2.setRequestFocusEnabled(false);
+        jSeparator2.setVerifyInputWhenFocusTarget(false);
+
         javax.swing.GroupLayout login_bgLayout = new javax.swing.GroupLayout(login_bg);
         login_bg.setLayout(login_bgLayout);
         login_bgLayout.setHorizontalGroup(
@@ -134,7 +142,7 @@ public class LoginGUI extends javax.swing.JFrame {
                         .addComponent(login, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(login_tite, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(signup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSeparator1)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -145,7 +153,7 @@ public class LoginGUI extends javax.swing.JFrame {
             login_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, login_bgLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(jLabel3)
+                .addComponent(login_tite)
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -205,23 +213,51 @@ public class LoginGUI extends javax.swing.JFrame {
 
     private void usernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyPressed
         // TODO add your handling code here:
-        if (evt.getKeyCode() == 10) {
+        if (evt.getKeyCode() == 38)
+            username.transferFocusBackward();
+        
+        if (evt.getKeyCode() == 10 || evt.getKeyCode() == 40) {
             username.nextFocus();
         }
     }//GEN-LAST:event_usernameKeyPressed
 
     private void passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordKeyPressed
         // TODO add your handling code here:
-        if (evt.getKeyCode() == 10) {
+        if (evt.getKeyCode() == 38)
+            password.transferFocusBackward();
+        
+        if (evt.getKeyCode() == 10 || evt.getKeyCode() == 40) {
             password.nextFocus();
         }
     }//GEN-LAST:event_passwordKeyPressed
 
-    private void loginFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_loginFocusGained
+    private void loginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_loginKeyPressed
         // TODO add your handling code here:
-        login.nextFocus();
-        process(true);
-    }//GEN-LAST:event_loginFocusGained
+        if (evt.getKeyCode() == 38)
+            login.transferFocusBackward();
+        
+        if (evt.getKeyCode() == 40)
+            login.nextFocus();
+            
+        if (evt.getKeyCode() == 10) {
+            signup.nextFocus();
+            process(true);
+        }
+    }//GEN-LAST:event_loginKeyPressed
+
+    private void signupKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_signupKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == 38)
+            signup.transferFocusBackward();
+        
+        if (evt.getKeyCode() == 40)
+            signup.nextFocus();
+        
+        if (evt.getKeyCode() == 10) {
+            signup.nextFocus();
+            process(false);
+        }
+    }//GEN-LAST:event_signupKeyPressed
     
     /**
      * @param args the command line arguments
@@ -268,11 +304,11 @@ public class LoginGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton login;
     private javax.swing.JPanel login_bg;
+    private javax.swing.JLabel login_tite;
     private javax.swing.JPasswordField password;
     private javax.swing.JButton signup;
     private javax.swing.JTextField username;

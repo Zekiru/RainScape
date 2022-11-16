@@ -10,17 +10,21 @@ package com.mycompany.rainscape;
  * @author Ezekiel
  */
 public class RainScape {
+    
+    public static String username = null;
+    public static boolean access = false;
 
     public static void main(String[] args) {
-        System.out.println("Project Initializing.");
+        System.out.println("Project Initializing");
         try {
             LoginGUI.main(args);
-            System.out.println("Project Launched.");
+            System.out.println("Project Launched");
         } catch (Exception e) {
-            System.out.println("Project Not Launched.");
+            System.out.println("Project Not Launched");
             System.out.println("Exception: " + e);
         }
         
+        WeatherAPI.autoFetch();
     }
     
 }

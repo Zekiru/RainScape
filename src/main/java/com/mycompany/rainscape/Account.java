@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
 public class Account {
     
     public static boolean login(boolean login, String username, String password) {
-        boolean pass = false;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db","root","");
@@ -42,9 +41,10 @@ public class Account {
             else
                 if (rs.next()==true)
                     if (login) {
-                        // Call next GUI here:
+                        // Login Success
+                        RainScape.username = username;
+                        RainScape.access = true;
                         MainGUI.main(null);
-                        pass = true;
                     } else {
                         JOptionPane.showMessageDialog(null,"Username Already Exists.");
                     }
@@ -57,7 +57,7 @@ public class Account {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
         }
-        return pass;
+        return RainScape.access;
     }
     
     public static void create(String username, String password) {
@@ -72,8 +72,19 @@ public class Account {
 
             psmt.setString(1, username);
             psmt.setString(2, password);
+            
 
             psmt.executeUpdate();
+            
+            sql = "insert into rs_preferences value ( ?, ? )";
+            
+            psmt = conn.prepareStatement(sql);
+            
+            psmt.setString(1, username);
+            psmt.setString(2, "Manila");
+            
+            psmt.executeUpdate();
+            
             JOptionPane.showMessageDialog(null, "Account Created.");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);

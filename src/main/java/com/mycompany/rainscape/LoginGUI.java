@@ -171,8 +171,9 @@ public class LoginGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean pass = Account.login(true, username.getText(), password.getText());
         
-        if (pass)
+        if (RainScape.access && RainScape.username != null) {
             this.dispose();
+        }
     }//GEN-LAST:event_loginActionPerformed
 
     private void signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupActionPerformed
@@ -210,7 +211,10 @@ public class LoginGUI extends javax.swing.JFrame {
         */
         
         //</editor-fold>
-
+        
+        RainScape.access = false;
+        // System.out.println("Access: " + RainScape.access);
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

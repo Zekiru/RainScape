@@ -5,9 +5,6 @@
 package com.mycompany.rainscape;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -49,7 +46,7 @@ public class WeatherAPI {
             temp = jsonCurrent.get("temp_c").toString() + "°"; // e.g. 30°
             status = jsonCondition.get("text").toString(); // e.g. Partly cloudy
             
-            System.out.println("\n"+location+"\n"+temp+"\n"+status+"\n"); // Print Basic Weather Forecast to Console
+            // System.out.println("\n"+location+"\n"+temp+"\n"+status+"\n"); // Print Basic Weather Forecast to Console
             
             System.out.println("WeatherAPI Fetch Successful.");
         } catch (IOException e) {

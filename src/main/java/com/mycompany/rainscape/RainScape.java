@@ -21,18 +21,6 @@ public class RainScape {
             System.out.println("Exception: " + e);
         }
         
-        WeatherAPI.fetch();
-        
-        while (true) {
-            System.out.println(DateTime.localDate());
-            System.out.println(DateTime.localTime());
-            
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                System.out.println("Interrupted Exception: " + e);
-            }
-        }
     }
     
 }

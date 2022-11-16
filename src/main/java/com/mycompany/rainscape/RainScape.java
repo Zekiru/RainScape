@@ -5,6 +5,11 @@
 
 package com.mycompany.rainscape;
 
+import java.util.ArrayList;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  *
  * @author Ezekiel
@@ -24,7 +29,42 @@ public class RainScape {
             System.out.println("Exception: " + e);
         }
         
-        WeatherAPI.autoFetch();
+        // WeatherAPI.autoUpdate();
+        // DateTime.autoUpdate();
+        
+        autoUpdateThread();
+        
+    }
+    
+    public static void autoUpdateThread() {
+
+        //create a callable for each method
+        Callable callable1 = () -> {
+            WeatherAPI.autoUpdate();
+            return null;
+        };
+
+        Callable callable2 = () -> {
+            DateTime.autoUpdate();
+            return null;
+        };
+
+        //add to a list
+        ArrayList taskList = new ArrayList();
+        taskList.add(callable1);
+        taskList.add(callable2);
+
+        //create a pool executor with 3 threads
+        ExecutorService executor = Executors.newFixedThreadPool(3);
+
+        try {
+            //start the threads and wait for them to finish
+            executor.invokeAll(taskList);
+        } catch (InterruptedException ie) {
+            //do something if you care about interruption;
+            System.out.println("Interrupted Exception: " + ie);
+        }
+
     }
     
 }

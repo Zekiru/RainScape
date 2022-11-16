@@ -15,6 +15,7 @@ public class LoginGUI extends javax.swing.JFrame {
      */
     public LoginGUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -61,8 +62,14 @@ public class LoginGUI extends javax.swing.JFrame {
         username.setForeground(new java.awt.Color(255, 255, 255));
         username.setBorder(null);
         username.setCaretColor(new java.awt.Color(255, 255, 255));
+        username.setNextFocusableComponent(password);
         username.setOpaque(true);
         username.setSelectionColor(new java.awt.Color(0, 153, 153));
+        username.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                usernameKeyPressed(evt);
+            }
+        });
 
         jSeparator1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         jSeparator1.setEnabled(false);
@@ -79,7 +86,12 @@ public class LoginGUI extends javax.swing.JFrame {
         login.setForeground(new java.awt.Color(255, 255, 255));
         login.setText("Log In");
         login.setBorder(null);
-        login.setFocusable(false);
+        login.setNextFocusableComponent(username);
+        login.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                loginFocusGained(evt);
+            }
+        });
         login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginActionPerformed(evt);
@@ -102,7 +114,13 @@ public class LoginGUI extends javax.swing.JFrame {
         password.setForeground(new java.awt.Color(255, 255, 255));
         password.setBorder(null);
         password.setCaretColor(new java.awt.Color(255, 255, 255));
+        password.setNextFocusableComponent(login);
         password.setSelectionColor(new java.awt.Color(0, 153, 153));
+        password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout login_bgLayout = new javax.swing.GroupLayout(login_bg);
         login_bg.setLayout(login_bgLayout);
@@ -167,19 +185,43 @@ public class LoginGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        // TODO add your handling code here:
-        boolean pass = Account.login(true, username.getText(), password.getText());
+    public void process(boolean login) {
+        boolean pass = Account.login(login, username.getText(), password.getText());
         
         if (RainScape.access && RainScape.username != null) {
             this.dispose();
         }
+    }
+    
+    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+        // TODO add your handling code here:
+        process(true);
     }//GEN-LAST:event_loginActionPerformed
 
     private void signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupActionPerformed
         // TODO add your handling code here:
-        Account.login(false, username.getText(), password.getText());
+        process(false);
     }//GEN-LAST:event_signupActionPerformed
+
+    private void usernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == 10) {
+            username.nextFocus();
+        }
+    }//GEN-LAST:event_usernameKeyPressed
+
+    private void passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == 10) {
+            password.nextFocus();
+        }
+    }//GEN-LAST:event_passwordKeyPressed
+
+    private void loginFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_loginFocusGained
+        // TODO add your handling code here:
+        login.nextFocus();
+        process(true);
+    }//GEN-LAST:event_loginFocusGained
     
     /**
      * @param args the command line arguments

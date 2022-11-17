@@ -16,9 +16,12 @@ public class DateTime {
     
     public static void autoUpdate() { // Run along with project
         System.out.println("DateTime Auto Update Initialized");
+        int cycles = 0;
+        int updates = 0;
         
         while (true) {
             boolean access = RainScape.access;
+            cycles++;
             
             if (access) {
                 try {
@@ -29,12 +32,13 @@ public class DateTime {
                 
                 if (access) {
                     setValues();
+                    updates++;
                     
-                    // System.out.println("Date Updated");
+                    // System.out.println("DateTime Update Cycles = " + updates + "/" + cycles);
                 }
             } else {
                 try {
-                    Thread.sleep(500); // While loop time buffer
+                    Thread.sleep(1000); // While loop time buffer
                 } catch (InterruptedException ie) {
                     System.out.println("Interrupted Exception: " + ie);
                 }

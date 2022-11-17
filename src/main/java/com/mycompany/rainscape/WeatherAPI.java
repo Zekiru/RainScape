@@ -24,9 +24,12 @@ public class WeatherAPI {
     
     public static void autoUpdate() { // Run along with project
         System.out.println("WeatherAPI Auto Update Initialized");
+        int cycles = 0;
+        int updates = 0;
         
         while (true) {
             boolean access = RainScape.access;
+            cycles++;
             
             if (access) {
                 try {
@@ -38,12 +41,13 @@ public class WeatherAPI {
                 if (access) {
                     fetch(RainScape.username);
                     setValues();
+                    updates++;
                     
-                    // System.out.println("API Data Updated");
+                    // System.out.println("WeatherAPI Update Cycles = " + updates + "/" + cycles);
                 }
             } else {
                 try {
-                    Thread.sleep(500); // While loop time buffer
+                    Thread.sleep(1000); // While loop time buffer
                 } catch (InterruptedException ie) {
                     System.out.println("Interrupted Exception: " + ie);
                 }

@@ -29,9 +29,6 @@ public class RainScape {
             System.out.println("Exception: " + e);
         }
         
-        // WeatherAPI.autoUpdate();
-        // DateTime.autoUpdate();
-        
         autoUpdateThread();
         
     }

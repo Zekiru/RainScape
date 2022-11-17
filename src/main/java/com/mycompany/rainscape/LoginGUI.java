@@ -194,9 +194,7 @@ public class LoginGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void process(boolean login) {
-        boolean pass = Account.login(login, username.getText(), password.getText());
-        
-        if (RainScape.access && RainScape.username != null) {
+        if (Account.login(login, username.getText(), password.getText())) {
             this.dispose();
         }
     }
@@ -291,7 +289,6 @@ public class LoginGUI extends javax.swing.JFrame {
         //</editor-fold>
         
         RainScape.access = false;
-        // System.out.println("Access: " + RainScape.access);
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

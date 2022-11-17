@@ -22,35 +22,29 @@ public class WeatherAPI {
     
     public static String location, temp, status; // Variables for Basic Weather Forecast
     
-    public static void autoUpdate() { // Run along with project
-        System.out.println("WeatherAPI Auto Update Initialized");
-        int cycles = 0;
-        int updates = 0;
+    public static void autoUpdate() {
+        System.out.println("WeatherAPI AutoUpdate Initialized");
         
         while (true) {
             boolean access = RainScape.access;
-            cycles++;
             
-            if (access) {
+            try {
+                Thread.sleep(100); // While loop time buffer, Default 0.1 second
+            } catch (InterruptedException ie) {
+                System.out.println("Interrupted Exception: " + ie);
+            }
+
+            while (access) {
                 try {
-                    Thread.sleep(60000); // Fetch ms intervals, Default = 1 minute
+                    Thread.sleep(10000); // While loop time buffer, Default 0.1 second
                 } catch (InterruptedException ie) {
                     System.out.println("Interrupted Exception: " + ie);
                 }
                 
-                if (access) {
-                    fetch(RainScape.username);
-                    setValues();
-                    updates++;
-                    
-                    // System.out.println("WeatherAPI Update Cycles = " + updates + "/" + cycles);
-                }
-            } else {
-                try {
-                    Thread.sleep(1000); // While loop time buffer
-                } catch (InterruptedException ie) {
-                    System.out.println("Interrupted Exception: " + ie);
-                }
+                WeatherAPI.fetch(RainScape.username);
+                WeatherAPI.setValues();
+
+                // System.out.println("WeatherAPI Updated");
             }
         }
     }

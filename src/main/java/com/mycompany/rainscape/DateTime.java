@@ -14,40 +14,34 @@ import java.util.Date;
  */
 public class DateTime {
     
-    public static void autoUpdate() { // Run along with project
-        System.out.println("DateTime Auto Update Initialized");
-        int cycles = 0;
-        int updates = 0;
+    public static void autoUpdate() {
+        System.out.println("DateTime AutoUpdate Initialized");
         
         while (true) {
             boolean access = RainScape.access;
-            cycles++;
             
-            if (access) {
+            try {
+                Thread.sleep(100); // While loop time buffer, Default 0.1 second
+            } catch (InterruptedException ie) {
+                System.out.println("Interrupted Exception: " + ie);
+            }
+
+            while (access) {
                 try {
-                    Thread.sleep(1000); // Fetch ms intervals, Default = 1 second
+                    Thread.sleep(100); // While loop time buffer, Default 0.1 second
                 } catch (InterruptedException ie) {
                     System.out.println("Interrupted Exception: " + ie);
                 }
                 
-                if (access) {
-                    setValues();
-                    updates++;
-                    
-                    // System.out.println("DateTime Update Cycles = " + updates + "/" + cycles);
-                }
-            } else {
-                try {
-                    Thread.sleep(1000); // While loop time buffer
-                } catch (InterruptedException ie) {
-                    System.out.println("Interrupted Exception: " + ie);
-                }
+                DateTime.setValues();
+
+                // System.out.println("DateTime Updated");
             }
         }
     }
     
     public static String localTime() {
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm aa");
+        DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss aa");
         Date date = new Date();
         
         if (dateFormat.format(date).charAt(0) != '0') {

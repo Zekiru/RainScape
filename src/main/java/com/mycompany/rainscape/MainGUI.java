@@ -153,7 +153,7 @@ public class MainGUI extends javax.swing.JFrame {
             menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuBarLayout.createSequentialGroup()
                 .addGap(88, 88, 88)
-                .addComponent(localtime, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(localtime, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         menuBarLayout.setVerticalGroup(
@@ -239,7 +239,7 @@ public class MainGUI extends javax.swing.JFrame {
         
         //</editor-fold>
         
-        // System.out.println("Access: " + RainScape.access);
+        RainScape.access = true;
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

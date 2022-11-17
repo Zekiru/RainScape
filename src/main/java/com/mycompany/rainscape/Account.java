@@ -46,7 +46,7 @@ public class Account {
                     if (login && RainScape.access == false) {
                         // Login Success
                         RainScape.username = username;
-                        WeatherAPI.fetch(RainScape.username);
+                        WeatherAPI.fetch(WeatherAPI.defaultUserArea());
                         MainGUI.main(null);
                         pass = true;
                     } else {
@@ -85,7 +85,7 @@ public class Account {
             psmt = conn.prepareStatement(sql);
             
             psmt.setString(1, username);
-            psmt.setString(2, "Manila");
+            psmt.setString(2, WeatherAPI.default_area);
             
             psmt.executeUpdate();
             

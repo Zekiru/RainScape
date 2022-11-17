@@ -20,6 +20,9 @@ import org.json.JSONObject;
  */
 public class WeatherAPI {
     
+    public static String default_area = "Manila"; // Default New Account Area
+    public static String current_area = "";
+    
     public static String location, temp, status; // Variables for Basic Weather Forecast
     
     public static void autoUpdate() {
@@ -41,7 +44,7 @@ public class WeatherAPI {
                     System.out.println("Interrupted Exception: " + ie);
                 }
                 
-                WeatherAPI.fetch(RainScape.username);
+                WeatherAPI.fetch(currentUserArea());
                 WeatherAPI.setValues();
 
                 // System.out.println("WeatherAPI Updated");
@@ -49,59 +52,77 @@ public class WeatherAPI {
         }
     }
     
-    public static void fetch(String username) {
+    public static String currentUserArea() {
+        String area;
+        
+        if (current_area == "") {
+            area = defaultUserArea();
+        } else {
+            area = current_area;
+        }
+        
+        return area;
+    }
+    
+    public static String defaultUserArea() {
+        String user = RainScape.username;
+        String area = default_area;
+        
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db","root","");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db", "root", "");
             String sql;
-            
-            sql ="select * from rs_preferences where username=?";
-            
+
+            sql = "select * from rs_preferences where username=?";
+
             PreparedStatement psmt = conn.prepareStatement(sql);
-            
-            psmt.setString(1, username);
-            
+
+            psmt.setString(1, user);
+
             ResultSet rs = psmt.executeQuery();
             rs.next();
-            
-            String area = rs.getString("area");
-                
-            try {
-                String api_url = "https://weatherapi-com.p.rapidapi.com/current.json?q=" + area;
 
-                OkHttpClient client = new OkHttpClient();
-
-                Request request = new Request.Builder()
-                    .url(api_url)
-                    .get()
-                    .addHeader("X-RapidAPI-Key", "d2cd26e50fmshb105523acf4dea8p15c5eejsn5766f55f0f75")
-                    .addHeader("X-RapidAPI-Host", "weatherapi-com.p.rapidapi.com")
-                    .build();
-
-                Response response = client.newCall(request).execute();
-
-                JSONObject jsonAPI = new JSONObject(response.body().string());
-                JSONObject jsonLocation = new JSONObject(jsonAPI.get("location").toString());
-                JSONObject jsonCurrent = new JSONObject(jsonAPI.get("current").toString());
-                JSONObject jsonCondition = new JSONObject(jsonCurrent.get("condition").toString());
-
-                // Below are the fetched variables:
-
-                if (jsonLocation.get("name").toString().equals(jsonLocation.get("region").toString()))
-                    location = jsonLocation.get("region").toString() + ", " + jsonLocation.get("country").toString(); // e.g. Manila, Philippines
-                else
-                    location = jsonLocation.get("name").toString() + ", " + jsonLocation.get("region").toString(); // e.g. Makati, Manila, Philippines
-                
-                temp = jsonCurrent.get("temp_c").toString() + "°"; // e.g. 30°
-                status = jsonCondition.get("text").toString(); // e.g. Partly cloudy
-
-                // System.out.println("\n"+location+"\n"+temp+"\n"+status+"\n"); // Print Basic Weather Forecast to Console
-
-                // System.out.println("WeatherAPI Data Fetched");
-            } catch (IOException e) {
-                System.out.println("Exception: " + e);
-            }
+            area = rs.getString("area");
         } catch (Exception e) {
+            System.out.println("Exception: " + e);
+        }
+        return area;
+    }
+    
+    public static void fetch(String area) {        
+        try {
+            String api_url = "https://weatherapi-com.p.rapidapi.com/current.json?q=" + area;
+
+            OkHttpClient client = new OkHttpClient();
+
+            Request request = new Request.Builder()
+                .url(api_url)
+                .get()
+                .addHeader("X-RapidAPI-Key", "d2cd26e50fmshb105523acf4dea8p15c5eejsn5766f55f0f75")
+                .addHeader("X-RapidAPI-Host", "weatherapi-com.p.rapidapi.com")
+                .build();
+
+            Response response = client.newCall(request).execute();
+
+            JSONObject jsonAPI = new JSONObject(response.body().string());
+            JSONObject jsonLocation = new JSONObject(jsonAPI.get("location").toString());
+            JSONObject jsonCurrent = new JSONObject(jsonAPI.get("current").toString());
+            JSONObject jsonCondition = new JSONObject(jsonCurrent.get("condition").toString());
+
+            // Below are the fetched variables:
+
+            if (jsonLocation.get("name").toString().equals(jsonLocation.get("region").toString()))
+                location = jsonLocation.get("region").toString() + ", " + jsonLocation.get("country").toString(); // e.g. Manila, Philippines
+            else
+                location = jsonLocation.get("name").toString() + ", " + jsonLocation.get("region").toString(); // e.g. Makati, Manila, Philippines
+
+            temp = jsonCurrent.get("temp_c").toString() + "°"; // e.g. 30°
+            status = jsonCondition.get("text").toString(); // e.g. Partly cloudy
+
+            // System.out.println("\n"+location+"\n"+temp+"\n"+status+"\n"); // Print Basic Weather Forecast to Console
+
+            // System.out.println("WeatherAPI Data Fetched");
+        } catch (IOException e) {
             System.out.println("Exception: " + e);
         }
     }

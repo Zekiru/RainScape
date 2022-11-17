@@ -224,8 +224,12 @@ public class LoginGUI extends javax.swing.JFrame {
         if (evt.getKeyCode() == 38)
             password.transferFocusBackward();
         
-        if (evt.getKeyCode() == 10 || evt.getKeyCode() == 40) {
+        if (evt.getKeyCode() == 40)
             password.nextFocus();
+            
+        if (evt.getKeyCode() == 10) {
+            signup.nextFocus();
+            process(true);
         }
     }//GEN-LAST:event_passwordKeyPressed
 

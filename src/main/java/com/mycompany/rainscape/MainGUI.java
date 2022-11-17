@@ -90,7 +90,7 @@ public class MainGUI extends javax.swing.JFrame {
         localdate.setForeground(new java.awt.Color(237, 249, 244));
         localdate.setText("XX/XX/XXXX");
 
-        location.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        location.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         location.setForeground(new java.awt.Color(237, 249, 244));
         location.setText("XXXXXXXXXXX, XXXXXXXXXXX");
 

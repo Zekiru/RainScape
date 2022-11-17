@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2022 at 09:13 AM
+-- Generation Time: Nov 17, 2022 at 01:46 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -39,6 +39,7 @@ CREATE TABLE `rs_accounts` (
 INSERT INTO `rs_accounts` (`username`, `password`) VALUES
 ('Aya', 'Pangan'),
 ('Jay', 'Malinis'),
+('Joseph', 'Garcia'),
 ('Justin', 'Lu'),
 ('Marcus', 'Singson'),
 ('Zeke', 'Villasurda');
@@ -60,10 +61,11 @@ CREATE TABLE `rs_preferences` (
 
 INSERT INTO `rs_preferences` (`username`, `area`) VALUES
 ('Aya', 'Manila'),
-('Jay', 'Makati City'),
+('Jay', 'Makati'),
+('Joseph', 'Manila'),
 ('Justin', 'Quezon City'),
 ('Marcus', 'Manila'),
-('Zeke', 'Quezon City');
+('Zeke', 'Albuquerque');
 
 --
 -- Indexes for dumped tables

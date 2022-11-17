@@ -90,7 +90,7 @@ public class MainGUI extends javax.swing.JFrame {
         localdate.setForeground(new java.awt.Color(237, 249, 244));
         localdate.setText("XX/XX/XXXX");
 
-        location.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        location.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         location.setForeground(new java.awt.Color(237, 249, 244));
         location.setText("XXXXXXXXXXX, XXXXXXXXXXX");
 
@@ -145,7 +145,7 @@ public class MainGUI extends javax.swing.JFrame {
         localtime.setBackground(new java.awt.Color(237, 249, 244));
         localtime.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         localtime.setForeground(new java.awt.Color(237, 249, 244));
-        localtime.setText("XX:XX XX");
+        localtime.setText("XX:XX:XX XX");
 
         javax.swing.GroupLayout menuBarLayout = new javax.swing.GroupLayout(menuBar);
         menuBar.setLayout(menuBarLayout);
@@ -178,7 +178,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(mainBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(menuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 489, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 486, Short.MAX_VALUE)
                 .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70))
         );

@@ -40,7 +40,7 @@ public class Account {
             ResultSet rs = psmt.executeQuery();
             
             if (username.equals("") || password.equals(""))
-                JOptionPane.showMessageDialog(null,"Fill In The Empty Fields.");
+                JOptionPane.showMessageDialog(null, "Fill in the empty fields.");
             else
                 if (rs.next()==true)
                     if (login && RainScape.access == false) {

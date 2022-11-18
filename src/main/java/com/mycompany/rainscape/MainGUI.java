@@ -4,6 +4,8 @@
  */
 package com.mycompany.rainscape;
 
+import java.awt.Color;
+
 /**
  *
  * @author Ezekiel
@@ -17,7 +19,7 @@ public class MainGUI extends javax.swing.JFrame {
         initComponents();
         content_box_scroll.getVerticalScrollBar().setUnitIncrement(16); // Scroll Speed
         
-        WeatherAPI.fetch(WeatherAPI.defaultUserArea());
+        WeatherAPI.fetch(WeatherAPI.currentUserArea());
         
         WeatherAPI.setValues();
         DateTime.setValues();
@@ -46,6 +48,10 @@ public class MainGUI extends javax.swing.JFrame {
         searchbar_bg = new javax.swing.JPanel();
         searchbar = new javax.swing.JTextField();
         searchbutton = new javax.swing.JButton();
+        hamburger_box = new javax.swing.JPanel();
+        line1 = new javax.swing.JPanel();
+        line2 = new javax.swing.JPanel();
+        line3 = new javax.swing.JPanel();
         logout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -193,6 +199,91 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
+        hamburger_box.setBackground(new java.awt.Color(0, 0, 0));
+        hamburger_box.setForeground(new java.awt.Color(0, 0, 0));
+        hamburger_box.setOpaque(false);
+        hamburger_box.setPreferredSize(new java.awt.Dimension(34, 34));
+        hamburger_box.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                hamburger_boxMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                hamburger_boxMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                hamburger_boxMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                hamburger_boxMouseReleased(evt);
+            }
+        });
+
+        line1.setBackground(new java.awt.Color(255, 255, 255));
+        line1.setForeground(new java.awt.Color(255, 255, 255));
+        line1.setPreferredSize(new java.awt.Dimension(34, 5));
+
+        javax.swing.GroupLayout line1Layout = new javax.swing.GroupLayout(line1);
+        line1.setLayout(line1Layout);
+        line1Layout.setHorizontalGroup(
+            line1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 34, Short.MAX_VALUE)
+        );
+        line1Layout.setVerticalGroup(
+            line1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        line2.setBackground(new java.awt.Color(255, 255, 255));
+        line2.setForeground(new java.awt.Color(255, 255, 255));
+        line2.setPreferredSize(new java.awt.Dimension(34, 5));
+
+        javax.swing.GroupLayout line2Layout = new javax.swing.GroupLayout(line2);
+        line2.setLayout(line2Layout);
+        line2Layout.setHorizontalGroup(
+            line2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 34, Short.MAX_VALUE)
+        );
+        line2Layout.setVerticalGroup(
+            line2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        line3.setBackground(new java.awt.Color(255, 255, 255));
+        line3.setForeground(new java.awt.Color(255, 255, 255));
+        line3.setPreferredSize(new java.awt.Dimension(34, 5));
+
+        javax.swing.GroupLayout line3Layout = new javax.swing.GroupLayout(line3);
+        line3.setLayout(line3Layout);
+        line3Layout.setHorizontalGroup(
+            line3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 34, Short.MAX_VALUE)
+        );
+        line3Layout.setVerticalGroup(
+            line3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout hamburger_boxLayout = new javax.swing.GroupLayout(hamburger_box);
+        hamburger_box.setLayout(hamburger_boxLayout);
+        hamburger_boxLayout.setHorizontalGroup(
+            hamburger_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hamburger_boxLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(hamburger_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(line1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(line2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(line3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        hamburger_boxLayout.setVerticalGroup(
+            hamburger_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hamburger_boxLayout.createSequentialGroup()
+                .addComponent(line1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(line2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(line3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout menuBarLayout = new javax.swing.GroupLayout(menuBar);
         menuBar.setLayout(menuBarLayout);
         menuBarLayout.setHorizontalGroup(
@@ -200,21 +291,25 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(menuBarLayout.createSequentialGroup()
                 .addGap(88, 88, 88)
                 .addComponent(localtime, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(212, 212, 212)
                 .addComponent(searchbar_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(searchbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
+                .addGap(92, 92, 92)
+                .addComponent(hamburger_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         menuBarLayout.setVerticalGroup(
             menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(localtime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuBarLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
-                .addGroup(menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(searchbutton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(searchbar_bg, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(10, Short.MAX_VALUE))
+            .addComponent(localtime, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+            .addGroup(menuBarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(hamburger_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(searchbutton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(searchbar_bg, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         logout.setBackground(new java.awt.Color(0, 204, 204));
@@ -222,6 +317,7 @@ public class MainGUI extends javax.swing.JFrame {
         logout.setForeground(new java.awt.Color(255, 255, 255));
         logout.setText("Log Out");
         logout.setBorder(null);
+        logout.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         logout.setFocusable(false);
         logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,9 +339,9 @@ public class MainGUI extends javax.swing.JFrame {
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
                 .addComponent(menuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(488, 488, 488)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 482, Short.MAX_VALUE)
                 .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout content_boxLayout = new javax.swing.GroupLayout(content_box);
@@ -283,7 +379,7 @@ public class MainGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
-    public void searchProcess(String area) {
+    private void searchProcess(String area) {
         if (area.equals("")) {
             WeatherAPI.current_area = "";
             WeatherAPI.fetch(WeatherAPI.currentUserArea());
@@ -293,6 +389,18 @@ public class MainGUI extends javax.swing.JFrame {
         }
         
         WeatherAPI.setValues();
+    }
+    
+    private void hamburgerToggle(boolean active) {
+        if (active) {
+            line1.setBackground(Color.lightGray);
+            line2.setBackground(Color.lightGray);
+            line3.setBackground(Color.lightGray);
+        } else {
+            line1.setBackground(Color.white);
+            line2.setBackground(Color.white);
+            line3.setBackground(Color.white);
+        }
     }
     
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
@@ -312,6 +420,26 @@ public class MainGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         searchProcess(searchbar.getText());
     }//GEN-LAST:event_searchbuttonActionPerformed
+
+    private void hamburger_boxMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hamburger_boxMouseEntered
+        // TODO add your handling code here:
+        hamburgerToggle(true);
+    }//GEN-LAST:event_hamburger_boxMouseEntered
+
+    private void hamburger_boxMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hamburger_boxMouseExited
+        // TODO add your handling code here:
+        hamburgerToggle(false);
+    }//GEN-LAST:event_hamburger_boxMouseExited
+
+    private void hamburger_boxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hamburger_boxMousePressed
+        // TODO add your handling code here:
+        hamburgerToggle(false);
+    }//GEN-LAST:event_hamburger_boxMousePressed
+
+    private void hamburger_boxMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hamburger_boxMouseReleased
+        // TODO add your handling code here:
+        hamburgerToggle(true);
+    }//GEN-LAST:event_hamburger_boxMouseReleased
 
     /**
      * @param args the command line arguments
@@ -357,6 +485,10 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel body;
     private javax.swing.JPanel content_box;
     private javax.swing.JScrollPane content_box_scroll;
+    private javax.swing.JPanel hamburger_box;
+    private javax.swing.JPanel line1;
+    private javax.swing.JPanel line2;
+    private javax.swing.JPanel line3;
     public static javax.swing.JLabel localdate;
     public static javax.swing.JLabel localtime;
     public static javax.swing.JLabel location;

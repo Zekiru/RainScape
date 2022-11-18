@@ -113,18 +113,6 @@ public class WeatherAPI {
 
                 // Below are the fetched variables:
                 
-                /*
-                if (jsonLocation.get("name").toString().equals(jsonLocation.get("country").toString()))
-                    location = jsonLocation.get("name").toString(); // e.g. Makati (Makati, Manila, PH)
-                else if (jsonLocation.get("name").toString().equals(jsonLocation.get("region").toString()))
-                    if (jsonLocation.get("country").toString().equals("United States of America"))
-                        location = jsonLocation.get("region").toString() + ", USA";
-                    else
-                        location = jsonLocation.get("region").toString() + ", " + jsonLocation.get("countryAlbuquerque").toString(); // e.g. Makati, Philippines (Makati, Manila, PH)
-                else
-                    location = jsonLocation.get("name").toString() + ", " + jsonLocation.get("region").toString(); // e.g. Manila, Philippines (Makati, Manila, PH)
-                */
-                
                 if (jsonLocation.get("name").toString().equals(jsonLocation.get("country").toString()))
                     location = jsonLocation.get("name").toString(); // e.g. Makati (Makati, Manila, PH)
                 else
@@ -162,8 +150,8 @@ public class WeatherAPI {
 
             // System.out.println("WeatherAPI Data Set");
         } catch (Exception e) {
-            System.out.println("Exception: " + e);
-        }
+            e.printStackTrace(); 
+       }
     }
     
 }

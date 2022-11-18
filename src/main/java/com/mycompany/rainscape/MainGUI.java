@@ -165,11 +165,6 @@ public class MainGUI extends javax.swing.JFrame {
         searchbar.setCaretColor(new java.awt.Color(255, 255, 255));
         searchbar.setOpaque(true);
         searchbar.setSelectionColor(new java.awt.Color(0, 153, 153));
-        searchbar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchbarActionPerformed(evt);
-            }
-        });
         searchbar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 searchbarKeyPressed(evt);
@@ -195,6 +190,11 @@ public class MainGUI extends javax.swing.JFrame {
         searchbutton.setForeground(new java.awt.Color(255, 255, 255));
         searchbutton.setText("Search");
         searchbutton.setBorder(null);
+        searchbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchbuttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout menuBarLayout = new javax.swing.GroupLayout(menuBar);
         menuBar.setLayout(menuBarLayout);
@@ -207,7 +207,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(searchbar_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(searchbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
+                .addGap(88, 88, 88))
         );
         menuBarLayout.setVerticalGroup(
             menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,9 +246,9 @@ public class MainGUI extends javax.swing.JFrame {
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
                 .addComponent(menuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(497, 497, 497)
+                .addGap(488, 488, 488)
                 .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout content_boxLayout = new javax.swing.GroupLayout(content_box);
@@ -286,6 +286,18 @@ public class MainGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
+    public void searchProcess(String area) {
+        if (area.equals("")) {
+            WeatherAPI.current_area = "";
+            WeatherAPI.fetch(WeatherAPI.currentUserArea());
+        } else if (WeatherAPI.current_area != area){
+            WeatherAPI.current_area = area;
+            WeatherAPI.fetch(WeatherAPI.currentUserArea());
+        }
+        
+        WeatherAPI.setValues();
+    }
+    
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
         LoginGUI.main(null);
@@ -294,17 +306,15 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void searchbarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchbarKeyPressed
         // TODO add your handling code here:
-        if (evt.getKeyCode() == 38)
-        searchbar.transferFocusBackward();
-
-        if (evt.getKeyCode() == 10 || evt.getKeyCode() == 40) {
-            searchbar.nextFocus();
+        if (evt.getKeyCode() == 10) {
+            searchProcess(searchbar.getText());
         }
     }//GEN-LAST:event_searchbarKeyPressed
 
-    private void searchbarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbarActionPerformed
+    private void searchbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbuttonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchbarActionPerformed
+        searchProcess(searchbar.getText());
+    }//GEN-LAST:event_searchbuttonActionPerformed
 
     /**
      * @param args the command line arguments

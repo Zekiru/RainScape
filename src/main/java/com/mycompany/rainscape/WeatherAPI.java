@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -39,7 +40,7 @@ public class WeatherAPI {
 
             while (access) {
                 try {
-                    Thread.sleep(10000); // While loop time buffer, Default 0.1 second
+                    Thread.sleep(600000); // While loop time buffer, Default 10 minutes
                 } catch (InterruptedException ie) {
                     System.out.println("Interrupted Exception: " + ie);
                 }
@@ -55,7 +56,7 @@ public class WeatherAPI {
     public static String currentUserArea() {
         String area;
         
-        if (current_area == "") {
+        if (current_area.equals("")) {
             area = defaultUserArea();
         } else {
             area = current_area;
@@ -103,27 +104,54 @@ public class WeatherAPI {
                 .build();
 
             Response response = client.newCall(request).execute();
-
+            
             JSONObject jsonAPI = new JSONObject(response.body().string());
-            JSONObject jsonLocation = new JSONObject(jsonAPI.get("location").toString());
-            JSONObject jsonCurrent = new JSONObject(jsonAPI.get("current").toString());
-            JSONObject jsonCondition = new JSONObject(jsonCurrent.get("condition").toString());
 
-            // Below are the fetched variables:
+            if (jsonAPI.has("location")) {
+                JSONObject jsonLocation = new JSONObject(jsonAPI.get("location").toString());
+                JSONObject jsonCurrent = new JSONObject(jsonAPI.get("current").toString());
+                JSONObject jsonCondition = new JSONObject(jsonCurrent.get("condition").toString());
 
-            if (jsonLocation.get("name").toString().equals(jsonLocation.get("region").toString()))
-                location = jsonLocation.get("region").toString() + ", " + jsonLocation.get("country").toString(); // e.g. Manila, Philippines
-            else
-                location = jsonLocation.get("name").toString() + ", " + jsonLocation.get("region").toString(); // e.g. Makati, Manila, Philippines
+                // Below are the fetched variables:
+                
+                /*
+                if (jsonLocation.get("name").toString().equals(jsonLocation.get("country").toString()))
+                    location = jsonLocation.get("name").toString(); // e.g. Makati (Makati, Manila, PH)
+                else if (jsonLocation.get("name").toString().equals(jsonLocation.get("region").toString()))
+                    if (jsonLocation.get("country").toString().equals("United States of America"))
+                        location = jsonLocation.get("region").toString() + ", USA";
+                    else
+                        location = jsonLocation.get("region").toString() + ", " + jsonLocation.get("countryAlbuquerque").toString(); // e.g. Makati, Philippines (Makati, Manila, PH)
+                else
+                    location = jsonLocation.get("name").toString() + ", " + jsonLocation.get("region").toString(); // e.g. Manila, Philippines (Makati, Manila, PH)
+                */
+                
+                if (jsonLocation.get("name").toString().equals(jsonLocation.get("country").toString()))
+                    location = jsonLocation.get("name").toString(); // e.g. Makati (Makati, Manila, PH)
+                else
+                    if (jsonLocation.get("country").toString().equals("United States of America"))
+                        location = jsonLocation.get("name").toString() + ", USA";
+                    else
+                        location = jsonLocation.get("name").toString() + ", " + jsonLocation.get("country").toString(); // e.g. Makati, Philippines (Makati, Manila, PH)
+                
+                temp = jsonCurrent.get("temp_c").toString() + "°"; // e.g. 30°
+                status = jsonCondition.get("text").toString(); // e.g. Partly cloudy
 
-            temp = jsonCurrent.get("temp_c").toString() + "°"; // e.g. 30°
-            status = jsonCondition.get("text").toString(); // e.g. Partly cloudy
+                // System.out.println("\n"+location+"\n"+temp+"\n"+status+"\n"); // Print Basic Weather Forecast to Console
+                
+                // System.out.println("WeatherAPI Data Fetched");
+            } else if (jsonAPI.has("error")) {
+                JSONObject jsonError = new JSONObject(jsonAPI.get("error").toString());
+                String message = jsonError.get("message").toString();
 
-            // System.out.println("\n"+location+"\n"+temp+"\n"+status+"\n"); // Print Basic Weather Forecast to Console
+                JOptionPane.showMessageDialog(null, message);
 
-            // System.out.println("WeatherAPI Data Fetched");
-        } catch (IOException e) {
-            System.out.println("Exception: " + e);
+                // System.out.println("WeatherAPI Data Fetch Error");
+            } else {
+                System.out.println(response.body().string());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     

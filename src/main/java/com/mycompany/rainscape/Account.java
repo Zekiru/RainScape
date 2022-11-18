@@ -46,7 +46,6 @@ public class Account {
                     if (login && RainScape.access == false) {
                         // Login Success
                         RainScape.username = username;
-                        WeatherAPI.fetch(WeatherAPI.defaultUserArea());
                         MainGUI.main(null);
                         pass = true;
                     } else {

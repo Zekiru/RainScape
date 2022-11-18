@@ -60,7 +60,7 @@ public class RainScape {
         taskList.add(callable2);
 
         //create a pool executor with 3 threads
-        ExecutorService executor = Executors.newFixedThreadPool(3);
+        ExecutorService executor = Executors.newFixedThreadPool(2);
 
         try {
             //start the threads and wait for them to finish

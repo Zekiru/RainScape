@@ -15,7 +15,6 @@ public class LoginGUI extends javax.swing.JFrame {
      */
     public LoginGUI() {
         initComponents();
-        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -78,7 +77,7 @@ public class LoginGUI extends javax.swing.JFrame {
         password.setForeground(new java.awt.Color(255, 255, 255));
         password.setBorder(null);
         password.setCaretColor(new java.awt.Color(255, 255, 255));
-        password.setNextFocusableComponent(login);
+        password.setNextFocusableComponent(username);
         password.setSelectionColor(new java.awt.Color(0, 153, 153));
         password.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -91,15 +90,9 @@ public class LoginGUI extends javax.swing.JFrame {
         login.setForeground(new java.awt.Color(255, 255, 255));
         login.setText("Log In");
         login.setBorder(null);
-        login.setNextFocusableComponent(signup);
         login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginActionPerformed(evt);
-            }
-        });
-        login.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                loginKeyPressed(evt);
             }
         });
 
@@ -108,15 +101,9 @@ public class LoginGUI extends javax.swing.JFrame {
         signup.setForeground(new java.awt.Color(0, 204, 204));
         signup.setText("Sign Up");
         signup.setBorder(null);
-        signup.setNextFocusableComponent(username);
         signup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signupActionPerformed(evt);
-            }
-        });
-        signup.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                signupKeyPressed(evt);
             }
         });
 
@@ -191,6 +178,7 @@ public class LoginGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     public void process(boolean login) {
@@ -232,34 +220,6 @@ public class LoginGUI extends javax.swing.JFrame {
             process(true);
         }
     }//GEN-LAST:event_passwordKeyPressed
-
-    private void loginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_loginKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == 38)
-            login.transferFocusBackward();
-        
-        if (evt.getKeyCode() == 40)
-            login.nextFocus();
-            
-        if (evt.getKeyCode() == 10) {
-            signup.nextFocus();
-            process(true);
-        }
-    }//GEN-LAST:event_loginKeyPressed
-
-    private void signupKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_signupKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == 38)
-            signup.transferFocusBackward();
-        
-        if (evt.getKeyCode() == 40)
-            signup.nextFocus();
-        
-        if (evt.getKeyCode() == 10) {
-            signup.nextFocus();
-            process(false);
-        }
-    }//GEN-LAST:event_signupKeyPressed
     
     /**
      * @param args the command line arguments

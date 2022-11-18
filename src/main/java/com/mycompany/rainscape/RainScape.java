@@ -5,10 +5,12 @@
 
 package com.mycompany.rainscape;
 
+import com.formdev.flatlaf.FlatDarkLaf;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import javax.swing.UIManager;
 
 /**
  *
@@ -27,6 +29,12 @@ public class RainScape {
         } catch (Exception e) {
             System.out.println("Project Not Launched");
             System.out.println("Exception: " + e);
+        }
+        
+        try {
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+        } catch (Exception e) {
+            System.err.println("Failed to initialize LaF:" + e);
         }
         
         autoUpdateThread();

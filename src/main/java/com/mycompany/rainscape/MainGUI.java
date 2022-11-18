@@ -4,6 +4,9 @@
  */
 package com.mycompany.rainscape;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import javax.swing.UIManager;
+
 /**
  *
  * @author Ezekiel
@@ -15,8 +18,9 @@ public class MainGUI extends javax.swing.JFrame {
      */
     public MainGUI() {        
         initComponents();
-        this.setLocationRelativeTo(null);
         content_box_scroll.getVerticalScrollBar().setUnitIncrement(16); // Scroll Speed
+        
+        WeatherAPI.fetch(WeatherAPI.defaultUserArea());
         
         WeatherAPI.setValues();
         DateTime.setValues();
@@ -32,41 +36,38 @@ public class MainGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         content_box_scroll = new javax.swing.JScrollPane();
-        content_box_bg = new javax.swing.JPanel();
-        logout = new javax.swing.JButton();
+        content_box = new javax.swing.JPanel();
         mainBanner = new javax.swing.JPanel();
         basicforecast_box = new javax.swing.JPanel();
         status = new javax.swing.JLabel();
         temp = new javax.swing.JLabel();
         localdate = new javax.swing.JLabel();
         location = new javax.swing.JLabel();
+        body = new javax.swing.JPanel();
         menuBar = new javax.swing.JPanel();
         localtime = new javax.swing.JLabel();
+        searchbar_bg = new javax.swing.JPanel();
+        searchbar = new javax.swing.JTextField();
+        searchbutton = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("RainScape");
+        setMaximumSize(new java.awt.Dimension(1200, 675));
+        setMinimumSize(new java.awt.Dimension(1200, 675));
+        setName(""); // NOI18N
         setResizable(false);
         setSize(new java.awt.Dimension(1200, 675));
 
         content_box_scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         content_box_scroll.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         content_box_scroll.setFocusable(false);
-        content_box_scroll.setPreferredSize(new java.awt.Dimension(960, 540));
+        content_box_scroll.setPreferredSize(new java.awt.Dimension(1200, 675));
+        content_box_scroll.setRequestFocusEnabled(false);
 
-        content_box_bg.setBackground(new java.awt.Color(225, 230, 236));
-        content_box_bg.setForeground(new java.awt.Color(0, 0, 0));
-
-        logout.setBackground(new java.awt.Color(0, 204, 204));
-        logout.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        logout.setForeground(new java.awt.Color(255, 255, 255));
-        logout.setText("Log Out");
-        logout.setBorder(null);
-        logout.setFocusable(false);
-        logout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutActionPerformed(evt);
-            }
-        });
+        content_box.setBackground(new java.awt.Color(51, 51, 51));
+        content_box.setForeground(new java.awt.Color(0, 0, 0));
+        content_box.setPreferredSize(new java.awt.Dimension(1188, 925));
 
         mainBanner.setBackground(new java.awt.Color(153, 204, 255));
 
@@ -140,12 +141,60 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGap(42, 42, 42))
         );
 
+        body.setBackground(new java.awt.Color(225, 230, 236));
+        body.setForeground(new java.awt.Color(225, 230, 236));
+        body.setPreferredSize(new java.awt.Dimension(1188, 675));
+
         menuBar.setBackground(new java.awt.Color(0, 51, 51));
 
         localtime.setBackground(new java.awt.Color(237, 249, 244));
         localtime.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         localtime.setForeground(new java.awt.Color(237, 249, 244));
         localtime.setText("XX:XX:XX XX");
+
+        searchbar_bg.setBackground(new java.awt.Color(16, 27, 25));
+        searchbar_bg.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        searchbar_bg.setMaximumSize(new java.awt.Dimension(322, 44));
+        searchbar_bg.setMinimumSize(new java.awt.Dimension(322, 44));
+        searchbar_bg.setPreferredSize(new java.awt.Dimension(380, 22));
+
+        searchbar.setBackground(new java.awt.Color(16, 27, 25));
+        searchbar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        searchbar.setForeground(new java.awt.Color(255, 255, 255));
+        searchbar.setBorder(null);
+        searchbar.setCaretColor(new java.awt.Color(255, 255, 255));
+        searchbar.setOpaque(true);
+        searchbar.setSelectionColor(new java.awt.Color(0, 153, 153));
+        searchbar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchbarActionPerformed(evt);
+            }
+        });
+        searchbar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchbarKeyPressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout searchbar_bgLayout = new javax.swing.GroupLayout(searchbar_bg);
+        searchbar_bg.setLayout(searchbar_bgLayout);
+        searchbar_bgLayout.setHorizontalGroup(
+            searchbar_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchbar_bgLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(searchbar, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        searchbar_bgLayout.setVerticalGroup(
+            searchbar_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(searchbar)
+        );
+
+        searchbutton.setBackground(new java.awt.Color(0, 204, 204));
+        searchbutton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        searchbutton.setForeground(new java.awt.Color(255, 255, 255));
+        searchbutton.setText("Search");
+        searchbutton.setBorder(null);
 
         javax.swing.GroupLayout menuBarLayout = new javax.swing.GroupLayout(menuBar);
         menuBar.setLayout(menuBarLayout);
@@ -154,55 +203,87 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(menuBarLayout.createSequentialGroup()
                 .addGap(88, 88, 88)
                 .addComponent(localtime, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(searchbar_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(searchbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96))
         );
         menuBarLayout.setVerticalGroup(
             menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(localtime, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+            .addComponent(localtime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuBarLayout.createSequentialGroup()
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addGroup(menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(searchbutton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchbar_bg, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout content_box_bgLayout = new javax.swing.GroupLayout(content_box_bg);
-        content_box_bg.setLayout(content_box_bgLayout);
-        content_box_bgLayout.setHorizontalGroup(
-            content_box_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(mainBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_box_bgLayout.createSequentialGroup()
+        logout.setBackground(new java.awt.Color(0, 204, 204));
+        logout.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        logout.setForeground(new java.awt.Color(255, 255, 255));
+        logout.setText("Log Out");
+        logout.setBorder(null);
+        logout.setFocusable(false);
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
+        body.setLayout(bodyLayout);
+        bodyLayout.setHorizontalGroup(
+            bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(menuBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        content_box_bgLayout.setVerticalGroup(
-            content_box_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_box_bgLayout.createSequentialGroup()
-                .addComponent(mainBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+        bodyLayout.setVerticalGroup(
+            bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
                 .addComponent(menuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 486, Short.MAX_VALUE)
+                .addGap(497, 497, 497)
                 .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
-        content_box_scroll.setViewportView(content_box_bg);
+        javax.swing.GroupLayout content_boxLayout = new javax.swing.GroupLayout(content_box);
+        content_box.setLayout(content_boxLayout);
+        content_boxLayout.setHorizontalGroup(
+            content_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        content_boxLayout.setVerticalGroup(
+            content_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_boxLayout.createSequentialGroup()
+                .addComponent(mainBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
+
+        content_box_scroll.setViewportView(content_box);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(content_box_scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(content_box_scroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(content_box_scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addComponent(content_box_scroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
@@ -210,6 +291,20 @@ public class MainGUI extends javax.swing.JFrame {
         LoginGUI.main(null);
         this.dispose();
     }//GEN-LAST:event_logoutActionPerformed
+
+    private void searchbarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchbarKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == 38)
+        searchbar.transferFocusBackward();
+
+        if (evt.getKeyCode() == 10 || evt.getKeyCode() == 40) {
+            searchbar.nextFocus();
+        }
+    }//GEN-LAST:event_searchbarKeyPressed
+
+    private void searchbarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchbarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,6 +315,7 @@ public class MainGUI extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
         /*try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -251,7 +347,8 @@ public class MainGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel basicforecast_box;
-    private javax.swing.JPanel content_box_bg;
+    private javax.swing.JPanel body;
+    private javax.swing.JPanel content_box;
     private javax.swing.JScrollPane content_box_scroll;
     public static javax.swing.JLabel localdate;
     public static javax.swing.JLabel localtime;
@@ -259,6 +356,9 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JButton logout;
     private javax.swing.JPanel mainBanner;
     private javax.swing.JPanel menuBar;
+    private javax.swing.JTextField searchbar;
+    private javax.swing.JPanel searchbar_bg;
+    private javax.swing.JButton searchbutton;
     public static javax.swing.JLabel status;
     public static javax.swing.JLabel temp;
     // End of variables declaration//GEN-END:variables

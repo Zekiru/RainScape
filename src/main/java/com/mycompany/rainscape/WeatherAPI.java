@@ -39,7 +39,7 @@ public class WeatherAPI {
 
             while (access) {
                 try {
-                    Thread.sleep(10000); // While loop time buffer, Default 0.1 second
+                    Thread.sleep(600000); // While loop time buffer, Default 10 minutes
                 } catch (InterruptedException ie) {
                     System.out.println("Interrupted Exception: " + ie);
                 }
@@ -114,7 +114,7 @@ public class WeatherAPI {
             if (jsonLocation.get("name").toString().equals(jsonLocation.get("region").toString()))
                 location = jsonLocation.get("region").toString() + ", " + jsonLocation.get("country").toString(); // e.g. Manila, Philippines
             else
-                location = jsonLocation.get("name").toString() + ", " + jsonLocation.get("region").toString(); // e.g. Makati, Manila, Philippines
+                location = jsonLocation.get("name").toString() + ", " + jsonLocation.get("region").toString(); // e.g. Makati, Manila
 
             temp = jsonCurrent.get("temp_c").toString() + "°"; // e.g. 30°
             status = jsonCondition.get("text").toString(); // e.g. Partly cloudy

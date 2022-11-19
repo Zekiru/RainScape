@@ -4,7 +4,9 @@
  */
 package com.mycompany.rainscape;
 
+import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
+import javax.swing.UIManager;
 
 /**
  *
@@ -17,7 +19,7 @@ public class MainGUI extends javax.swing.JFrame {
      */
     public MainGUI() {
         initComponents();
-        content_box_scroll.getVerticalScrollBar().setUnitIncrement(16); // Scroll Speed
+        content_box_scroll.getVerticalScrollBar().setUnitIncrement(16);
         sidebar_box.setVisible(false);
         
         WeatherAPI.fetch(WeatherAPI.currentUserArea());
@@ -65,8 +67,8 @@ public class MainGUI extends javax.swing.JFrame {
         settings = new javax.swing.JButton();
         rainscape = new javax.swing.JButton();
         tabbed_content = new javax.swing.JTabbedPane();
-        weatherpanel = new javax.swing.JPanel();
-        typhoonpanel = new javax.swing.JPanel();
+        weather_box = new javax.swing.JPanel();
+        typhoon_box = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("RainScape");
@@ -78,12 +80,14 @@ public class MainGUI extends javax.swing.JFrame {
 
         content_box_scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         content_box_scroll.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        content_box_scroll.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         content_box_scroll.setFocusable(false);
         content_box_scroll.setPreferredSize(new java.awt.Dimension(1200, 675));
         content_box_scroll.setRequestFocusEnabled(false);
 
         content_box.setBackground(new java.awt.Color(51, 51, 51));
         content_box.setForeground(new java.awt.Color(0, 0, 0));
+        content_box.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         content_box.setPreferredSize(new java.awt.Dimension(1188, 925));
 
         mainBanner.setBackground(new java.awt.Color(153, 204, 255));
@@ -184,6 +188,7 @@ public class MainGUI extends javax.swing.JFrame {
         searchbar.setForeground(new java.awt.Color(255, 255, 255));
         searchbar.setBorder(null);
         searchbar.setCaretColor(new java.awt.Color(255, 255, 255));
+        searchbar.setNextFocusableComponent(searchbutton);
         searchbar.setOpaque(true);
         searchbar.setPreferredSize(new java.awt.Dimension(300, 36));
         searchbar.setSelectionColor(new java.awt.Color(0, 153, 153));
@@ -199,7 +204,6 @@ public class MainGUI extends javax.swing.JFrame {
         searchbutton.setText("Search");
         searchbutton.setBorder(null);
         searchbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        searchbutton.setNextFocusableComponent(searchbar);
         searchbutton.setPreferredSize(new java.awt.Dimension(110, 36));
         searchbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -501,37 +505,44 @@ public class MainGUI extends javax.swing.JFrame {
 
         tabbed_content.setBackground(new java.awt.Color(255, 255, 255));
         tabbed_content.setForeground(new java.awt.Color(0, 51, 51));
+        tabbed_content.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tabbed_content.setPreferredSize(new java.awt.Dimension(920, 540));
 
-        weatherpanel.setBackground(new java.awt.Color(255, 255, 255));
+        weather_box.setBackground(new java.awt.Color(255, 255, 255));
+        weather_box.setForeground(new java.awt.Color(255, 255, 255));
+        weather_box.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        weather_box.setPreferredSize(new java.awt.Dimension(918, 507));
 
-        javax.swing.GroupLayout weatherpanelLayout = new javax.swing.GroupLayout(weatherpanel);
-        weatherpanel.setLayout(weatherpanelLayout);
-        weatherpanelLayout.setHorizontalGroup(
-            weatherpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout weather_boxLayout = new javax.swing.GroupLayout(weather_box);
+        weather_box.setLayout(weather_boxLayout);
+        weather_boxLayout.setHorizontalGroup(
+            weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 920, Short.MAX_VALUE)
         );
-        weatherpanelLayout.setVerticalGroup(
-            weatherpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        weather_boxLayout.setVerticalGroup(
+            weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 507, Short.MAX_VALUE)
         );
 
-        tabbed_content.addTab("Weather Panel", weatherpanel);
+        tabbed_content.addTab("          Weather Panel                                                                                                             ", weather_box);
 
-        typhoonpanel.setBackground(new java.awt.Color(255, 255, 255));
+        typhoon_box.setBackground(new java.awt.Color(255, 255, 255));
+        typhoon_box.setForeground(new java.awt.Color(255, 255, 255));
+        typhoon_box.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        typhoon_box.setPreferredSize(new java.awt.Dimension(918, 507));
 
-        javax.swing.GroupLayout typhoonpanelLayout = new javax.swing.GroupLayout(typhoonpanel);
-        typhoonpanel.setLayout(typhoonpanelLayout);
-        typhoonpanelLayout.setHorizontalGroup(
-            typhoonpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout typhoon_boxLayout = new javax.swing.GroupLayout(typhoon_box);
+        typhoon_box.setLayout(typhoon_boxLayout);
+        typhoon_boxLayout.setHorizontalGroup(
+            typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 920, Short.MAX_VALUE)
         );
-        typhoonpanelLayout.setVerticalGroup(
-            typhoonpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        typhoon_boxLayout.setVerticalGroup(
+            typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 507, Short.MAX_VALUE)
         );
 
-        tabbed_content.addTab("Typhoon Panel", typhoonpanel);
+        tabbed_content.addTab("           Typhoon Panel                                                                                                             ", typhoon_box);
 
         javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
         body.setLayout(bodyLayout);
@@ -597,12 +608,13 @@ public class MainGUI extends javax.swing.JFrame {
         if (area.equals("")) {
             WeatherAPI.current_area = "";
             WeatherAPI.fetch(WeatherAPI.currentUserArea());
-        } else if (WeatherAPI.current_area.equals(area) == false){
+        } else if (!WeatherAPI.current_area.equals(area)){
             WeatherAPI.current_area = area;
             WeatherAPI.fetch(WeatherAPI.currentUserArea());
         }
         
         WeatherAPI.setValues();
+        searchbar.nextFocus();
     }
     
     private void hamburgerToggle(boolean active) {
@@ -663,7 +675,6 @@ public class MainGUI extends javax.swing.JFrame {
     private void searchbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbuttonActionPerformed
         // TODO add your handling code here:
         searchProcess(searchbar.getText());
-        searchbutton.nextFocus();
     }//GEN-LAST:event_searchbuttonActionPerformed
 
     private void hamburger_boxMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hamburger_boxMouseEntered
@@ -707,28 +718,14 @@ public class MainGUI extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        /* Set the FlatLaf Dark look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         
-        /*try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }*/
+        try {
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         
         //</editor-fold>
         
@@ -773,7 +770,7 @@ public class MainGUI extends javax.swing.JFrame {
     public static javax.swing.JLabel status;
     private javax.swing.JTabbedPane tabbed_content;
     public static javax.swing.JLabel temp;
-    private javax.swing.JPanel typhoonpanel;
-    private javax.swing.JPanel weatherpanel;
+    private javax.swing.JPanel typhoon_box;
+    private javax.swing.JPanel weather_box;
     // End of variables declaration//GEN-END:variables
 }

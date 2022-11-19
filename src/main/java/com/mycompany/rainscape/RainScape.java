@@ -32,7 +32,7 @@ public class RainScape {
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (Exception e) {
-            System.err.println("Failed to initialize LaF:" + e);
+            e.printStackTrace();
         }
         
         autoUpdateThread();

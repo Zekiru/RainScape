@@ -56,6 +56,7 @@ public class Account {
                         JOptionPane.showMessageDialog(null,"Login Failed.");
                     } else {
                         create(username, password);
+                        pass = true;
                     }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
@@ -87,6 +88,9 @@ public class Account {
             psmt.setString(2, WeatherAPI.default_area);
             
             psmt.executeUpdate();
+            
+            RainScape.username = username;
+            MainGUI.main(null);
             
             JOptionPane.showMessageDialog(null, "Account Created.");
         } catch (Exception e) {

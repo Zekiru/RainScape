@@ -44,10 +44,16 @@ public class DateTime {
         DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss aa");
         Date date = new Date();
         
-        if (dateFormat.format(date).charAt(0) != '0') {
-            return dateFormat.format(date);
+        String time = dateFormat.format(date);
+        
+        time = time.replace('a', 'A');
+        time = time.replace('p', 'P');
+        time = time.replace('m', 'M');
+        
+        if (time.charAt(0) != '0') {
+            return time;
         } else {
-            return dateFormat.format(date).substring(1);
+            return time.substring(1);
         }
     }
     

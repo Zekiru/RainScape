@@ -259,7 +259,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="menuBar" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="118" max="32767" attributes="0"/>
+                          <EmptySpace min="118" pref="1008" max="32767" attributes="0"/>
                           <Component id="sidebar_box" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -292,7 +292,7 @@
                               <Component id="searchbar_bg" min="-2" pref="322" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="searchbutton" min="-2" pref="88" max="-2" attributes="0"/>
-                              <EmptySpace pref="97" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="hamburger_box" min="-2" pref="42" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                           </Group>

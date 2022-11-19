@@ -116,7 +116,7 @@ public class WeatherAPI {
                 if (jsonLocation.get("name").toString().equals(jsonLocation.get("country").toString()))
                     location = jsonLocation.get("name").toString(); // e.g. Makati (Makati, Manila, PH)
                 else
-                    if (jsonLocation.get("country").toString().equals("United States of America"))
+                    if (jsonLocation.get("country").toString().equals("United States of America") || jsonLocation.get("country").toString().equals("USA United States of America"))
                         location = jsonLocation.get("name").toString() + ", USA";
                     else
                         location = jsonLocation.get("name").toString() + ", " + jsonLocation.get("country").toString(); // e.g. Makati, Philippines (Makati, Manila, PH)

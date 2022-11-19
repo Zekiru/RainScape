@@ -6,9 +6,12 @@ package com.mycompany.rainscape;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
+<<<<<<< HEAD
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
+=======
+>>>>>>> sidebar-implement
 import javax.swing.UIManager;
 
 /**

@@ -181,7 +181,7 @@ public class LoginGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void process(boolean login) {
+    private void process(boolean login) {
         if (Account.login(login, username.getText(), password.getText())) {
             this.dispose();
         }

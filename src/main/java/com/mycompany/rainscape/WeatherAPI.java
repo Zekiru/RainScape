@@ -32,7 +32,7 @@ public class WeatherAPI {
             boolean access = RainScape.access;
             
             try {
-                Thread.sleep(100); // While loop time buffer, Default 0.1 second
+                Thread.sleep(100); // While loop time buffer, Default 100 milliseconds
             } catch (InterruptedException ie) {
                 System.out.println("Interrupted Exception: " + ie);
             }

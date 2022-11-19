@@ -21,14 +21,14 @@ public class DateTime {
             boolean access = RainScape.access;
             
             try {
-                Thread.sleep(100); // While loop time buffer, Default 0.1 second
+                Thread.sleep(100); // While loop time buffer, Default 100 milliseconds
             } catch (InterruptedException ie) {
                 System.out.println("Interrupted Exception: " + ie);
             }
 
             while (access) {
                 try {
-                    Thread.sleep(100); // While loop time buffer, Default 0.1 second
+                    Thread.sleep(1); // While loop time buffer, Default 1 millisecond
                 } catch (InterruptedException ie) {
                     System.out.println("Interrupted Exception: " + ie);
                 }
@@ -59,7 +59,12 @@ public class DateTime {
     }
     
     public static void setValues() {
-        MainGUI.localdate.setText(localDate());
-        MainGUI.localtime.setText(localTime());
+        if (!localTime().equals(MainGUI.localtime)){
+            MainGUI.localtime.setText(localTime());
+        }
+        
+        if (!localDate().equals(MainGUI.localdate)) {
+            MainGUI.localdate.setText(localDate());
+        }
     }
 }

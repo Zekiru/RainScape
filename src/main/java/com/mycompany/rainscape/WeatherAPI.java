@@ -32,7 +32,7 @@ public class WeatherAPI {
             boolean access = RainScape.access;
             
             try {
-                Thread.sleep(100); // While loop time buffer, Default 0.1 second
+                Thread.sleep(100); // While loop time buffer, Default 100 milliseconds
             } catch (InterruptedException ie) {
                 System.out.println("Interrupted Exception: " + ie);
             }
@@ -89,6 +89,19 @@ public class WeatherAPI {
         return area;
     }
     
+    // <editor-fold defaultstate="collapsed" desc="RAINSCAPE EXCUSIVE DATA">
+    
+    /* WARNING: This Part Contains Data Exclusively for RainScape Application Use Only.
+    The Data in particular is the API KEY, If you are planning to copy from this code,
+    Refrain from using this Java Application's API KEYon your own Project. You can sign
+    up for your own API key with the link below:
+
+    https://rapidapi.com/weatherapi/api/weatherapi-com
+
+    Viewing, Running, Even Copying the rest of this project's code is still allowed, but
+    since the API has a limited amount of uses I typed this down as a precaution. That is
+    all, and if you are still reading, how's the weather there? */
+    
     public static void fetch(String area) {        
         try {
             String api_url = "https://weatherapi-com.p.rapidapi.com/current.json?q=" + area;
@@ -98,8 +111,10 @@ public class WeatherAPI {
             Request request = new Request.Builder()
                 .url(api_url)
                 .get()
+                // <editor-fold defaultstate="collapsed" desc="RainScape WeatherAPI Key">
                 .addHeader("X-RapidAPI-Key", "d2cd26e50fmshb105523acf4dea8p15c5eejsn5766f55f0f75")
                 .addHeader("X-RapidAPI-Host", "weatherapi-com.p.rapidapi.com")
+                // </editor-fold>
                 .build();
 
             Response response = client.newCall(request).execute();
@@ -116,7 +131,7 @@ public class WeatherAPI {
                 if (jsonLocation.get("name").toString().equals(jsonLocation.get("country").toString()))
                     location = jsonLocation.get("name").toString(); // e.g. Makati (Makati, Manila, PH)
                 else
-                    if (jsonLocation.get("country").toString().equals("United States of America"))
+                    if (jsonLocation.get("country").toString().equals("United States of America") || jsonLocation.get("country").toString().equals("USA United States of America")) // OHIO
                         location = jsonLocation.get("name").toString() + ", USA";
                     else
                         location = jsonLocation.get("name").toString() + ", " + jsonLocation.get("country").toString(); // e.g. Makati, Philippines (Makati, Manila, PH)
@@ -140,7 +155,7 @@ public class WeatherAPI {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    } // </editor-fold>
     
     public static void setValues() {
         try {

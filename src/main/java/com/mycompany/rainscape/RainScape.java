@@ -6,10 +6,8 @@
 package com.mycompany.rainscape;
 
 import com.formdev.flatlaf.FlatDarkLaf;
-import java.util.ArrayList;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
+import java.util.*;
 import javax.swing.UIManager;
 
 /**
@@ -34,7 +32,7 @@ public class RainScape {
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (Exception e) {
-            System.err.println("Failed to initialize LaF:" + e);
+            e.printStackTrace();
         }
         
         autoUpdateThread();
@@ -53,13 +51,13 @@ public class RainScape {
             DateTime.autoUpdate();
             return null;
         };
-
+        
         //add to a list
         ArrayList taskList = new ArrayList();
         taskList.add(callable1);
         taskList.add(callable2);
 
-        //create a pool executor with 3 threads
+        //create a pool executor with 2 threads
         ExecutorService executor = Executors.newFixedThreadPool(2);
 
         try {

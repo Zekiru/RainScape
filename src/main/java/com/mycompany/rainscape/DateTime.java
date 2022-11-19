@@ -21,14 +21,14 @@ public class DateTime {
             boolean access = RainScape.access;
             
             try {
-                Thread.sleep(100); // While loop time buffer, Default 0.1 second
+                Thread.sleep(100); // While loop time buffer, Default 100 milliseconds
             } catch (InterruptedException ie) {
                 System.out.println("Interrupted Exception: " + ie);
             }
 
             while (access) {
                 try {
-                    Thread.sleep(100); // While loop time buffer, Default 0.1 second
+                    Thread.sleep(1); // While loop time buffer, Default 1 millisecond
                 } catch (InterruptedException ie) {
                     System.out.println("Interrupted Exception: " + ie);
                 }
@@ -44,10 +44,16 @@ public class DateTime {
         DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss aa");
         Date date = new Date();
         
-        if (dateFormat.format(date).charAt(0) != '0') {
-            return dateFormat.format(date);
+        String time = dateFormat.format(date);
+        
+        time = time.replace('a', 'A');
+        time = time.replace('p', 'P');
+        time = time.replace('m', 'M');
+        
+        if (time.charAt(0) != '0') {
+            return time;
         } else {
-            return dateFormat.format(date).substring(1);
+            return time.substring(1);
         }
     }
     
@@ -59,7 +65,12 @@ public class DateTime {
     }
     
     public static void setValues() {
-        MainGUI.localdate.setText(localDate());
-        MainGUI.localtime.setText(localTime());
+        if (!localTime().equals(MainGUI.localtime)){
+            MainGUI.localtime.setText(localTime());
+        }
+        
+        if (!localDate().equals(MainGUI.localdate)) {
+            MainGUI.localdate.setText(localDate());
+        }
     }
 }

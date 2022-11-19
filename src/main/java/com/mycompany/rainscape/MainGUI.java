@@ -4,7 +4,9 @@
  */
 package com.mycompany.rainscape;
 
+import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
+import javax.swing.UIManager;
 
 /**
  *
@@ -15,9 +17,10 @@ public class MainGUI extends javax.swing.JFrame {
     /**
      * Creates new form MainGUI
      */
-    public MainGUI() {        
+    public MainGUI() {
         initComponents();
-        content_box_scroll.getVerticalScrollBar().setUnitIncrement(16); // Scroll Speed
+        content_box_scroll.getVerticalScrollBar().setUnitIncrement(16);
+        sidebar_box.setVisible(false);
         
         WeatherAPI.fetch(WeatherAPI.currentUserArea());
         
@@ -52,7 +55,20 @@ public class MainGUI extends javax.swing.JFrame {
         line1 = new javax.swing.JPanel();
         line2 = new javax.swing.JPanel();
         line3 = new javax.swing.JPanel();
+        line4 = new javax.swing.JPanel();
+        line5 = new javax.swing.JPanel();
+        sidebar_box = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
         logout = new javax.swing.JButton();
+        account = new javax.swing.JButton();
+        settings = new javax.swing.JButton();
+        rainscape = new javax.swing.JButton();
+        tabbed_content = new javax.swing.JTabbedPane();
+        weather_box = new javax.swing.JPanel();
+        typhoon_box = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("RainScape");
@@ -64,15 +80,18 @@ public class MainGUI extends javax.swing.JFrame {
 
         content_box_scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         content_box_scroll.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        content_box_scroll.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         content_box_scroll.setFocusable(false);
         content_box_scroll.setPreferredSize(new java.awt.Dimension(1200, 675));
         content_box_scroll.setRequestFocusEnabled(false);
 
         content_box.setBackground(new java.awt.Color(51, 51, 51));
         content_box.setForeground(new java.awt.Color(0, 0, 0));
+        content_box.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         content_box.setPreferredSize(new java.awt.Dimension(1188, 925));
 
         mainBanner.setBackground(new java.awt.Color(153, 204, 255));
+        mainBanner.setPreferredSize(new java.awt.Dimension(1188, 250));
 
         basicforecast_box.setBackground(new java.awt.Color(51, 51, 51));
         basicforecast_box.setForeground(new java.awt.Color(51, 51, 51));
@@ -111,9 +130,8 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(basicforecast_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(location, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(basicforecast_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(localdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(status, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(localdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(status, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(40, 40, 40))
         );
         basicforecast_boxLayout.setVerticalGroup(
@@ -138,7 +156,7 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(mainBannerLayout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(basicforecast_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(719, Short.MAX_VALUE))
         );
         mainBannerLayout.setVerticalGroup(
             mainBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,18 +181,33 @@ public class MainGUI extends javax.swing.JFrame {
         searchbar_bg.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         searchbar_bg.setMaximumSize(new java.awt.Dimension(322, 44));
         searchbar_bg.setMinimumSize(new java.awt.Dimension(322, 44));
-        searchbar_bg.setPreferredSize(new java.awt.Dimension(380, 22));
+        searchbar_bg.setPreferredSize(new java.awt.Dimension(426, 36));
 
         searchbar.setBackground(new java.awt.Color(16, 27, 25));
         searchbar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         searchbar.setForeground(new java.awt.Color(255, 255, 255));
         searchbar.setBorder(null);
         searchbar.setCaretColor(new java.awt.Color(255, 255, 255));
+        searchbar.setNextFocusableComponent(searchbutton);
         searchbar.setOpaque(true);
+        searchbar.setPreferredSize(new java.awt.Dimension(300, 36));
         searchbar.setSelectionColor(new java.awt.Color(0, 153, 153));
         searchbar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 searchbarKeyPressed(evt);
+            }
+        });
+
+        searchbutton.setBackground(new java.awt.Color(51, 51, 51));
+        searchbutton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        searchbutton.setForeground(new java.awt.Color(255, 255, 255));
+        searchbutton.setText("Search");
+        searchbutton.setBorder(null);
+        searchbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        searchbutton.setPreferredSize(new java.awt.Dimension(110, 36));
+        searchbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchbuttonActionPerformed(evt);
             }
         });
 
@@ -183,32 +216,30 @@ public class MainGUI extends javax.swing.JFrame {
         searchbar_bgLayout.setHorizontalGroup(
             searchbar_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchbar_bgLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(searchbar, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(8, Short.MAX_VALUE)
+                .addComponent(searchbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(searchbutton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         searchbar_bgLayout.setVerticalGroup(
             searchbar_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(searchbar)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchbar_bgLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(searchbar_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(searchbar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(searchbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
-
-        searchbutton.setBackground(new java.awt.Color(0, 204, 204));
-        searchbutton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        searchbutton.setForeground(new java.awt.Color(255, 255, 255));
-        searchbutton.setText("Search");
-        searchbutton.setBorder(null);
-        searchbutton.setNextFocusableComponent(searchbar);
-        searchbutton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchbuttonActionPerformed(evt);
-            }
-        });
 
         hamburger_box.setBackground(new java.awt.Color(0, 0, 0));
         hamburger_box.setForeground(new java.awt.Color(0, 0, 0));
+        hamburger_box.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hamburger_box.setOpaque(false);
-        hamburger_box.setPreferredSize(new java.awt.Dimension(34, 34));
+        hamburger_box.setPreferredSize(new java.awt.Dimension(36, 35));
         hamburger_box.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hamburger_boxMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 hamburger_boxMouseEntered(evt);
             }
@@ -240,7 +271,6 @@ public class MainGUI extends javax.swing.JFrame {
 
         line2.setBackground(new java.awt.Color(255, 255, 255));
         line2.setForeground(new java.awt.Color(255, 255, 255));
-        line2.setPreferredSize(new java.awt.Dimension(42, 5));
 
         javax.swing.GroupLayout line2Layout = new javax.swing.GroupLayout(line2);
         line2.setLayout(line2Layout);
@@ -268,26 +298,66 @@ public class MainGUI extends javax.swing.JFrame {
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
+        line4.setBackground(new java.awt.Color(255, 255, 255));
+        line4.setForeground(new java.awt.Color(255, 255, 255));
+        line4.setPreferredSize(new java.awt.Dimension(20, 5));
+
+        javax.swing.GroupLayout line4Layout = new javax.swing.GroupLayout(line4);
+        line4.setLayout(line4Layout);
+        line4Layout.setHorizontalGroup(
+            line4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+        line4Layout.setVerticalGroup(
+            line4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        line5.setBackground(new java.awt.Color(255, 255, 255));
+        line5.setForeground(new java.awt.Color(255, 255, 255));
+        line5.setPreferredSize(new java.awt.Dimension(10, 5));
+
+        javax.swing.GroupLayout line5Layout = new javax.swing.GroupLayout(line5);
+        line5.setLayout(line5Layout);
+        line5Layout.setHorizontalGroup(
+            line5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+        line5Layout.setVerticalGroup(
+            line5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout hamburger_boxLayout = new javax.swing.GroupLayout(hamburger_box);
         hamburger_box.setLayout(hamburger_boxLayout);
         hamburger_boxLayout.setHorizontalGroup(
             hamburger_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(hamburger_boxLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addGroup(hamburger_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(line1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(line2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(line3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(hamburger_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(hamburger_boxLayout.createSequentialGroup()
+                        .addComponent(line5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(line3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hamburger_boxLayout.createSequentialGroup()
+                        .addComponent(line4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(line1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(line2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         hamburger_boxLayout.setVerticalGroup(
             hamburger_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(hamburger_boxLayout.createSequentialGroup()
-                .addComponent(line1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
+                .addGroup(hamburger_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(line1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(line4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(line2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addComponent(line3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGroup(hamburger_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(line5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(line3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout menuBarLayout = new javax.swing.GroupLayout(menuBar);
@@ -297,57 +367,206 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(menuBarLayout.createSequentialGroup()
                 .addGap(88, 88, 88)
                 .addComponent(localtime, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(270, 270, 270)
-                .addComponent(searchbar_bg, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(searchbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(searchbar_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(105, 105, 105)
                 .addComponent(hamburger_box, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86))
+                .addGap(78, 78, 78))
         );
         menuBarLayout.setVerticalGroup(
             menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(localtime, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+            .addComponent(localtime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(menuBarLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(8, Short.MAX_VALUE)
                 .addGroup(menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(hamburger_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(searchbutton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(searchbar_bg, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(searchbar_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hamburger_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
-        logout.setBackground(new java.awt.Color(0, 204, 204));
-        logout.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        logout.setForeground(new java.awt.Color(255, 255, 255));
-        logout.setText("Log Out");
+        sidebar_box.setBackground(new java.awt.Color(255, 255, 255));
+        sidebar_box.setForeground(new java.awt.Color(255, 255, 255));
+        sidebar_box.setPreferredSize(new java.awt.Dimension(180, 620));
+
+        jSeparator1.setBackground(new java.awt.Color(102, 102, 102));
+        jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
+
+        jSeparator2.setBackground(new java.awt.Color(102, 102, 102));
+        jSeparator2.setForeground(new java.awt.Color(204, 204, 204));
+
+        jSeparator3.setBackground(new java.awt.Color(102, 102, 102));
+        jSeparator3.setForeground(new java.awt.Color(204, 204, 204));
+
+        jSeparator4.setBackground(new java.awt.Color(102, 102, 102));
+        jSeparator4.setForeground(new java.awt.Color(204, 204, 204));
+
+        logout.setBackground(new java.awt.Color(255, 255, 255));
+        logout.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        logout.setForeground(new java.awt.Color(255, 102, 102));
+        logout.setText("   Log Out");
         logout.setBorder(null);
-        logout.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logout.setFocusable(false);
+        logout.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        logout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        logout.setPreferredSize(new java.awt.Dimension(138, 50));
         logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutActionPerformed(evt);
             }
         });
 
+        account.setBackground(new java.awt.Color(255, 255, 255));
+        account.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        account.setForeground(new java.awt.Color(0, 102, 102));
+        account.setText("   Account");
+        account.setBorder(null);
+        account.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        account.setFocusable(false);
+        account.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        account.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        account.setPreferredSize(new java.awt.Dimension(138, 50));
+        account.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accountActionPerformed(evt);
+            }
+        });
+
+        settings.setBackground(new java.awt.Color(255, 255, 255));
+        settings.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        settings.setForeground(new java.awt.Color(0, 102, 102));
+        settings.setText("   Appearance");
+        settings.setBorder(null);
+        settings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        settings.setFocusable(false);
+        settings.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        settings.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        settings.setPreferredSize(new java.awt.Dimension(138, 50));
+        settings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                settingsActionPerformed(evt);
+            }
+        });
+
+        rainscape.setBackground(new java.awt.Color(255, 255, 255));
+        rainscape.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rainscape.setForeground(new java.awt.Color(0, 102, 102));
+        rainscape.setText("   RainScape");
+        rainscape.setBorder(null);
+        rainscape.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rainscape.setFocusable(false);
+        rainscape.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        rainscape.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        rainscape.setPreferredSize(new java.awt.Dimension(138, 50));
+        rainscape.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rainscapeActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout sidebar_boxLayout = new javax.swing.GroupLayout(sidebar_box);
+        sidebar_box.setLayout(sidebar_boxLayout);
+        sidebar_boxLayout.setHorizontalGroup(
+            sidebar_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sidebar_boxLayout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(sidebar_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator3)
+                    .addComponent(account, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(settings, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator2)
+                    .addComponent(rainscape, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator1)
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        sidebar_boxLayout.setVerticalGroup(
+            sidebar_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sidebar_boxLayout.createSequentialGroup()
+                .addContainerGap(141, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(account, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(settings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(rainscape, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(141, Short.MAX_VALUE))
+        );
+
+        tabbed_content.setBackground(new java.awt.Color(255, 255, 255));
+        tabbed_content.setForeground(new java.awt.Color(0, 51, 51));
+        tabbed_content.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tabbed_content.setPreferredSize(new java.awt.Dimension(920, 540));
+
+        weather_box.setBackground(new java.awt.Color(255, 255, 255));
+        weather_box.setForeground(new java.awt.Color(255, 255, 255));
+        weather_box.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        weather_box.setPreferredSize(new java.awt.Dimension(918, 507));
+
+        javax.swing.GroupLayout weather_boxLayout = new javax.swing.GroupLayout(weather_box);
+        weather_box.setLayout(weather_boxLayout);
+        weather_boxLayout.setHorizontalGroup(
+            weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 920, Short.MAX_VALUE)
+        );
+        weather_boxLayout.setVerticalGroup(
+            weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 507, Short.MAX_VALUE)
+        );
+
+        tabbed_content.addTab("          Weather Panel                                                                                                             ", weather_box);
+
+        typhoon_box.setBackground(new java.awt.Color(255, 255, 255));
+        typhoon_box.setForeground(new java.awt.Color(255, 255, 255));
+        typhoon_box.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        typhoon_box.setPreferredSize(new java.awt.Dimension(918, 507));
+
+        javax.swing.GroupLayout typhoon_boxLayout = new javax.swing.GroupLayout(typhoon_box);
+        typhoon_box.setLayout(typhoon_boxLayout);
+        typhoon_boxLayout.setHorizontalGroup(
+            typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 920, Short.MAX_VALUE)
+        );
+        typhoon_boxLayout.setVerticalGroup(
+            typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 507, Short.MAX_VALUE)
+        );
+
+        tabbed_content.addTab("           Typhoon Panel                                                                                                             ", typhoon_box);
+
         javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
         body.setLayout(bodyLayout);
         bodyLayout.setHorizontalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
+            .addComponent(menuBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(bodyLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(tabbed_content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(sidebar_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         bodyLayout.setVerticalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
                 .addComponent(menuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 473, Short.MAX_VALUE)
-                .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bodyLayout.createSequentialGroup()
+                        .addComponent(sidebar_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 4, Short.MAX_VALUE))
+                    .addGroup(bodyLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tabbed_content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout content_boxLayout = new javax.swing.GroupLayout(content_box);
@@ -355,14 +574,14 @@ public class MainGUI extends javax.swing.JFrame {
         content_boxLayout.setHorizontalGroup(
             content_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(mainBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         content_boxLayout.setVerticalGroup(
             content_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_boxLayout.createSequentialGroup()
                 .addComponent(mainBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(body, 676, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
@@ -389,12 +608,13 @@ public class MainGUI extends javax.swing.JFrame {
         if (area.equals("")) {
             WeatherAPI.current_area = "";
             WeatherAPI.fetch(WeatherAPI.currentUserArea());
-        } else if (WeatherAPI.current_area.equals(area) == false){
+        } else if (!WeatherAPI.current_area.equals(area)){
             WeatherAPI.current_area = area;
             WeatherAPI.fetch(WeatherAPI.currentUserArea());
         }
         
         WeatherAPI.setValues();
+        searchbar.nextFocus();
     }
     
     private void hamburgerToggle(boolean active) {
@@ -402,10 +622,40 @@ public class MainGUI extends javax.swing.JFrame {
             line1.setBackground(Color.lightGray);
             line2.setBackground(Color.lightGray);
             line3.setBackground(Color.lightGray);
+            
+            if (!sidebar_box.isVisible()) {
+                line4.setBackground(Color.lightGray);
+                line5.setBackground(Color.lightGray);
+            } else {
+                line4.setBackground(menuBar.getBackground());
+                line5.setBackground(menuBar.getBackground());
+            }
         } else {
-            line1.setBackground(Color.white);
-            line2.setBackground(Color.white);
-            line3.setBackground(Color.white);
+            line1.setBackground(line1.getForeground());
+            line2.setBackground(line1.getForeground());
+            line3.setBackground(line1.getForeground());
+            
+            if (!sidebar_box.isVisible()) {
+                line4.setBackground(line1.getForeground());
+                line5.setBackground(line1.getForeground());
+            } else {
+                line4.setBackground(menuBar.getBackground());
+                line5.setBackground(menuBar.getBackground());
+            }
+        }
+    }
+    
+    private void sidebarToggle() {
+        if (sidebar_box.isVisible()) {
+            sidebar_box.setVisible(false);
+            
+            line4.setBackground(Color.lightGray);
+            line5.setBackground(Color.lightGray);
+        } else if (!sidebar_box.isVisible()) {
+            sidebar_box.setVisible(true);
+            
+            line4.setBackground(menuBar.getBackground());
+            line5.setBackground(menuBar.getBackground());
         }
     }
     
@@ -425,7 +675,6 @@ public class MainGUI extends javax.swing.JFrame {
     private void searchbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbuttonActionPerformed
         // TODO add your handling code here:
         searchProcess(searchbar.getText());
-        searchbutton.nextFocus();
     }//GEN-LAST:event_searchbuttonActionPerformed
 
     private void hamburger_boxMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hamburger_boxMouseEntered
@@ -448,32 +697,35 @@ public class MainGUI extends javax.swing.JFrame {
         hamburgerToggle(true);
     }//GEN-LAST:event_hamburger_boxMouseReleased
 
+    private void hamburger_boxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hamburger_boxMouseClicked
+        // TODO add your handling code here:
+        sidebarToggle();
+    }//GEN-LAST:event_hamburger_boxMouseClicked
+
+    private void accountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_accountActionPerformed
+
+    private void settingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_settingsActionPerformed
+
+    private void rainscapeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rainscapeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rainscapeActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        /* Set the FlatLaf Dark look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         
-        /*try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }*/
+        try {
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         
         //</editor-fold>
         
@@ -488,24 +740,37 @@ public class MainGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton account;
     private javax.swing.JPanel basicforecast_box;
     private javax.swing.JPanel body;
     private javax.swing.JPanel content_box;
     private javax.swing.JScrollPane content_box_scroll;
     private javax.swing.JPanel hamburger_box;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JPanel line1;
     private javax.swing.JPanel line2;
     private javax.swing.JPanel line3;
+    private javax.swing.JPanel line4;
+    private javax.swing.JPanel line5;
     public static javax.swing.JLabel localdate;
     public static javax.swing.JLabel localtime;
     public static javax.swing.JLabel location;
     private javax.swing.JButton logout;
     private javax.swing.JPanel mainBanner;
     private javax.swing.JPanel menuBar;
+    private javax.swing.JButton rainscape;
     private javax.swing.JTextField searchbar;
     private javax.swing.JPanel searchbar_bg;
     private javax.swing.JButton searchbutton;
+    private javax.swing.JButton settings;
+    private javax.swing.JPanel sidebar_box;
     public static javax.swing.JLabel status;
+    private javax.swing.JTabbedPane tabbed_content;
     public static javax.swing.JLabel temp;
+    private javax.swing.JPanel typhoon_box;
+    private javax.swing.JPanel weather_box;
     // End of variables declaration//GEN-END:variables
 }

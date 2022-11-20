@@ -124,7 +124,7 @@ public class TropicalCyclone {
     }
 
     public static void openOtherTCA(Image img) {
-        JFrame frame = new JFrame("Latest Tropical Cyclone Advisory (PAGASA)");
+        JFrame frame = new JFrame("Tropical Cyclone Records (PAGASA)");
         JLabel image = new JLabel();
         JScrollPane scrollpane = new JScrollPane(image);
         

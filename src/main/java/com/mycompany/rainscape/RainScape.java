@@ -8,7 +8,9 @@ package com.mycompany.rainscape;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.util.concurrent.*;
 import java.util.*;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -25,18 +27,18 @@ public class RainScape {
             LoginGUI.main(args);
             System.out.println("Project Launched");
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Failed to aunch RainScape.");
+            
             System.out.println("Project Not Launched");
-            System.out.println("Exception: " + e);
         }
         
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            System.out.println("Look and Feel Exception: " + e);
         }
         
         autoUpdateThread();
-        
     }
     
     public static void autoUpdateThread() {

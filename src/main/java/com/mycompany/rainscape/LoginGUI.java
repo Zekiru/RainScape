@@ -6,6 +6,7 @@ package com.mycompany.rainscape;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -233,8 +234,8 @@ public class LoginGUI extends javax.swing.JFrame {
         
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            System.out.println("Look and Feel Exception: " + e);
         }
         
         //</editor-fold>

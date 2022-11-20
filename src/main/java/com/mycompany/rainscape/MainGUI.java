@@ -7,6 +7,7 @@ package com.mycompany.rainscape;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -21,6 +22,8 @@ public class MainGUI extends javax.swing.JFrame {
         initComponents();
         content_box_scroll.getVerticalScrollBar().setUnitIncrement(16);
         sidebar_box.setVisible(false);
+        
+        Typhoon.fetchTCA();
         
         WeatherAPI.fetch(WeatherAPI.currentUserArea());
         
@@ -69,6 +72,8 @@ public class MainGUI extends javax.swing.JFrame {
         tabbed_content = new javax.swing.JTabbedPane();
         weather_box = new javax.swing.JPanel();
         typhoon_box = new javax.swing.JPanel();
+        typhoon_image = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("RainScape");
@@ -532,15 +537,39 @@ public class MainGUI extends javax.swing.JFrame {
         typhoon_box.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         typhoon_box.setPreferredSize(new java.awt.Dimension(918, 507));
 
+        typhoon_image.setToolTipText("");
+        typhoon_image.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        typhoon_image.setPreferredSize(new java.awt.Dimension(520, 405));
+        typhoon_image.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                typhoon_imageMouseClicked(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel1.setText("Latest Tropical Cyclone Advisory (PAGASA)");
+        jLabel1.setPreferredSize(new java.awt.Dimension(620, 34));
+
         javax.swing.GroupLayout typhoon_boxLayout = new javax.swing.GroupLayout(typhoon_box);
         typhoon_box.setLayout(typhoon_boxLayout);
         typhoon_boxLayout.setHorizontalGroup(
             typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 920, Short.MAX_VALUE)
+            .addGroup(typhoon_boxLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(typhoon_image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(250, Short.MAX_VALUE))
         );
         typhoon_boxLayout.setVerticalGroup(
             typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 507, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, typhoon_boxLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(typhoon_image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         tabbed_content.addTab("           Typhoon Panel                                                                                                             ", typhoon_box);
@@ -563,7 +592,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bodyLayout.createSequentialGroup()
                         .addComponent(sidebar_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 4, Short.MAX_VALUE))
+                        .addGap(0, 3, Short.MAX_VALUE))
                     .addGroup(bodyLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(tabbed_content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -582,7 +611,7 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_boxLayout.createSequentialGroup()
                 .addComponent(mainBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(body, 676, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(body, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
@@ -604,7 +633,7 @@ public class MainGUI extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void searchProcess(String area) {
         if (area.equals("")) {
             WeatherAPI.current_area = "";
@@ -717,6 +746,11 @@ public class MainGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rainscapeActionPerformed
 
+    private void typhoon_imageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_typhoon_imageMouseClicked
+        // TODO add your handling code here:
+        Typhoon.openBigTCA();
+    }//GEN-LAST:event_typhoon_imageMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -726,8 +760,8 @@ public class MainGUI extends javax.swing.JFrame {
         
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            System.out.println("Look and Feel Exception: " + e);
         }
         
         //</editor-fold>
@@ -749,6 +783,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel content_box;
     private javax.swing.JScrollPane content_box_scroll;
     private javax.swing.JPanel hamburger_box;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -774,6 +809,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tabbed_content;
     public static javax.swing.JLabel temp;
     private javax.swing.JPanel typhoon_box;
+    public static javax.swing.JLabel typhoon_image;
     private javax.swing.JPanel weather_box;
     // End of variables declaration//GEN-END:variables
 }

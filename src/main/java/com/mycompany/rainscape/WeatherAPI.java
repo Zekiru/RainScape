@@ -6,7 +6,6 @@ package com.mycompany.rainscape;
 
 import java.awt.HeadlessException;
 import java.io.IOException;
-import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -176,6 +175,8 @@ public class WeatherAPI {
             MainGUI.location.setText(location);
             MainGUI.temp.setText(temp);
             MainGUI.status.setText(status);
+            
+            Typhoon.fetchTCA();
 
             // System.out.println("WeatherAPI Data Set");
         } catch (Exception e) {

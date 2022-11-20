@@ -4,10 +4,12 @@
  */
 package com.mycompany.rainscape;
 
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -58,8 +60,10 @@ public class Account {
                         create(username, password);
                         pass = true;
                     }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,e);
+        } catch (HeadlessException | ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(null, e);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Not Connected to the SQL Server.");
         }
         return pass;
     }
@@ -93,8 +97,10 @@ public class Account {
             MainGUI.main(null);
             
             JOptionPane.showMessageDialog(null, "Account Created.");
-        } catch (Exception e) {
+        } catch (HeadlessException | ClassNotFoundException e) {
             JOptionPane.showMessageDialog(null, e);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Not Connected to the SQL Server.");
         }
     }
     

@@ -4,14 +4,19 @@
  */
 package com.mycompany.rainscape;
 
+import java.awt.HeadlessException;
+import java.io.IOException;
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -83,8 +88,10 @@ public class WeatherAPI {
             rs.next();
 
             area = rs.getString("area");
-        } catch (Exception e) {
+        } catch (ClassNotFoundException e) {
             System.out.println("Exception: " + e);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Not Connected to the SQL Server.");
         }
         return area;
     }
@@ -150,10 +157,17 @@ public class WeatherAPI {
 
                 // System.out.println("WeatherAPI Data Fetch Error");
             } else {
+                JOptionPane.showMessageDialog(null, "Weather Fetch Error.");
                 System.out.println(response.body().string());
             }
-        } catch (Exception e) {
+        } catch (HeadlessException | JSONException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Connection Error.");
+            
+            location = "Running Offline";
+            status = "Not Connected";
+            temp = "N/A";
         }
     } // </editor-fold>
     

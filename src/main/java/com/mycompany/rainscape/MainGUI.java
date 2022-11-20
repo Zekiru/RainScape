@@ -185,9 +185,9 @@ public class MainGUI extends javax.swing.JFrame {
 
         searchbar.setBackground(new java.awt.Color(16, 27, 25));
         searchbar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        searchbar.setForeground(new java.awt.Color(255, 255, 255));
+        searchbar.setForeground(new java.awt.Color(225, 230, 236));
         searchbar.setBorder(null);
-        searchbar.setCaretColor(new java.awt.Color(255, 255, 255));
+        searchbar.setCaretColor(new java.awt.Color(102, 102, 102));
         searchbar.setNextFocusableComponent(searchbutton);
         searchbar.setOpaque(true);
         searchbar.setPreferredSize(new java.awt.Dimension(300, 36));
@@ -204,6 +204,7 @@ public class MainGUI extends javax.swing.JFrame {
         searchbutton.setText("Search");
         searchbutton.setBorder(null);
         searchbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        searchbutton.setNextFocusableComponent(searchbar);
         searchbutton.setPreferredSize(new java.awt.Dimension(110, 36));
         searchbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -614,7 +615,9 @@ public class MainGUI extends javax.swing.JFrame {
         }
         
         WeatherAPI.setValues();
-        searchbar.nextFocus();
+        searchbar.setText("");
+        
+        searchbutton.nextFocus();
     }
     
     private void hamburgerToggle(boolean active) {

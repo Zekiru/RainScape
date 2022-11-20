@@ -5,7 +5,15 @@
 package com.mycompany.rainscape;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import static com.mycompany.rainscape.TropicalCyclone.getFinalURL;
 import java.awt.Color;
+import java.awt.Image;
+import java.io.IOException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -23,12 +31,12 @@ public class MainGUI extends javax.swing.JFrame {
         content_box_scroll.getVerticalScrollBar().setUnitIncrement(16);
         sidebar_box.setVisible(false);
         
-        Typhoon.fetchTCA();
-        
         WeatherAPI.fetch(WeatherAPI.currentUserArea());
+        TropicalCyclone.fetch();
         
         WeatherAPI.setValues();
         DateTime.setValues();
+        TropicalCyclone.setValues();
     }
 
     /**
@@ -67,17 +75,23 @@ public class MainGUI extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         logout = new javax.swing.JButton();
         account = new javax.swing.JButton();
-        settings = new javax.swing.JButton();
+        appearance = new javax.swing.JButton();
         rainscape = new javax.swing.JButton();
         tabbed_content = new javax.swing.JTabbedPane();
         weather_box = new javax.swing.JPanel();
         typhoon_box = new javax.swing.JPanel();
         typhoon_image = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        tcadvisory = new javax.swing.JButton();
+        records2021 = new javax.swing.JButton();
+        records2020 = new javax.swing.JButton();
+        records2019 = new javax.swing.JButton();
+        records2018 = new javax.swing.JButton();
+        records2017 = new javax.swing.JButton();
+        jSeparator5 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("RainScape");
-        setMaximumSize(new java.awt.Dimension(1200, 675));
         setMinimumSize(new java.awt.Dimension(1200, 675));
         setName(""); // NOI18N
         setResizable(false);
@@ -438,19 +452,19 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        settings.setBackground(new java.awt.Color(255, 255, 255));
-        settings.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        settings.setForeground(new java.awt.Color(0, 102, 102));
-        settings.setText("   Appearance");
-        settings.setBorder(null);
-        settings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        settings.setFocusable(false);
-        settings.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        settings.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        settings.setPreferredSize(new java.awt.Dimension(138, 50));
-        settings.addActionListener(new java.awt.event.ActionListener() {
+        appearance.setBackground(new java.awt.Color(255, 255, 255));
+        appearance.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        appearance.setForeground(new java.awt.Color(0, 102, 102));
+        appearance.setText("   Appearance");
+        appearance.setBorder(null);
+        appearance.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        appearance.setFocusable(false);
+        appearance.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        appearance.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        appearance.setPreferredSize(new java.awt.Dimension(138, 50));
+        appearance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                settingsActionPerformed(evt);
+                appearanceActionPerformed(evt);
             }
         });
 
@@ -480,7 +494,7 @@ public class MainGUI extends javax.swing.JFrame {
                     .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator3)
                     .addComponent(account, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(settings, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(appearance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator2)
                     .addComponent(rainscape, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator1)
@@ -495,7 +509,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(account, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(settings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(appearance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -530,7 +544,7 @@ public class MainGUI extends javax.swing.JFrame {
             .addGap(0, 507, Short.MAX_VALUE)
         );
 
-        tabbed_content.addTab("          Weather Panel                                                                                                             ", weather_box);
+        tabbed_content.addTab("         Weather Dashboard                                                                                                   ", weather_box);
 
         typhoon_box.setBackground(new java.awt.Color(255, 255, 255));
         typhoon_box.setForeground(new java.awt.Color(255, 255, 255));
@@ -551,28 +565,155 @@ public class MainGUI extends javax.swing.JFrame {
         jLabel1.setText("Latest Tropical Cyclone Advisory (PAGASA)");
         jLabel1.setPreferredSize(new java.awt.Dimension(620, 34));
 
+        tcadvisory.setBackground(new java.awt.Color(255, 255, 255));
+        tcadvisory.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tcadvisory.setForeground(new java.awt.Color(0, 102, 102));
+        tcadvisory.setText("Latest Details");
+        tcadvisory.setBorder(null);
+        tcadvisory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tcadvisory.setFocusable(false);
+        tcadvisory.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        tcadvisory.setPreferredSize(new java.awt.Dimension(138, 50));
+        tcadvisory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tcadvisoryActionPerformed(evt);
+            }
+        });
+
+        records2021.setBackground(new java.awt.Color(255, 255, 255));
+        records2021.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        records2021.setForeground(new java.awt.Color(0, 102, 102));
+        records2021.setText("2021 Records");
+        records2021.setBorder(null);
+        records2021.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        records2021.setFocusable(false);
+        records2021.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        records2021.setPreferredSize(new java.awt.Dimension(138, 50));
+        records2021.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                records2021ActionPerformed(evt);
+            }
+        });
+
+        records2020.setBackground(new java.awt.Color(255, 255, 255));
+        records2020.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        records2020.setForeground(new java.awt.Color(0, 102, 102));
+        records2020.setText("2020 Records");
+        records2020.setBorder(null);
+        records2020.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        records2020.setFocusable(false);
+        records2020.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        records2020.setPreferredSize(new java.awt.Dimension(138, 50));
+        records2020.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                records2020ActionPerformed(evt);
+            }
+        });
+
+        records2019.setBackground(new java.awt.Color(255, 255, 255));
+        records2019.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        records2019.setForeground(new java.awt.Color(0, 102, 102));
+        records2019.setText("2019 Records");
+        records2019.setBorder(null);
+        records2019.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        records2019.setFocusable(false);
+        records2019.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        records2019.setPreferredSize(new java.awt.Dimension(138, 50));
+        records2019.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                records2019ActionPerformed(evt);
+            }
+        });
+
+        records2018.setBackground(new java.awt.Color(255, 255, 255));
+        records2018.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        records2018.setForeground(new java.awt.Color(0, 102, 102));
+        records2018.setText("2018 Records");
+        records2018.setActionCommand("2018 Records");
+        records2018.setBorder(null);
+        records2018.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        records2018.setFocusable(false);
+        records2018.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        records2018.setPreferredSize(new java.awt.Dimension(138, 50));
+        records2018.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                records2018ActionPerformed(evt);
+            }
+        });
+
+        records2017.setBackground(new java.awt.Color(255, 255, 255));
+        records2017.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        records2017.setForeground(new java.awt.Color(0, 102, 102));
+        records2017.setText("2017 Records");
+        records2017.setActionCommand("2017 Records");
+        records2017.setBorder(null);
+        records2017.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        records2017.setFocusable(false);
+        records2017.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        records2017.setPreferredSize(new java.awt.Dimension(138, 50));
+        records2017.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                records2017ActionPerformed(evt);
+            }
+        });
+
+        jSeparator5.setBackground(new java.awt.Color(102, 102, 102));
+        jSeparator5.setForeground(new java.awt.Color(204, 204, 204));
+        jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
         javax.swing.GroupLayout typhoon_boxLayout = new javax.swing.GroupLayout(typhoon_box);
         typhoon_box.setLayout(typhoon_boxLayout);
         typhoon_boxLayout.setHorizontalGroup(
             typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(typhoon_boxLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, typhoon_boxLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(typhoon_image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(typhoon_boxLayout.createSequentialGroup()
+                        .addComponent(typhoon_image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(records2018, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(records2017, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tcadvisory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(records2021, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(records2020, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(records2019, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(50, 50, 50))
         );
         typhoon_boxLayout.setVerticalGroup(
             typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, typhoon_boxLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(typhoon_image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(typhoon_boxLayout.createSequentialGroup()
+                        .addComponent(tcadvisory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(records2021, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(records2020, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(records2019, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(records2018, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(records2017, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(typhoon_boxLayout.createSequentialGroup()
+                        .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator5)
+                            .addComponent(typhoon_image, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE))
+                        .addGap(29, 29, 29))))
         );
 
-        tabbed_content.addTab("           Typhoon Panel                                                                                                             ", typhoon_box);
+        tabbed_content.addTab("           Tropical Cyclone Dashboard                                                                                       ", typhoon_box);
 
         javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
         body.setLayout(bodyLayout);
@@ -738,18 +879,79 @@ public class MainGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_accountActionPerformed
 
-    private void settingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsActionPerformed
+    private void appearanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appearanceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_settingsActionPerformed
+    }//GEN-LAST:event_appearanceActionPerformed
 
     private void rainscapeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rainscapeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rainscapeActionPerformed
 
+    private void records2021ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_records2021ActionPerformed
+        try {
+            // TODO add your handling code here:
+            TropicalCyclone.tca2021 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2021.png"))).getScaledInstance(700, 3500, Image.SCALE_SMOOTH);
+            TropicalCyclone.openOtherTCA(TropicalCyclone.tca2021);
+        } catch (IOException ex) {
+            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_records2021ActionPerformed
+
+    private void tcadvisoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tcadvisoryActionPerformed
+        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(null, "Proceed to PDF Link?") == 0) {
+            RainScape.openWebpage("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tcadvisory.pdf");
+        }
+    }//GEN-LAST:event_tcadvisoryActionPerformed
+
     private void typhoon_imageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_typhoon_imageMouseClicked
         // TODO add your handling code here:
-        Typhoon.openBigTCA();
+        TropicalCyclone.openBigTCA();
     }//GEN-LAST:event_typhoon_imageMouseClicked
+
+    private void records2020ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_records2020ActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            TropicalCyclone.tca2020 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2020.png"))).getScaledInstance(700, 3500, Image.SCALE_SMOOTH);
+            TropicalCyclone.openOtherTCA(TropicalCyclone.tca2020);
+        } catch (IOException ex) {
+            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_records2020ActionPerformed
+
+    private void records2019ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_records2019ActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            TropicalCyclone.tca2019 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2019.png"))).getScaledInstance(700, 3500, Image.SCALE_SMOOTH);
+            TropicalCyclone.openOtherTCA(TropicalCyclone.tca2019);
+        } catch (IOException ex) {
+            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_records2019ActionPerformed
+
+    private void records2018ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_records2018ActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            TropicalCyclone.tca2018 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2018.png"))).getScaledInstance(700, 3500, Image.SCALE_SMOOTH);
+            TropicalCyclone.openOtherTCA(TropicalCyclone.tca2018);
+        } catch (IOException ex) {
+            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_records2018ActionPerformed
+
+    private void records2017ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_records2017ActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            TropicalCyclone.tca2017 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2017.png"))).getScaledInstance(700, 3500, Image.SCALE_SMOOTH);
+            TropicalCyclone.openOtherTCA(TropicalCyclone.tca2017);
+        } catch (IOException ex) {
+            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_records2017ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -778,6 +980,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton account;
+    private javax.swing.JButton appearance;
     private javax.swing.JPanel basicforecast_box;
     private javax.swing.JPanel body;
     private javax.swing.JPanel content_box;
@@ -788,6 +991,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JPanel line1;
     private javax.swing.JPanel line2;
     private javax.swing.JPanel line3;
@@ -800,13 +1004,18 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel mainBanner;
     private javax.swing.JPanel menuBar;
     private javax.swing.JButton rainscape;
+    private javax.swing.JButton records2017;
+    private javax.swing.JButton records2018;
+    private javax.swing.JButton records2019;
+    private javax.swing.JButton records2020;
+    private javax.swing.JButton records2021;
     private javax.swing.JTextField searchbar;
     private javax.swing.JPanel searchbar_bg;
     private javax.swing.JButton searchbutton;
-    private javax.swing.JButton settings;
     private javax.swing.JPanel sidebar_box;
     public static javax.swing.JLabel status;
     private javax.swing.JTabbedPane tabbed_content;
+    private javax.swing.JButton tcadvisory;
     public static javax.swing.JLabel temp;
     private javax.swing.JPanel typhoon_box;
     public static javax.swing.JLabel typhoon_image;

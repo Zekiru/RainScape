@@ -6,6 +6,10 @@
 package com.mycompany.rainscape;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.concurrent.*;
 import java.util.*;
 import javax.swing.JOptionPane;
@@ -69,7 +73,14 @@ public class RainScape {
             //do something if you care about interruption;
             System.out.println("Interrupted Exception: " + ie);
         }
-
+    }
+    
+    public static void openWebpage(String urlString) {
+        try {
+            Desktop.getDesktop().browse(new URL(urlString).toURI());
+        } catch (IOException | URISyntaxException e) {
+            System.out.println("Exception: " + e);
+        }
     }
     
 }

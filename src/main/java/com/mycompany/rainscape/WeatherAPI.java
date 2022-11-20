@@ -176,7 +176,8 @@ public class WeatherAPI {
             MainGUI.temp.setText(temp);
             MainGUI.status.setText(status);
             
-            Typhoon.fetchTCA();
+            TropicalCyclone.fetch();
+            TropicalCyclone.setValues();
 
             // System.out.println("WeatherAPI Data Set");
         } catch (Exception e) {

@@ -50,6 +50,9 @@ public class WeatherAPI {
                 
                 WeatherAPI.fetch(currentUserArea());
                 WeatherAPI.setValues();
+                
+                TropicalCyclone.fetch();
+                TropicalCyclone.setValues();
 
                 // System.out.println("WeatherAPI Updated");
             }
@@ -176,9 +179,6 @@ public class WeatherAPI {
             MainGUI.temp.setText(temp);
             MainGUI.status.setText(status);
             
-            TropicalCyclone.fetch();
-            TropicalCyclone.setValues();
-
             // System.out.println("WeatherAPI Data Set");
         } catch (Exception e) {
             e.printStackTrace(); 

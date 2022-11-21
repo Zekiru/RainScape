@@ -41,7 +41,7 @@ public class TropicalCyclone {
             try {
                 tc2017 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2017.png"))).getScaledInstance(700, 3000, Image.SCALE_SMOOTH);
             } catch (IOException e) {
-                System.out.println("Cannot Load tc2017");
+                // System.out.println("Cannot Load tc2017");
             }
             return null;
         };
@@ -49,7 +49,7 @@ public class TropicalCyclone {
             try {
                 tc2018 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2018.png"))).getScaledInstance(700, 3000, Image.SCALE_SMOOTH);
             } catch (IOException e) {
-                System.out.println("Cannot Load tc2018");
+                // System.out.println("Cannot Load tc2018");
             }
             return null;
         };
@@ -57,7 +57,7 @@ public class TropicalCyclone {
             try {
                 tc2019 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2019.png"))).getScaledInstance(700, 3000, Image.SCALE_SMOOTH);
             } catch (IOException e) {
-                System.out.println("Cannot Load tc2019");
+                // System.out.println("Cannot Load tc2019");
             }
             return null;
         };
@@ -65,7 +65,7 @@ public class TropicalCyclone {
             try {
                 tc2020 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2020.png"))).getScaledInstance(700, 3000, Image.SCALE_SMOOTH);
             } catch (IOException e) {
-                System.out.println("Cannot Load tc2020");
+                // System.out.println("Cannot Load tc2020");
             }
             return null;
         };
@@ -73,13 +73,17 @@ public class TropicalCyclone {
             try {
                 tc2021 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2021.png"))).getScaledInstance(700, 3000, Image.SCALE_SMOOTH);
             } catch (IOException e) {
-                System.out.println("Cannot Load tc2021");
+                // System.out.println("Cannot Load tc2021");
             }
             return null;
         };
         Callable callable6 = () -> {
-            tca = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tca.png")));
-            tca_resize = tca.getScaledInstance(MainGUI.typhoon_image.getWidth(), MainGUI.typhoon_image.getHeight(), Image.SCALE_SMOOTH);
+            try {
+                tca = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tca.png")));
+                tca_resize = tca.getScaledInstance(MainGUI.typhoon_image.getWidth(), MainGUI.typhoon_image.getHeight(), Image.SCALE_SMOOTH);
+            } catch (IOException e) {
+                // System.out.println("Cannot Load tca");
+            }
             return null;
         };
 

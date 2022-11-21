@@ -6,6 +6,7 @@ package com.mycompany.rainscape;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -26,18 +27,26 @@ public class DateTime {
                 System.out.println("Interrupted Exception: " + ie);
             }
 
-            while (access) {
-                try {
-                    Thread.sleep(1); // While loop time buffer, Default 1 millisecond
-                } catch (InterruptedException ie) {
-                    System.out.println("Interrupted Exception: " + ie);
-                }
-                
+            if (access) {
                 DateTime.setValues();
-
+                    
                 // System.out.println("DateTime Updated");
             }
         }
+    }
+    
+    public static String localTimeOfDay() {
+        Calendar c = Calendar.getInstance();
+        int time = c.get(Calendar.HOUR_OF_DAY);
+
+        if (time >= 3 && time < 12)
+            return "Morning";
+        else if (time >= 12 && time < 18)
+            return "Afternoon";
+        else if (time >= 18 && time < 24 || time >= 0 && time < 3)
+            return "Evening";
+        else
+            return "Day";
     }
     
     public static String localTime() {
@@ -58,19 +67,31 @@ public class DateTime {
     }
     
     public static String localDate() {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
 
         return dateFormat.format(date);
     }
     
     public static void setValues() {
-        if (!localTime().equals(MainGUI.localtime)){
-            MainGUI.localtime.setText(localTime());
+        String greeting = "Good " + localTimeOfDay() + ", " + RainScape.username + ".";
+        
+        if (!greeting.equals(MainGUI.weather_label.getText())) {
+            MainGUI.weather_label.setText(greeting);
+            
+            // System.out.println("Time Of Day Updated");
         }
         
-        if (!localDate().equals(MainGUI.localdate)) {
+        if (!localTime().equals(MainGUI.localtime.getText())){
+            MainGUI.localtime.setText(localTime());
+            
+            // System.out.println("Time Updated");
+        }
+        
+        if (!localDate().equals(MainGUI.localdate.getText())) {
             MainGUI.localdate.setText(localDate());
+            
+            // System.out.println("Date Updated");
         }
     }
 }

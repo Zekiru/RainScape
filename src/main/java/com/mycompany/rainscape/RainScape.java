@@ -22,8 +22,10 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class RainScape {
     
-    public static String username = null;
-    public static boolean access = false;
+    public static String username, temp_scale = null;
+    public static boolean access, dark_mode = false;
+    
+    public static String search_area = "";
 
     public static void main(String[] args) {
         runThreads();
@@ -76,6 +78,18 @@ public class RainScape {
         } catch (InterruptedException ie) {
             System.out.println("Interrupted Exception: " + ie);
         }
+    }
+    
+    public static String currentSearchArea() {
+        String area;
+
+        if (search_area.equals("")) {
+            area = MySQL.defaultUserArea();
+        } else {
+            area = search_area;
+        }
+
+        return area;
     }
     
     public static void openWebpage(String urlString) {

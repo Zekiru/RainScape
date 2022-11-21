@@ -5,16 +5,16 @@
 package com.mycompany.rainscape;
 
 import java.awt.HeadlessException;
+import java.awt.Image;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,11 +23,8 @@ import org.json.JSONObject;
  * @author Ezekiel
  */
 public class WeatherAPI {
-    
-    public static String default_area = "Manila"; // Default New Account Area
-    public static String current_area = "";
-    
-    public static String location, temp, status; // Variables for Basic Weather Forecast
+    public static String location, temp, status, icon_url; // Variables for Basic Weather Forecast
+    public static String[][] forecast = {{null, null, null}, {null, null, null}, {null, null, null}, {null, null}}; // Variables for Weather Dashboard
     
     public static void autoUpdate() {
         System.out.println("WeatherAPI AutoUpdate Initialized");
@@ -41,61 +38,24 @@ public class WeatherAPI {
                 System.out.println("Interrupted Exception: " + ie);
             }
 
-            while (access) {
+            if (access) {
                 try {
                     Thread.sleep(600000); // While loop time buffer, Default 10 minutes
                 } catch (InterruptedException ie) {
                     System.out.println("Interrupted Exception: " + ie);
                 }
                 
-                WeatherAPI.fetch(currentUserArea());
-                WeatherAPI.setValues();
-                
-                TropicalCyclone.fetch();
-                TropicalCyclone.setValues();
+                if (access) {
+                    WeatherAPI.fetch(RainScape.currentSearchArea());
+                    WeatherAPI.setValues();
 
-                // System.out.println("WeatherAPI Updated");
+                    TropicalCyclone.fetch();
+                    TropicalCyclone.setValues();
+                    
+                    // System.out.println("WeatherAPI Updated");
+                }
             }
         }
-    }
-    
-    public static String currentUserArea() {
-        String area;
-        
-        if (current_area.equals("")) {
-            area = defaultUserArea();
-        } else {
-            area = current_area;
-        }
-        
-        return area;
-    }
-    
-    public static String defaultUserArea() {
-        String user = RainScape.username;
-        String area = default_area;
-        
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db", "root", "");
-            String sql;
-
-            sql = "select * from rs_preferences where username=?";
-
-            PreparedStatement psmt = conn.prepareStatement(sql);
-
-            psmt.setString(1, user);
-
-            ResultSet rs = psmt.executeQuery();
-            rs.next();
-
-            area = rs.getString("area");
-        } catch (ClassNotFoundException e) {
-            System.out.println("Exception: " + e);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Not Connected to the SQL Server.");
-        }
-        return area;
     }
     
     // <editor-fold defaultstate="collapsed" desc="RAINSCAPE EXCUSIVE DATA">
@@ -111,9 +71,12 @@ public class WeatherAPI {
     since the API has a limited amount of uses I typed this down as a precaution. That is
     all, and if you are still reading, how's the weather there? */
     
-    public static void fetch(String area) {        
+    public static void fetch(String area) {
+        MySQL.fetch();
+        
         try {
-            String api_url = "https://weatherapi-com.p.rapidapi.com/current.json?q=" + area;
+            // Weather API Call Request:
+            String api_url = "https://weatherapi-com.p.rapidapi.com/forecast.json?q=" + area + "&days=3";
 
             OkHttpClient client = new OkHttpClient();
 
@@ -128,26 +91,68 @@ public class WeatherAPI {
 
             Response response = client.newCall(request).execute();
             
+            // Arranged Data Into Callable JSONObjects:
+            
             JSONObject jsonAPI = new JSONObject(response.body().string());
 
             if (jsonAPI.has("location")) {
                 JSONObject jsonLocation = new JSONObject(jsonAPI.get("location").toString());
                 JSONObject jsonCurrent = new JSONObject(jsonAPI.get("current").toString());
-                JSONObject jsonCondition = new JSONObject(jsonCurrent.get("condition").toString());
-
-                // Below are the fetched variables:
+                JSONObject jsonCurrentCondition = new JSONObject(jsonCurrent.get("condition").toString());
                 
-                if (jsonLocation.get("name").toString().equals(jsonLocation.get("country").toString()))
-                    location = jsonLocation.get("name").toString(); // e.g. Makati (Makati, Manila, PH)
+                JSONArray jsonForecastDay = new JSONArray((new JSONObject(jsonAPI.get("forecast").toString())).get("forecastday").toString());
+                
+                JSONObject[] jsonForecastArray = {
+                    new JSONObject(jsonForecastDay.get(0).toString()),
+                    new JSONObject(jsonForecastDay.get(1).toString()),
+                    new JSONObject(jsonForecastDay.get(2).toString())
+                };
+                
+                JSONObject[] jsonForecastConditionArray = {
+                    new JSONObject((new JSONObject(jsonForecastArray[0].get("day").toString())).get("condition").toString()),
+                    new JSONObject((new JSONObject(jsonForecastArray[1].get("day").toString())).get("condition").toString()),
+                    new JSONObject((new JSONObject(jsonForecastArray[2].get("day").toString())).get("condition").toString())
+                };
+
+                // Fetching of Data:
+                
+                if (jsonLocation.getString("name").equals(jsonLocation.getString("country")))
+                    location = jsonLocation.getString("name"); // e.g. Makati (Makati, Manila, PH)
                 else
-                    if (jsonLocation.get("country").toString().equals("United States of America") || jsonLocation.get("country").toString().equals("USA United States of America")) // OHIO
-                        location = jsonLocation.get("name").toString() + ", USA";
+                    if (jsonLocation.getString("country").equals("United States of America") || jsonLocation.getString("country").equals("USA United States of America")) // OHIO
+                        location = jsonLocation.getString("name") + ", USA";
                     else
-                        location = jsonLocation.get("name").toString() + ", " + jsonLocation.get("country").toString(); // e.g. Makati, Philippines (Makati, Manila, PH)
+                        location = jsonLocation.getString("name") + ", " + jsonLocation.getString("country"); // e.g. Makati, Philippines (Makati, Manila, PH)
                 
-                temp = jsonCurrent.get("temp_c").toString() + "°"; // e.g. 30°
-                status = jsonCondition.get("text").toString(); // e.g. Partly cloudy
-
+                if (!RainScape.temp_scale.equals("celsius"))
+                    temp = jsonCurrent.getInt("temp_f") + "°ꟳ"; // e.g. 86°
+                else
+                    temp = jsonCurrent.getInt("temp_c") + "°ꟲ"; // e.g. 30°
+                
+                status = jsonCurrentCondition.getString("text"); // e.g. Partly cloudy
+                icon_url = "https:" + jsonCurrentCondition.getString("icon"); // e.g. //cdn.weatherapi.com/weather/64x64/day/116.png
+                
+                forecast[0][0] = jsonForecastArray[0].getString("date");
+                forecast[1][0] = jsonForecastArray[1].getString("date");
+                forecast[2][0] = jsonForecastArray[2].getString("date");
+                
+                if (!RainScape.temp_scale.equals("celsius")) {
+                    forecast[0][1] = new JSONObject(jsonForecastArray[0].get("day").toString()).getInt("avgtemp_f")  + "°ꟳ";
+                    forecast[1][1] = new JSONObject(jsonForecastArray[1].get("day").toString()).getInt("avgtemp_f")  + "°ꟳ";
+                    forecast[2][1] = new JSONObject(jsonForecastArray[2].get("day").toString()).getInt("avgtemp_f")  + "°ꟳ";
+                } else {
+                    forecast[0][1] = new JSONObject(jsonForecastArray[0].get("day").toString()).getInt("avgtemp_c")  + "°ꟲ";
+                    forecast[1][1] = new JSONObject(jsonForecastArray[1].get("day").toString()).getInt("avgtemp_c")  + "°ꟲ";
+                    forecast[2][1] = new JSONObject(jsonForecastArray[2].get("day").toString()).getInt("avgtemp_c")  + "°ꟲ";
+                }
+                
+                forecast[0][2] = "https:" + jsonForecastConditionArray[0].getString("icon");
+                forecast[1][2] = "https:" + jsonForecastConditionArray[0].getString("icon");
+                forecast[2][2] = "https:" + jsonForecastConditionArray[0].getString("icon");
+                
+                forecast[3][0] = jsonCurrent.get("cloud").toString();
+                forecast[3][1] = jsonCurrent.get("humidity").toString();
+                
                 // System.out.println("\n"+location+"\n"+temp+"\n"+status+"\n"); // Print Basic Weather Forecast to Console
                 
                 // System.out.println("WeatherAPI Data Fetched");
@@ -165,7 +170,7 @@ public class WeatherAPI {
         } catch (HeadlessException | JSONException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Connection Error.");
+            System.out.println("Connection Error.");
             
             location = "Running Offline";
             status = "Not Connected";
@@ -178,10 +183,54 @@ public class WeatherAPI {
             MainGUI.location.setText(location);
             MainGUI.temp.setText(temp);
             MainGUI.status.setText(status);
+            MainGUI.current_icon.setIcon(new ImageIcon(ImageIO.read(new URL(TropicalCyclone.getFinalURL(icon_url))).getScaledInstance(MainGUI.current_icon.getWidth(), MainGUI.current_icon.getHeight(), Image.SCALE_SMOOTH)));
+            
+            MainGUI.forecast0_date.setText(forecast[0][0]);
+            MainGUI.forecast0_temp.setText(forecast[0][1]);
+            MainGUI.forecast0_icon.setIcon(new ImageIcon(ImageIO.read(new URL(TropicalCyclone.getFinalURL(forecast[0][2]))).getScaledInstance(MainGUI.forecast0_icon.getWidth(), MainGUI.forecast0_icon.getHeight(), Image.SCALE_SMOOTH)));
+            
+            MainGUI.forecast1_date.setText(forecast[1][0]);
+            MainGUI.forecast1_temp.setText(forecast[1][1]);
+            MainGUI.forecast1_icon.setIcon(new ImageIcon(ImageIO.read(new URL(TropicalCyclone.getFinalURL(forecast[1][2]))).getScaledInstance(MainGUI.forecast0_icon.getWidth(), MainGUI.forecast0_icon.getHeight(), Image.SCALE_SMOOTH)));
+            
+            MainGUI.forecast2_date.setText(forecast[2][0]);
+            MainGUI.forecast2_temp.setText(forecast[2][1]);
+            MainGUI.forecast2_icon.setIcon(new ImageIcon(ImageIO.read(new URL(TropicalCyclone.getFinalURL(forecast[2][2]))).getScaledInstance(MainGUI.forecast0_icon.getWidth(), MainGUI.forecast0_icon.getHeight(), Image.SCALE_SMOOTH)));
+            
+            MainGUI.cloud_label.setText("Clouds - " + forecast[3][0] + "%");
+            MainGUI.cloud_progressbar.setValue(Integer.parseInt(forecast[3][0]));
+            
+            MainGUI.humidity_label.setText("Humidity - " + forecast[3][1] + "%");
+            MainGUI.humidity_progressbar.setValue(Integer.parseInt(forecast[3][1]));
             
             // System.out.println("WeatherAPI Data Set");
         } catch (Exception e) {
-            e.printStackTrace(); 
+            try {
+                MainGUI.location.setText(location);
+                MainGUI.temp.setText(temp);
+                MainGUI.status.setText(status);
+
+                MainGUI.forecast0_date.setText("");
+                MainGUI.forecast0_temp.setText("");
+                MainGUI.forecast1_date.setText("");
+                MainGUI.forecast1_temp.setText("");
+                MainGUI.forecast2_date.setText("");
+                MainGUI.forecast2_temp.setText("");
+                
+                MainGUI.forecast0_icon.setIcon(null);
+                MainGUI.forecast1_icon.setIcon(null);
+                MainGUI.forecast2_icon.setIcon(null);
+
+                MainGUI.cloud_label.setText("Clouds - 0%");
+                MainGUI.humidity_label.setText("Humidity - 0%");
+
+                MainGUI.cloud_progressbar.setValue(0);
+                MainGUI.humidity_progressbar.setValue(0);
+            } catch (Exception ee) {
+                ee.printStackTrace();
+            }
+            
+            JOptionPane.showMessageDialog(null, "Connection Error.");
        }
     }
     

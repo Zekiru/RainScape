@@ -241,7 +241,7 @@ public class LoginGUI extends javax.swing.JFrame {
         //</editor-fold>
         
         RainScape.access = false;
-        WeatherAPI.current_area = "";
+        RainScape.search_area = "";
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

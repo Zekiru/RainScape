@@ -78,8 +78,12 @@ public class TropicalCyclone {
             return null;
         };
         Callable callable6 = () -> {
-            tca = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tca.png")));
-            tca_resize = tca.getScaledInstance(MainGUI.typhoon_image.getWidth(), MainGUI.typhoon_image.getHeight(), Image.SCALE_SMOOTH);
+            try {
+                tca = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tca.png")));
+                tca_resize = tca.getScaledInstance(MainGUI.typhoon_image.getWidth(), MainGUI.typhoon_image.getHeight(), Image.SCALE_SMOOTH);
+            } catch (IOException e) {
+                System.out.println("Cannot Load tca");
+            }
             return null;
         };
 

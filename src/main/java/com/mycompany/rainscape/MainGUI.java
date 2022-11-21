@@ -888,13 +888,7 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_rainscapeActionPerformed
 
     private void records2021ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_records2021ActionPerformed
-        try {
-            // TODO add your handling code here:
-            TropicalCyclone.tca2021 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2021.png"))).getScaledInstance(700, 3500, Image.SCALE_SMOOTH);
-            TropicalCyclone.openOtherTCA(TropicalCyclone.tca2021);
-        } catch (IOException ex) {
-            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        TropicalCyclone.openOtherTCA("tca2021");
     }//GEN-LAST:event_records2021ActionPerformed
 
     private void tcadvisoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tcadvisoryActionPerformed
@@ -911,46 +905,22 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void records2020ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_records2020ActionPerformed
         // TODO add your handling code here:
-        try {
-            // TODO add your handling code here:
-            TropicalCyclone.tca2020 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2020.png"))).getScaledInstance(700, 3500, Image.SCALE_SMOOTH);
-            TropicalCyclone.openOtherTCA(TropicalCyclone.tca2020);
-        } catch (IOException ex) {
-            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        TropicalCyclone.openOtherTCA("tca2020");
     }//GEN-LAST:event_records2020ActionPerformed
 
     private void records2019ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_records2019ActionPerformed
         // TODO add your handling code here:
-        try {
-            // TODO add your handling code here:
-            TropicalCyclone.tca2019 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2019.png"))).getScaledInstance(700, 3500, Image.SCALE_SMOOTH);
-            TropicalCyclone.openOtherTCA(TropicalCyclone.tca2019);
-        } catch (IOException ex) {
-            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        TropicalCyclone.openOtherTCA("tca2019");
     }//GEN-LAST:event_records2019ActionPerformed
 
     private void records2018ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_records2018ActionPerformed
         // TODO add your handling code here:
-        try {
-            // TODO add your handling code here:
-            TropicalCyclone.tca2018 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2018.png"))).getScaledInstance(700, 3500, Image.SCALE_SMOOTH);
-            TropicalCyclone.openOtherTCA(TropicalCyclone.tca2018);
-        } catch (IOException ex) {
-            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        TropicalCyclone.openOtherTCA("tca2018");
     }//GEN-LAST:event_records2018ActionPerformed
 
     private void records2017ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_records2017ActionPerformed
         // TODO add your handling code here:
-        try {
-            // TODO add your handling code here:
-            TropicalCyclone.tca2017 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2017.png"))).getScaledInstance(700, 3500, Image.SCALE_SMOOTH);
-            TropicalCyclone.openOtherTCA(TropicalCyclone.tca2017);
-        } catch (IOException ex) {
-            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        TropicalCyclone.openOtherTCA("tca2017");
     }//GEN-LAST:event_records2017ActionPerformed
 
     /**

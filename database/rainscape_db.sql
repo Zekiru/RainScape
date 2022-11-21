@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2022 at 01:46 AM
+-- Generation Time: Nov 21, 2022 at 10:54 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -42,6 +42,9 @@ INSERT INTO `rs_accounts` (`username`, `password`) VALUES
 ('Joseph', 'Garcia'),
 ('Justin', 'Lu'),
 ('Marcus', 'Singson'),
+('Mozes', 'Garcia'),
+('Raden', 'Alvarez'),
+('Wilson', 'Tiu'),
 ('Zeke', 'Villasurda');
 
 -- --------------------------------------------------------
@@ -52,20 +55,25 @@ INSERT INTO `rs_accounts` (`username`, `password`) VALUES
 
 CREATE TABLE `rs_preferences` (
   `username` varchar(24) NOT NULL,
-  `area` varchar(60) NOT NULL
+  `area` varchar(60) NOT NULL,
+  `temp_scale` varchar(12) NOT NULL,
+  `dark_mode` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `rs_preferences`
 --
 
-INSERT INTO `rs_preferences` (`username`, `area`) VALUES
-('Aya', 'Manila'),
-('Jay', 'Makati'),
-('Joseph', 'Manila'),
-('Justin', 'Quezon City'),
-('Marcus', 'Manila'),
-('Zeke', 'Albuquerque');
+INSERT INTO `rs_preferences` (`username`, `area`, `temp_scale`, `dark_mode`) VALUES
+('Aya', 'Manila', 'celsius', 0),
+('Jay', 'Makati', 'celsius', 0),
+('Joseph', 'Istanbul', 'celsius', 1),
+('Justin', 'Quezon City', 'celsius', 0),
+('Marcus', 'Marikina', 'fahrenheit', 0),
+('Mozes', 'Hongkong', 'fahrenheit', 1),
+('Raden', 'Manila', 'fahrenheit', 0),
+('Wilson', 'Manila', 'celsius', 0),
+('Zeke', 'Albuquerque', 'celsius', 1);
 
 --
 -- Indexes for dumped tables

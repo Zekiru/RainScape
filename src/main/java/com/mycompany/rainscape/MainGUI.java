@@ -5,14 +5,7 @@
 package com.mycompany.rainscape;
 
 import com.formdev.flatlaf.FlatDarkLaf;
-import static com.mycompany.rainscape.TropicalCyclone.getFinalURL;
 import java.awt.Color;
-import java.awt.Image;
-import java.io.IOException;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;

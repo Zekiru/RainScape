@@ -26,26 +26,29 @@ public class RainScape {
     public static boolean access = false;
 
     public static void main(String[] args) {
+        runThreads();
+    }
+    
+    public static void start() {
         System.out.println("Project Initializing");
         try {
-            LoginGUI.main(args);
+            LoginGUI.main(null);
             System.out.println("Project Launched");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Failed to aunch RainScape.");
-            
+            JOptionPane.showMessageDialog(null, "Failed to Launch RainScape.");
+
             System.out.println("Project Not Launched");
+            System.exit(0);
         }
-        
+
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (UnsupportedLookAndFeelException e) {
             System.out.println("Look and Feel Exception: " + e);
         }
-        
-        autoUpdateThread();
     }
     
-    public static void autoUpdateThread() {
+    public static void runThreads() {
 
         //create a callable for each method
         Callable callable1 = () -> {
@@ -58,13 +61,19 @@ public class RainScape {
             return null;
         };
         
+        Callable callable3 = () -> {
+            start();
+            return null;
+        };
+        
         //add to a list
         ArrayList taskList = new ArrayList();
         taskList.add(callable1);
         taskList.add(callable2);
+        taskList.add(callable3);
 
         //create a pool executor with 2 threads
-        ExecutorService executor = Executors.newFixedThreadPool(2);
+        ExecutorService executor = Executors.newFixedThreadPool(3);
 
         try {
             //start the threads and wait for them to finish

@@ -45,7 +45,7 @@ public class TropicalCyclone {
             tca2017 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2017.png"))).getScaledInstance(700, 2800, Image.SCALE_SMOOTH);
             */
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Failed to Fetch Data from PAGASA");
+            System.out.println("Failed to Fetch Data from PAGASA");
         }
     }
     

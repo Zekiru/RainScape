@@ -881,7 +881,7 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_rainscapeActionPerformed
 
     private void records2021ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_records2021ActionPerformed
-        TropicalCyclone.openOtherTCA("tca2021");
+        TropicalCyclone.openOtherTCA(TropicalCyclone.tc2021);
     }//GEN-LAST:event_records2021ActionPerformed
 
     private void tcadvisoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tcadvisoryActionPerformed
@@ -898,22 +898,22 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void records2020ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_records2020ActionPerformed
         // TODO add your handling code here:
-        TropicalCyclone.openOtherTCA("tca2020");
+        TropicalCyclone.openOtherTCA(TropicalCyclone.tc2020);
     }//GEN-LAST:event_records2020ActionPerformed
 
     private void records2019ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_records2019ActionPerformed
         // TODO add your handling code here:
-        TropicalCyclone.openOtherTCA("tca2019");
+        TropicalCyclone.openOtherTCA(TropicalCyclone.tc2019);
     }//GEN-LAST:event_records2019ActionPerformed
 
     private void records2018ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_records2018ActionPerformed
         // TODO add your handling code here:
-        TropicalCyclone.openOtherTCA("tca2018");
+        TropicalCyclone.openOtherTCA(TropicalCyclone.tc2018);
     }//GEN-LAST:event_records2018ActionPerformed
 
     private void records2017ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_records2017ActionPerformed
         // TODO add your handling code here:
-        TropicalCyclone.openOtherTCA("tca2017");
+        TropicalCyclone.openOtherTCA(TropicalCyclone.tc2017);
     }//GEN-LAST:event_records2017ActionPerformed
 
     /**

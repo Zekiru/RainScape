@@ -49,8 +49,6 @@ public class RainScape {
     }
     
     public static void runThreads() {
-
-        //create a callable for each method
         Callable callable1 = () -> {
             WeatherAPI.autoUpdate();
             return null;
@@ -66,20 +64,16 @@ public class RainScape {
             return null;
         };
         
-        //add to a list
         ArrayList taskList = new ArrayList();
         taskList.add(callable1);
         taskList.add(callable2);
         taskList.add(callable3);
-
-        //create a pool executor with 2 threads
+        
         ExecutorService executor = Executors.newFixedThreadPool(3);
 
         try {
-            //start the threads and wait for them to finish
             executor.invokeAll(taskList);
         } catch (InterruptedException ie) {
-            //do something if you care about interruption;
             System.out.println("Interrupted Exception: " + ie);
         }
     }

@@ -41,20 +41,22 @@ public class WeatherAPI {
                 System.out.println("Interrupted Exception: " + ie);
             }
 
-            while (access) {
+            if (access) {
                 try {
                     Thread.sleep(600000); // While loop time buffer, Default 10 minutes
                 } catch (InterruptedException ie) {
                     System.out.println("Interrupted Exception: " + ie);
                 }
                 
-                WeatherAPI.fetch(currentUserArea());
-                WeatherAPI.setValues();
-                
-                TropicalCyclone.fetch();
-                TropicalCyclone.setValues();
+                if (access) {
+                    WeatherAPI.fetch(currentUserArea());
+                    WeatherAPI.setValues();
 
-                // System.out.println("WeatherAPI Updated");
+                    TropicalCyclone.fetch();
+                    TropicalCyclone.setValues();
+                    
+                    // System.out.println("WeatherAPI Updated");
+                }
             }
         }
     }

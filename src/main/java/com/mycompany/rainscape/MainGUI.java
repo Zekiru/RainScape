@@ -72,9 +72,10 @@ public class MainGUI extends javax.swing.JFrame {
         rainscape = new javax.swing.JButton();
         tabbed_content = new javax.swing.JTabbedPane();
         weather_box = new javax.swing.JPanel();
+        weather_label = new javax.swing.JLabel();
         typhoon_box = new javax.swing.JPanel();
+        tc_label = new javax.swing.JLabel();
         typhoon_image = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         tcadvisory = new javax.swing.JButton();
         records2021 = new javax.swing.JButton();
         records2020 = new javax.swing.JButton();
@@ -519,6 +520,7 @@ public class MainGUI extends javax.swing.JFrame {
         tabbed_content.setBackground(new java.awt.Color(255, 255, 255));
         tabbed_content.setForeground(new java.awt.Color(0, 51, 51));
         tabbed_content.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tabbed_content.setFocusable(false);
         tabbed_content.setPreferredSize(new java.awt.Dimension(920, 540));
 
         weather_box.setBackground(new java.awt.Color(255, 255, 255));
@@ -526,15 +528,26 @@ public class MainGUI extends javax.swing.JFrame {
         weather_box.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         weather_box.setPreferredSize(new java.awt.Dimension(918, 507));
 
+        weather_label.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        weather_label.setForeground(new java.awt.Color(0, 51, 51));
+        weather_label.setText("Good [Time of Day], [User].");
+        weather_label.setPreferredSize(new java.awt.Dimension(620, 38));
+
         javax.swing.GroupLayout weather_boxLayout = new javax.swing.GroupLayout(weather_box);
         weather_box.setLayout(weather_boxLayout);
         weather_boxLayout.setHorizontalGroup(
             weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 920, Short.MAX_VALUE)
+            .addGroup(weather_boxLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(weather_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(250, Short.MAX_VALUE))
         );
         weather_boxLayout.setVerticalGroup(
             weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 507, Short.MAX_VALUE)
+            .addGroup(weather_boxLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(weather_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(444, Short.MAX_VALUE))
         );
 
         tabbed_content.addTab("         Weather Dashboard                                                                                                   ", weather_box);
@@ -544,6 +557,11 @@ public class MainGUI extends javax.swing.JFrame {
         typhoon_box.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         typhoon_box.setPreferredSize(new java.awt.Dimension(918, 507));
 
+        tc_label.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        tc_label.setForeground(new java.awt.Color(0, 51, 51));
+        tc_label.setText("Latest Tropical Cyclone Advisory (PAGASA)");
+        tc_label.setPreferredSize(new java.awt.Dimension(620, 38));
+
         typhoon_image.setToolTipText("");
         typhoon_image.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         typhoon_image.setPreferredSize(new java.awt.Dimension(520, 405));
@@ -552,11 +570,6 @@ public class MainGUI extends javax.swing.JFrame {
                 typhoon_imageMouseClicked(evt);
             }
         });
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel1.setText("Latest Tropical Cyclone Advisory (PAGASA)");
-        jLabel1.setPreferredSize(new java.awt.Dimension(620, 34));
 
         tcadvisory.setBackground(new java.awt.Color(255, 255, 255));
         tcadvisory.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -622,7 +635,6 @@ public class MainGUI extends javax.swing.JFrame {
         records2018.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         records2018.setForeground(new java.awt.Color(0, 102, 102));
         records2018.setText("2018 Records");
-        records2018.setActionCommand("2018 Records");
         records2018.setBorder(null);
         records2018.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         records2018.setFocusable(false);
@@ -638,7 +650,6 @@ public class MainGUI extends javax.swing.JFrame {
         records2017.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         records2017.setForeground(new java.awt.Color(0, 102, 102));
         records2017.setText("2017 Records");
-        records2017.setActionCommand("2017 Records");
         records2017.setBorder(null);
         records2017.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         records2017.setFocusable(false);
@@ -661,7 +672,7 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, typhoon_boxLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tc_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(typhoon_boxLayout.createSequentialGroup()
                         .addComponent(typhoon_image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
@@ -683,8 +694,8 @@ public class MainGUI extends javax.swing.JFrame {
             typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, typhoon_boxLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addComponent(tc_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(typhoon_boxLayout.createSequentialGroup()
                         .addComponent(tcadvisory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -698,12 +709,12 @@ public class MainGUI extends javax.swing.JFrame {
                         .addComponent(records2018, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(records2017, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(39, 39, 39))
                     .addGroup(typhoon_boxLayout.createSequentialGroup()
                         .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jSeparator5)
-                            .addComponent(typhoon_image, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE))
-                        .addGap(29, 29, 29))))
+                            .addComponent(typhoon_image, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(25, 25, 25))))
         );
 
         tabbed_content.addTab("           Tropical Cyclone Dashboard                                                                                       ", typhoon_box);
@@ -949,7 +960,6 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel content_box;
     private javax.swing.JScrollPane content_box_scroll;
     private javax.swing.JPanel hamburger_box;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -978,10 +988,12 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel sidebar_box;
     public static javax.swing.JLabel status;
     private javax.swing.JTabbedPane tabbed_content;
+    private javax.swing.JLabel tc_label;
     private javax.swing.JButton tcadvisory;
     public static javax.swing.JLabel temp;
     private javax.swing.JPanel typhoon_box;
     public static javax.swing.JLabel typhoon_image;
     private javax.swing.JPanel weather_box;
+    public static javax.swing.JLabel weather_label;
     // End of variables declaration//GEN-END:variables
 }

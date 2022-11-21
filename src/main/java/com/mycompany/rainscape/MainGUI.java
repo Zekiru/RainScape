@@ -47,6 +47,7 @@ public class MainGUI extends javax.swing.JFrame {
         basicforecast_box = new javax.swing.JPanel();
         status = new javax.swing.JLabel();
         temp = new javax.swing.JLabel();
+        current_icon = new javax.swing.JLabel();
         localdate = new javax.swing.JLabel();
         location = new javax.swing.JLabel();
         body = new javax.swing.JPanel();
@@ -73,6 +74,24 @@ public class MainGUI extends javax.swing.JFrame {
         tabbed_content = new javax.swing.JTabbedPane();
         weather_box = new javax.swing.JPanel();
         weather_label = new javax.swing.JLabel();
+        forecast_label = new javax.swing.JLabel();
+        forecast0_panel = new javax.swing.JPanel();
+        forecast0_date = new javax.swing.JLabel();
+        forecast0_temp = new javax.swing.JLabel();
+        forecast0_icon = new javax.swing.JLabel();
+        forecast1_panel = new javax.swing.JPanel();
+        forecast1_date = new javax.swing.JLabel();
+        forecast1_temp = new javax.swing.JLabel();
+        forecast1_icon = new javax.swing.JLabel();
+        forecast2_panel = new javax.swing.JPanel();
+        forecast2_date = new javax.swing.JLabel();
+        forecast2_temp = new javax.swing.JLabel();
+        forecast2_icon = new javax.swing.JLabel();
+        cloud_progressbar = new javax.swing.JProgressBar();
+        humidity_progressbar = new javax.swing.JProgressBar();
+        humidity_label = new javax.swing.JLabel();
+        cloud_label = new javax.swing.JLabel();
+        refresh_weather = new javax.swing.JButton();
         typhoon_box = new javax.swing.JPanel();
         tc_label = new javax.swing.JLabel();
         typhoon_image = new javax.swing.JLabel();
@@ -83,6 +102,7 @@ public class MainGUI extends javax.swing.JFrame {
         records2018 = new javax.swing.JButton();
         records2017 = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JSeparator();
+        refresh_tropicalcyclone = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("RainScape");
@@ -109,56 +129,72 @@ public class MainGUI extends javax.swing.JFrame {
         basicforecast_box.setBackground(new java.awt.Color(51, 51, 51));
         basicforecast_box.setForeground(new java.awt.Color(51, 51, 51));
         basicforecast_box.setFocusable(false);
+        basicforecast_box.setMaximumSize(new java.awt.Dimension(1000, 166));
+        basicforecast_box.setMinimumSize(new java.awt.Dimension(300, 166));
 
         status.setBackground(new java.awt.Color(237, 249, 244));
         status.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         status.setForeground(new java.awt.Color(237, 249, 244));
         status.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         status.setText("Xxxxx xxxxxx");
+        status.setMaximumSize(new java.awt.Dimension(500, 32));
+        status.setMinimumSize(new java.awt.Dimension(50, 32));
 
         temp.setBackground(new java.awt.Color(237, 249, 244));
         temp.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
         temp.setForeground(new java.awt.Color(237, 249, 244));
         temp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        temp.setText("XX.X°");
+        temp.setText("XX°");
+        temp.setMaximumSize(new java.awt.Dimension(200, 81));
+        temp.setPreferredSize(new java.awt.Dimension(101, 110));
+
+        current_icon.setPreferredSize(new java.awt.Dimension(110, 110));
 
         localdate.setBackground(new java.awt.Color(237, 249, 244));
         localdate.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         localdate.setForeground(new java.awt.Color(237, 249, 244));
         localdate.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         localdate.setText("XX/XX/XXXX");
+        localdate.setMaximumSize(new java.awt.Dimension(500, 32));
+        localdate.setMinimumSize(new java.awt.Dimension(50, 32));
 
-        location.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        location.setBackground(new java.awt.Color(237, 249, 244));
+        location.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         location.setForeground(new java.awt.Color(237, 249, 244));
         location.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        location.setText("XXXXXX, XXXXXX");
+        location.setText("Xxxxx, Xxxxx");
+        location.setMaximumSize(new java.awt.Dimension(500, 32));
+        location.setMinimumSize(new java.awt.Dimension(50, 32));
 
         javax.swing.GroupLayout basicforecast_boxLayout = new javax.swing.GroupLayout(basicforecast_box);
         basicforecast_box.setLayout(basicforecast_boxLayout);
         basicforecast_boxLayout.setHorizontalGroup(
             basicforecast_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, basicforecast_boxLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(temp, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(temp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(current_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(basicforecast_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(location, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(localdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(status, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(localdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(40, 40, 40))
         );
         basicforecast_boxLayout.setVerticalGroup(
             basicforecast_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(basicforecast_boxLayout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
-                .addGroup(basicforecast_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(temp, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(basicforecast_boxLayout.createSequentialGroup()
-                        .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(basicforecast_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(temp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, basicforecast_boxLayout.createSequentialGroup()
+                        .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(localdate, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(location, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(localdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)
+                        .addComponent(location, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(current_icon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -169,13 +205,13 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(mainBannerLayout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(basicforecast_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(719, Short.MAX_VALUE))
+                .addContainerGap(645, Short.MAX_VALUE))
         );
         mainBannerLayout.setVerticalGroup(
             mainBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainBannerLayout.createSequentialGroup()
                 .addContainerGap(42, Short.MAX_VALUE)
-                .addComponent(basicforecast_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(basicforecast_box, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
@@ -531,7 +567,181 @@ public class MainGUI extends javax.swing.JFrame {
         weather_label.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         weather_label.setForeground(new java.awt.Color(0, 51, 51));
         weather_label.setText("Good [Time of Day], [User].");
+        weather_label.setMaximumSize(new java.awt.Dimension(620, 38));
+        weather_label.setMinimumSize(new java.awt.Dimension(620, 38));
         weather_label.setPreferredSize(new java.awt.Dimension(620, 38));
+
+        forecast_label.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        forecast_label.setForeground(new java.awt.Color(0, 51, 51));
+        forecast_label.setText("3 Day Weather Forecast");
+        forecast_label.setPreferredSize(new java.awt.Dimension(710, 30));
+
+        forecast0_panel.setBackground(new java.awt.Color(255, 255, 255));
+        forecast0_panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        forecast0_panel.setForeground(new java.awt.Color(225, 230, 236));
+        forecast0_panel.setPreferredSize(new java.awt.Dimension(220, 120));
+
+        forecast0_date.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        forecast0_date.setForeground(new java.awt.Color(0, 51, 51));
+        forecast0_date.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        forecast0_date.setText("XXXX-XX-XX");
+        forecast0_date.setPreferredSize(new java.awt.Dimension(164, 26));
+
+        forecast0_temp.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        forecast0_temp.setForeground(new java.awt.Color(0, 51, 51));
+        forecast0_temp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        forecast0_temp.setText("XX°");
+        forecast0_temp.setMaximumSize(new java.awt.Dimension(100, 32));
+        forecast0_temp.setMinimumSize(new java.awt.Dimension(10, 32));
+        forecast0_temp.setPreferredSize(new java.awt.Dimension(54, 60));
+
+        forecast0_icon.setPreferredSize(new java.awt.Dimension(60, 60));
+
+        javax.swing.GroupLayout forecast0_panelLayout = new javax.swing.GroupLayout(forecast0_panel);
+        forecast0_panel.setLayout(forecast0_panelLayout);
+        forecast0_panelLayout.setHorizontalGroup(
+            forecast0_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(forecast0_date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(forecast0_panelLayout.createSequentialGroup()
+                .addContainerGap(52, Short.MAX_VALUE)
+                .addComponent(forecast0_temp, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(forecast0_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
+        );
+        forecast0_panelLayout.setVerticalGroup(
+            forecast0_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(forecast0_panelLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(forecast0_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addGroup(forecast0_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(forecast0_temp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(forecast0_icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
+        );
+
+        forecast1_panel.setBackground(new java.awt.Color(255, 255, 255));
+        forecast1_panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        forecast1_panel.setForeground(new java.awt.Color(225, 230, 236));
+        forecast1_panel.setPreferredSize(new java.awt.Dimension(220, 120));
+
+        forecast1_date.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        forecast1_date.setForeground(new java.awt.Color(0, 51, 51));
+        forecast1_date.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        forecast1_date.setText("XXXX-XX-XX");
+        forecast1_date.setPreferredSize(new java.awt.Dimension(164, 26));
+
+        forecast1_temp.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        forecast1_temp.setForeground(new java.awt.Color(0, 51, 51));
+        forecast1_temp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        forecast1_temp.setText("XX°");
+        forecast1_temp.setMaximumSize(new java.awt.Dimension(100, 32));
+        forecast1_temp.setMinimumSize(new java.awt.Dimension(10, 32));
+        forecast1_temp.setPreferredSize(new java.awt.Dimension(54, 60));
+
+        forecast1_icon.setPreferredSize(new java.awt.Dimension(60, 60));
+
+        javax.swing.GroupLayout forecast1_panelLayout = new javax.swing.GroupLayout(forecast1_panel);
+        forecast1_panel.setLayout(forecast1_panelLayout);
+        forecast1_panelLayout.setHorizontalGroup(
+            forecast1_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(forecast1_date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(forecast1_panelLayout.createSequentialGroup()
+                .addContainerGap(52, Short.MAX_VALUE)
+                .addComponent(forecast1_temp, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(forecast1_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
+        );
+        forecast1_panelLayout.setVerticalGroup(
+            forecast1_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(forecast1_panelLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(forecast1_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addGroup(forecast1_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(forecast1_temp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(forecast1_icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
+        );
+
+        forecast2_panel.setBackground(new java.awt.Color(255, 255, 255));
+        forecast2_panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        forecast2_panel.setForeground(new java.awt.Color(225, 230, 236));
+        forecast2_panel.setPreferredSize(new java.awt.Dimension(220, 120));
+
+        forecast2_date.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        forecast2_date.setForeground(new java.awt.Color(0, 51, 51));
+        forecast2_date.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        forecast2_date.setText("XXXX-XX-XX");
+        forecast2_date.setPreferredSize(new java.awt.Dimension(164, 26));
+
+        forecast2_temp.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        forecast2_temp.setForeground(new java.awt.Color(0, 51, 51));
+        forecast2_temp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        forecast2_temp.setText("XX°");
+        forecast2_temp.setMaximumSize(new java.awt.Dimension(100, 32));
+        forecast2_temp.setMinimumSize(new java.awt.Dimension(10, 32));
+        forecast2_temp.setPreferredSize(new java.awt.Dimension(54, 60));
+
+        forecast2_icon.setPreferredSize(new java.awt.Dimension(60, 60));
+
+        javax.swing.GroupLayout forecast2_panelLayout = new javax.swing.GroupLayout(forecast2_panel);
+        forecast2_panel.setLayout(forecast2_panelLayout);
+        forecast2_panelLayout.setHorizontalGroup(
+            forecast2_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(forecast2_date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(forecast2_panelLayout.createSequentialGroup()
+                .addContainerGap(52, Short.MAX_VALUE)
+                .addComponent(forecast2_temp, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(forecast2_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
+        );
+        forecast2_panelLayout.setVerticalGroup(
+            forecast2_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(forecast2_panelLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(forecast2_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addGroup(forecast2_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(forecast2_temp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(forecast2_icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
+        );
+
+        cloud_progressbar.setForeground(new java.awt.Color(0, 204, 204));
+        cloud_progressbar.setToolTipText("");
+        cloud_progressbar.setPreferredSize(new java.awt.Dimension(710, 30));
+
+        humidity_progressbar.setForeground(new java.awt.Color(0, 102, 102));
+        humidity_progressbar.setPreferredSize(new java.awt.Dimension(710, 30));
+
+        humidity_label.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        humidity_label.setForeground(new java.awt.Color(0, 51, 51));
+        humidity_label.setText("Humidity - %");
+        humidity_label.setToolTipText("");
+        humidity_label.setPreferredSize(new java.awt.Dimension(820, 30));
+
+        cloud_label.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        cloud_label.setForeground(new java.awt.Color(0, 51, 51));
+        cloud_label.setText("Clouds - %");
+        cloud_label.setPreferredSize(new java.awt.Dimension(820, 30));
+
+        refresh_weather.setBackground(new java.awt.Color(255, 255, 255));
+        refresh_weather.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        refresh_weather.setForeground(new java.awt.Color(111, 154, 154));
+        refresh_weather.setText("Refresh");
+        refresh_weather.setBorder(null);
+        refresh_weather.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        refresh_weather.setNextFocusableComponent(searchbar);
+        refresh_weather.setPreferredSize(new java.awt.Dimension(110, 36));
+        refresh_weather.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refresh_weatherActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout weather_boxLayout = new javax.swing.GroupLayout(weather_box);
         weather_box.setLayout(weather_boxLayout);
@@ -539,15 +749,57 @@ public class MainGUI extends javax.swing.JFrame {
             weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(weather_boxLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(weather_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addGroup(weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(weather_boxLayout.createSequentialGroup()
+                        .addGroup(weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(weather_boxLayout.createSequentialGroup()
+                                .addComponent(weather_label, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(refresh_weather, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, weather_boxLayout.createSequentialGroup()
+                                .addGroup(weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(forecast_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(weather_boxLayout.createSequentialGroup()
+                                        .addComponent(forecast0_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(forecast1_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(32, 32, 32)
+                                        .addComponent(forecast2_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(50, 50, 50))
+                    .addGroup(weather_boxLayout.createSequentialGroup()
+                        .addComponent(humidity_progressbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(weather_boxLayout.createSequentialGroup()
+                        .addGroup(weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cloud_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(humidity_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cloud_progressbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         weather_boxLayout.setVerticalGroup(
             weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(weather_boxLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(weather_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(444, Short.MAX_VALUE))
+                .addGroup(weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(weather_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(refresh_weather, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(cloud_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cloud_progressbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(humidity_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(humidity_progressbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(forecast_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(forecast0_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(forecast1_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(forecast2_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
         );
 
         tabbed_content.addTab("         Weather Dashboard                                                                                                   ", weather_box);
@@ -665,6 +917,20 @@ public class MainGUI extends javax.swing.JFrame {
         jSeparator5.setForeground(new java.awt.Color(204, 204, 204));
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        refresh_tropicalcyclone.setBackground(new java.awt.Color(255, 255, 255));
+        refresh_tropicalcyclone.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        refresh_tropicalcyclone.setForeground(new java.awt.Color(111, 154, 154));
+        refresh_tropicalcyclone.setText("Refresh");
+        refresh_tropicalcyclone.setBorder(null);
+        refresh_tropicalcyclone.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        refresh_tropicalcyclone.setNextFocusableComponent(searchbar);
+        refresh_tropicalcyclone.setPreferredSize(new java.awt.Dimension(110, 36));
+        refresh_tropicalcyclone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refresh_tropicalcycloneActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout typhoon_boxLayout = new javax.swing.GroupLayout(typhoon_box);
         typhoon_box.setLayout(typhoon_boxLayout);
         typhoon_boxLayout.setHorizontalGroup(
@@ -672,49 +938,53 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, typhoon_boxLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tc_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(typhoon_boxLayout.createSequentialGroup()
+                        .addComponent(tc_label, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(refresh_tropicalcyclone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(typhoon_boxLayout.createSequentialGroup()
                         .addComponent(typhoon_image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
-                        .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(records2018, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(records2017, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tcadvisory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(records2021, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(records2020, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(records2019, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(records2018, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(records2017, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(tcadvisory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(records2021, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(records2020, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(records2019, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(50, 50, 50))
         );
         typhoon_boxLayout.setVerticalGroup(
             typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, typhoon_boxLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(tc_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tc_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(refresh_tropicalcyclone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(typhoon_boxLayout.createSequentialGroup()
+                    .addComponent(typhoon_image, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, typhoon_boxLayout.createSequentialGroup()
                         .addComponent(tcadvisory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(records2021, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(records2020, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(records2019, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(records2018, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(records2017, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39))
-                    .addGroup(typhoon_boxLayout.createSequentialGroup()
-                        .addGroup(typhoon_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator5)
-                            .addComponent(typhoon_image, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
-                        .addGap(25, 25, 25))))
+                        .addGap(19, 19, 19))
+                    .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
         );
 
         tabbed_content.addTab("           Tropical Cyclone Dashboard                                                                                       ", typhoon_box);
@@ -927,6 +1197,27 @@ public class MainGUI extends javax.swing.JFrame {
         TropicalCyclone.openOtherTCA(TropicalCyclone.tc2017);
     }//GEN-LAST:event_records2017ActionPerformed
 
+    private void refresh_weatherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refresh_weatherActionPerformed
+        // TODO add your handling code here:
+        refresh_weather.setEnabled(false);
+        
+        WeatherAPI.fetch(RainScape.currentSearchArea());
+        WeatherAPI.setValues();
+        
+        refresh_weather.setEnabled(true);
+    }//GEN-LAST:event_refresh_weatherActionPerformed
+
+    private void refresh_tropicalcycloneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refresh_tropicalcycloneActionPerformed
+        // TODO add your handling code here:
+        refresh_tropicalcyclone.setEnabled(false);
+        
+        TropicalCyclone.fetch();
+
+        TropicalCyclone.setValues();
+
+        refresh_tropicalcyclone.setEnabled(true);
+    }//GEN-LAST:event_refresh_tropicalcycloneActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -957,9 +1248,27 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JButton appearance;
     private javax.swing.JPanel basicforecast_box;
     private javax.swing.JPanel body;
+    public static javax.swing.JLabel cloud_label;
+    public static javax.swing.JProgressBar cloud_progressbar;
     private javax.swing.JPanel content_box;
     private javax.swing.JScrollPane content_box_scroll;
+    public static javax.swing.JLabel current_icon;
+    public static javax.swing.JLabel forecast0_date;
+    public static javax.swing.JLabel forecast0_icon;
+    private javax.swing.JPanel forecast0_panel;
+    public static javax.swing.JLabel forecast0_temp;
+    public static javax.swing.JLabel forecast1_date;
+    public static javax.swing.JLabel forecast1_icon;
+    private javax.swing.JPanel forecast1_panel;
+    public static javax.swing.JLabel forecast1_temp;
+    public static javax.swing.JLabel forecast2_date;
+    public static javax.swing.JLabel forecast2_icon;
+    private javax.swing.JPanel forecast2_panel;
+    public static javax.swing.JLabel forecast2_temp;
+    private javax.swing.JLabel forecast_label;
     private javax.swing.JPanel hamburger_box;
+    public static javax.swing.JLabel humidity_label;
+    public static javax.swing.JProgressBar humidity_progressbar;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -982,6 +1291,8 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JButton records2019;
     private javax.swing.JButton records2020;
     private javax.swing.JButton records2021;
+    private javax.swing.JButton refresh_tropicalcyclone;
+    private javax.swing.JButton refresh_weather;
     private javax.swing.JTextField searchbar;
     private javax.swing.JPanel searchbar_bg;
     private javax.swing.JButton searchbutton;

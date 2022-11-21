@@ -24,7 +24,7 @@ public class MainGUI extends javax.swing.JFrame {
         content_box_scroll.getVerticalScrollBar().setUnitIncrement(16);
         sidebar_box.setVisible(false);
         
-        WeatherAPI.fetch(WeatherAPI.currentUserArea());
+        WeatherAPI.fetch(RainScape.currentSearchArea());
         TropicalCyclone.fetch();
         
         WeatherAPI.setValues();
@@ -781,11 +781,11 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void searchProcess(String area) {
         if (area.equals("")) {
-            WeatherAPI.current_area = "";
-            WeatherAPI.fetch(WeatherAPI.currentUserArea());
-        } else if (!WeatherAPI.current_area.equals(area)){
-            WeatherAPI.current_area = area;
-            WeatherAPI.fetch(WeatherAPI.currentUserArea());
+            RainScape.search_area = "";
+            WeatherAPI.fetch(RainScape.currentSearchArea());
+        } else if (!RainScape.search_area.equals(area)){
+            RainScape.search_area = area;
+            WeatherAPI.fetch(RainScape.currentSearchArea());
         }
         
         WeatherAPI.setValues();

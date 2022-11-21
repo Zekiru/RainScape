@@ -6,11 +6,6 @@ package com.mycompany.rainscape;
 
 import java.awt.HeadlessException;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -23,11 +18,7 @@ import org.json.JSONObject;
  * @author Ezekiel
  */
 public class WeatherAPI {
-    
-    public static String default_area = "Manila"; // Default New Account Area
-    public static String current_area = "";
-    
-    public static String location, temp, status; // Variables for Basic Weather Forecast
+    public static String location, temp, status, icon_url; // Variables for Basic Weather Forecast
     
     public static void autoUpdate() {
         System.out.println("WeatherAPI AutoUpdate Initialized");
@@ -49,7 +40,7 @@ public class WeatherAPI {
                 }
                 
                 if (access) {
-                    WeatherAPI.fetch(currentUserArea());
+                    WeatherAPI.fetch(RainScape.currentSearchArea());
                     WeatherAPI.setValues();
 
                     TropicalCyclone.fetch();
@@ -59,45 +50,6 @@ public class WeatherAPI {
                 }
             }
         }
-    }
-    
-    public static String currentUserArea() {
-        String area;
-        
-        if (current_area.equals("")) {
-            area = defaultUserArea();
-        } else {
-            area = current_area;
-        }
-        
-        return area;
-    }
-    
-    public static String defaultUserArea() {
-        String user = RainScape.username;
-        String area = default_area;
-        
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db", "root", "");
-            String sql;
-
-            sql = "select * from rs_preferences where username=?";
-
-            PreparedStatement psmt = conn.prepareStatement(sql);
-
-            psmt.setString(1, user);
-
-            ResultSet rs = psmt.executeQuery();
-            rs.next();
-
-            area = rs.getString("area");
-        } catch (ClassNotFoundException e) {
-            System.out.println("Exception: " + e);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Not Connected to the SQL Server.");
-        }
-        return area;
     }
     
     // <editor-fold defaultstate="collapsed" desc="RAINSCAPE EXCUSIVE DATA">
@@ -113,7 +65,9 @@ public class WeatherAPI {
     since the API has a limited amount of uses I typed this down as a precaution. That is
     all, and if you are still reading, how's the weather there? */
     
-    public static void fetch(String area) {        
+    public static void fetch(String area) {
+        MySQL.fetch();
+        
         try {
             String api_url = "https://weatherapi-com.p.rapidapi.com/current.json?q=" + area;
 
@@ -147,8 +101,13 @@ public class WeatherAPI {
                     else
                         location = jsonLocation.get("name").toString() + ", " + jsonLocation.get("country").toString(); // e.g. Makati, Philippines (Makati, Manila, PH)
                 
-                temp = jsonCurrent.get("temp_c").toString() + "°"; // e.g. 30°
+                if (!RainScape.temp_scale.equals("celsius"))
+                    temp = jsonCurrent.get("temp_f").toString() + "°"; // e.g. 86°
+                else
+                    temp = jsonCurrent.get("temp_c").toString() + "°"; // e.g. 30°
+                
                 status = jsonCondition.get("text").toString(); // e.g. Partly cloudy
+                icon_url = jsonCondition.get("icon").toString(); // e.g. //cdn.weatherapi.com/weather/64x64/day/116.png
 
                 // System.out.println("\n"+location+"\n"+temp+"\n"+status+"\n"); // Print Basic Weather Forecast to Console
                 

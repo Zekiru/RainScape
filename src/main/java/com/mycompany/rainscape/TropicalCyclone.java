@@ -14,6 +14,10 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -29,23 +33,71 @@ import javax.swing.ScrollPaneConstants;
  */
 public class TropicalCyclone {
     public static BufferedImage tca = null;
-    public static Image tca_resize, tca2021, tca2020, tca2019, tca2018, tca2017 = null;
+    public static Image tca_resize, tc2021, tc2020, tc2019, tc2018, tc2017 = null;
     
     public static void fetch() {
-        try {
+        //create a callable for each method
+        Callable callable1 = () -> {
+            try {
+                tc2017 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2017.png"))).getScaledInstance(700, 3000, Image.SCALE_SMOOTH);
+            } catch (IOException e) {
+                System.out.println("Cannot Load tc2017");
+            }
+            return null;
+        };
+        Callable callable2 = () -> {
+            try {
+                tc2018 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2018.png"))).getScaledInstance(700, 3000, Image.SCALE_SMOOTH);
+            } catch (IOException e) {
+                System.out.println("Cannot Load tc2018");
+            }
+            return null;
+        };
+        Callable callable3 = () -> {
+            try {
+                tc2019 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2019.png"))).getScaledInstance(700, 3000, Image.SCALE_SMOOTH);
+            } catch (IOException e) {
+                System.out.println("Cannot Load tc2019");
+            }
+            return null;
+        };
+        Callable callable4 = () -> {
+            try {
+                tc2020 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2020.png"))).getScaledInstance(700, 3000, Image.SCALE_SMOOTH);
+            } catch (IOException e) {
+                System.out.println("Cannot Load tc2020");
+            }
+            return null;
+        };
+        Callable callable5 = () -> {
+            try {
+                tc2021 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2021.png"))).getScaledInstance(700, 3000, Image.SCALE_SMOOTH);
+            } catch (IOException e) {
+                System.out.println("Cannot Load tc2021");
+            }
+            return null;
+        };
+        Callable callable6 = () -> {
             tca = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tca.png")));
             tca_resize = tca.getScaledInstance(MainGUI.typhoon_image.getWidth(), MainGUI.typhoon_image.getHeight(), Image.SCALE_SMOOTH);
-            
-            // These work but preloading them takes too much time
-            /*
-            tca2021 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2021.png"))).getScaledInstance(700, 2800, Image.SCALE_SMOOTH);
-            tca2020 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2020.png"))).getScaledInstance(700, 2800, Image.SCALE_SMOOTH);
-            tca2019 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2019.png"))).getScaledInstance(700, 2800, Image.SCALE_SMOOTH);
-            tca2018 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2018.png"))).getScaledInstance(700, 2800, Image.SCALE_SMOOTH);
-            tca2017 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2017.png"))).getScaledInstance(700, 2800, Image.SCALE_SMOOTH);
-            */
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Failed to Fetch PAGASA Data");
+            return null;
+        };
+
+        ArrayList taskList = new ArrayList();
+        taskList.add(callable1);
+        taskList.add(callable2);
+        taskList.add(callable3);
+        taskList.add(callable4);
+        taskList.add(callable5);
+        taskList.add(callable6);
+
+        ExecutorService executor = Executors.newFixedThreadPool(6);
+        
+        try {
+            //start the threads and wait for them to finish
+            executor.invokeAll(taskList);
+        } catch (InterruptedException ie) {
+            System.out.println("Failed to Fetch Data from PAGASA\nInterrupted Exception: " + ie);
         }
     }
     
@@ -69,117 +121,125 @@ public class TropicalCyclone {
     }
     
     public static void openBigTCA() {
-        JFrame frame = new JFrame("Latest Tropical Cyclone Advisory (PAGASA)");
-        JPanel panel = new JPanel();
-        JLabel image = new JLabel();
-        
-        frame.add(panel);
-        panel.add(image);
-        panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        try {
+            JFrame frame = new JFrame("Latest Tropical Cyclone Advisory (PAGASA)");
+            JPanel panel = new JPanel();
+            JLabel image = new JLabel();
 
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setResizable(false);
+            frame.add(panel);
+            panel.add(image);
+            panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        image.setPreferredSize(new Dimension((int) (MainGUI.typhoon_image.getWidth() * 1.75), (int) (MainGUI.typhoon_image.getHeight() * 1.75)));
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.setResizable(false);
 
-        image.setIcon(new ImageIcon(tca.getScaledInstance((int) (MainGUI.typhoon_image.getWidth() * 1.75), (int) (MainGUI.typhoon_image.getHeight() * 1.75), Image.SCALE_SMOOTH)));
+            image.setPreferredSize(new Dimension((int) (MainGUI.typhoon_image.getWidth() * 1.75), (int) (MainGUI.typhoon_image.getHeight() * 1.75)));
 
-        frame.pack();
-        frame.setVisible(true);
-        frame.setLocationRelativeTo(null);
-        
-        frame.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-            }
-            @Override
-            public void focusLost(FocusEvent e) {
-                frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-            }
-        });
-        
-        frame.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-            }
+            image.setIcon(new ImageIcon(tca.getScaledInstance((int) (MainGUI.typhoon_image.getWidth() * 1.75), (int) (MainGUI.typhoon_image.getHeight() * 1.75), Image.SCALE_SMOOTH)));
 
-            @Override
-            public void mousePressed(MouseEvent e) {
-            }
+            frame.pack();
+            frame.setVisible(true);
+            frame.setLocationRelativeTo(null);
 
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            }
+            frame.addFocusListener(new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                }
+                @Override
+                public void focusLost(FocusEvent e) {
+                    frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+                }
+            });
 
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                
-            }
+            image.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+                }
 
-            @Override
-            public void mouseExited(MouseEvent e) {
-            }
-        });
+                @Override
+                public void mousePressed(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                }
+            });
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Failed to Fetch Data from PAGASA");
+        }
     }
 
     public static void openOtherTCA(Image img) {
-        JFrame frame = new JFrame("Tropical Cyclone Records (PAGASA)");
-        JLabel image = new JLabel();
-        JScrollPane scrollpane = new JScrollPane(image);
-        
-        frame.add(scrollpane);
-        image.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        try{
+            JFrame frame = new JFrame("Tropical Cyclone Records (PAGASA)");
+            JLabel image = new JLabel();
+            JScrollPane scrollpane = new JScrollPane(image);
 
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setResizable(false);
-        
-        scrollpane.setPreferredSize(new Dimension(714, 800));
-        image.setPreferredSize(new Dimension(700, 3500));
+            frame.add(scrollpane);
+            image.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        image.setIcon(new ImageIcon(img));
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.setResizable(false);
 
-        frame.pack();
-        frame.setVisible(true);
-        frame.setLocationRelativeTo(null);
-        
-        scrollpane.getVerticalScrollBar().setValue(scrollpane.getVerticalScrollBar().getMinimum());
-        scrollpane.getVerticalScrollBar().setUnitIncrement(16);
-        scrollpane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+            scrollpane.setPreferredSize(new Dimension(714, 800));
+            image.setPreferredSize(new Dimension(700, 3000));
 
-        frame.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-            }
+            image.setIcon(new ImageIcon(img));
 
-            @Override
-            public void focusLost(FocusEvent e) {
-                frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-            }
-        });
+            frame.pack();
+            frame.setVisible(true);
+            frame.setLocationRelativeTo(null);
 
-        frame.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-            }
+            scrollpane.getVerticalScrollBar().setValue(scrollpane.getVerticalScrollBar().getMinimum());
+            scrollpane.getVerticalScrollBar().setUnitIncrement(16);
+            scrollpane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-            @Override
-            public void mousePressed(MouseEvent e) {
-            }
+            frame.addFocusListener(new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                }
 
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            }
+                @Override
+                public void focusLost(FocusEvent e) {
+                    frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+                }
+            });
 
-            @Override
-            public void mouseEntered(MouseEvent e) {
+            image.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+                }
 
-            }
+                @Override
+                public void mousePressed(MouseEvent e) {
+                }
 
-            @Override
-            public void mouseExited(MouseEvent e) {
-            }
-        });
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                }
+            });
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Failed to Fetch Data from PAGASA");
+        }
     }
 }

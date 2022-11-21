@@ -26,28 +26,29 @@ public class RainScape {
     public static boolean access = false;
 
     public static void main(String[] args) {
+        runThreads();
+    }
+    
+    public static void start() {
         System.out.println("Project Initializing");
         try {
-            LoginGUI.main(args);
+            LoginGUI.main(null);
             System.out.println("Project Launched");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Failed to aunch RainScape.");
-            
+            JOptionPane.showMessageDialog(null, "Failed to Launch RainScape.");
+
             System.out.println("Project Not Launched");
+            System.exit(0);
         }
-        
+
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (UnsupportedLookAndFeelException e) {
             System.out.println("Look and Feel Exception: " + e);
         }
-        
-        autoUpdateThread();
     }
     
-    public static void autoUpdateThread() {
-
-        //create a callable for each method
+    public static void runThreads() {
         Callable callable1 = () -> {
             WeatherAPI.autoUpdate();
             return null;
@@ -58,19 +59,21 @@ public class RainScape {
             return null;
         };
         
-        //add to a list
+        Callable callable3 = () -> {
+            start();
+            return null;
+        };
+        
         ArrayList taskList = new ArrayList();
         taskList.add(callable1);
         taskList.add(callable2);
-
-        //create a pool executor with 2 threads
-        ExecutorService executor = Executors.newFixedThreadPool(2);
+        taskList.add(callable3);
+        
+        ExecutorService executor = Executors.newFixedThreadPool(3);
 
         try {
-            //start the threads and wait for them to finish
             executor.invokeAll(taskList);
         } catch (InterruptedException ie) {
-            //do something if you care about interruption;
             System.out.println("Interrupted Exception: " + ie);
         }
     }

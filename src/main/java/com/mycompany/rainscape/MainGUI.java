@@ -67,11 +67,10 @@ public class MainGUI extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
-        logout = new javax.swing.JButton();
-        account = new javax.swing.JButton();
-        preference = new javax.swing.JButton();
+        preferences = new javax.swing.JButton();
         weatherlogs = new javax.swing.JButton();
         rainscape = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
         tabbed_content = new javax.swing.JTabbedPane();
         weather_box = new javax.swing.JPanel();
         weather_label = new javax.swing.JLabel();
@@ -451,51 +450,19 @@ public class MainGUI extends javax.swing.JFrame {
         jSeparator4.setBackground(new java.awt.Color(102, 102, 102));
         jSeparator4.setForeground(new java.awt.Color(204, 204, 204));
 
-        logout.setBackground(new java.awt.Color(255, 255, 255));
-        logout.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        logout.setForeground(new java.awt.Color(255, 102, 102));
-        logout.setText("   Log Out");
-        logout.setBorder(null);
-        logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        logout.setFocusable(false);
-        logout.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        logout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        logout.setPreferredSize(new java.awt.Dimension(138, 50));
-        logout.addActionListener(new java.awt.event.ActionListener() {
+        preferences.setBackground(new java.awt.Color(255, 255, 255));
+        preferences.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        preferences.setForeground(new java.awt.Color(0, 102, 102));
+        preferences.setText("   Preferences");
+        preferences.setBorder(null);
+        preferences.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        preferences.setFocusable(false);
+        preferences.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        preferences.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        preferences.setPreferredSize(new java.awt.Dimension(138, 50));
+        preferences.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutActionPerformed(evt);
-            }
-        });
-
-        account.setBackground(new java.awt.Color(255, 255, 255));
-        account.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        account.setForeground(new java.awt.Color(0, 102, 102));
-        account.setText("   Account");
-        account.setBorder(null);
-        account.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        account.setFocusable(false);
-        account.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        account.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        account.setPreferredSize(new java.awt.Dimension(138, 50));
-        account.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                accountActionPerformed(evt);
-            }
-        });
-
-        preference.setBackground(new java.awt.Color(255, 255, 255));
-        preference.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        preference.setForeground(new java.awt.Color(0, 102, 102));
-        preference.setText("   Preference");
-        preference.setBorder(null);
-        preference.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        preference.setFocusable(false);
-        preference.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        preference.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        preference.setPreferredSize(new java.awt.Dimension(138, 50));
-        preference.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                preferenceActionPerformed(evt);
+                preferencesActionPerformed(evt);
             }
         });
 
@@ -531,6 +498,22 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
+        logout.setBackground(new java.awt.Color(255, 255, 255));
+        logout.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        logout.setForeground(new java.awt.Color(255, 102, 102));
+        logout.setText("   Log Out");
+        logout.setBorder(null);
+        logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logout.setFocusable(false);
+        logout.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        logout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        logout.setPreferredSize(new java.awt.Dimension(138, 50));
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout sidebar_boxLayout = new javax.swing.GroupLayout(sidebar_box);
         sidebar_box.setLayout(sidebar_boxLayout);
         sidebar_boxLayout.setHorizontalGroup(
@@ -540,8 +523,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGroup(sidebar_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator3)
-                    .addComponent(account, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(preference, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(preferences, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator2)
                     .addComponent(rainscape, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator1)
@@ -551,13 +533,11 @@ public class MainGUI extends javax.swing.JFrame {
         );
         sidebar_boxLayout.setVerticalGroup(
             sidebar_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sidebar_boxLayout.createSequentialGroup()
-                .addContainerGap(107, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidebar_boxLayout.createSequentialGroup()
+                .addContainerGap(141, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(account, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(preference, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(preferences, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(weatherlogs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -570,7 +550,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
 
         tabbed_content.setBackground(new java.awt.Color(255, 255, 255));
@@ -1160,13 +1140,9 @@ public class MainGUI extends javax.swing.JFrame {
         sidebarToggle();
     }//GEN-LAST:event_hamburger_boxMouseClicked
 
-    private void accountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountActionPerformed
+    private void preferencesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_preferencesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_accountActionPerformed
-
-    private void preferenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_preferenceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_preferenceActionPerformed
+    }//GEN-LAST:event_preferencesActionPerformed
 
     private void rainscapeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rainscapeActionPerformed
         // TODO add your handling code here:
@@ -1259,7 +1235,6 @@ public class MainGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton account;
     private javax.swing.JPanel basicforecast_box;
     private javax.swing.JPanel body;
     public static javax.swing.JLabel cloud_label;
@@ -1299,7 +1274,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JButton logout;
     private javax.swing.JPanel mainBanner;
     private javax.swing.JPanel menuBar;
-    private javax.swing.JButton preference;
+    private javax.swing.JButton preferences;
     private javax.swing.JButton rainscape;
     private javax.swing.JButton records2017;
     private javax.swing.JButton records2018;

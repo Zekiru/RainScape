@@ -589,11 +589,11 @@ public class MainGUI extends javax.swing.JFrame {
 
         forecast0_temp.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         forecast0_temp.setForeground(new java.awt.Color(0, 51, 51));
-        forecast0_temp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        forecast0_temp.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         forecast0_temp.setText("XX°");
         forecast0_temp.setMaximumSize(new java.awt.Dimension(100, 32));
         forecast0_temp.setMinimumSize(new java.awt.Dimension(10, 32));
-        forecast0_temp.setPreferredSize(new java.awt.Dimension(54, 60));
+        forecast0_temp.setPreferredSize(new java.awt.Dimension(100, 60));
 
         forecast0_icon.setPreferredSize(new java.awt.Dimension(60, 60));
 
@@ -603,11 +603,11 @@ public class MainGUI extends javax.swing.JFrame {
             forecast0_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(forecast0_date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(forecast0_panelLayout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
-                .addComponent(forecast0_temp, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE)
+                .addComponent(forecast0_temp, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(forecast0_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         forecast0_panelLayout.setVerticalGroup(
             forecast0_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -634,11 +634,11 @@ public class MainGUI extends javax.swing.JFrame {
 
         forecast1_temp.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         forecast1_temp.setForeground(new java.awt.Color(0, 51, 51));
-        forecast1_temp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        forecast1_temp.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         forecast1_temp.setText("XX°");
         forecast1_temp.setMaximumSize(new java.awt.Dimension(100, 32));
         forecast1_temp.setMinimumSize(new java.awt.Dimension(10, 32));
-        forecast1_temp.setPreferredSize(new java.awt.Dimension(54, 60));
+        forecast1_temp.setPreferredSize(new java.awt.Dimension(100, 60));
 
         forecast1_icon.setPreferredSize(new java.awt.Dimension(60, 60));
 
@@ -648,11 +648,11 @@ public class MainGUI extends javax.swing.JFrame {
             forecast1_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(forecast1_date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(forecast1_panelLayout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
-                .addComponent(forecast1_temp, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE)
+                .addComponent(forecast1_temp, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(forecast1_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         forecast1_panelLayout.setVerticalGroup(
             forecast1_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -679,11 +679,11 @@ public class MainGUI extends javax.swing.JFrame {
 
         forecast2_temp.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         forecast2_temp.setForeground(new java.awt.Color(0, 51, 51));
-        forecast2_temp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        forecast2_temp.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         forecast2_temp.setText("XX°");
         forecast2_temp.setMaximumSize(new java.awt.Dimension(100, 32));
         forecast2_temp.setMinimumSize(new java.awt.Dimension(10, 32));
-        forecast2_temp.setPreferredSize(new java.awt.Dimension(54, 60));
+        forecast2_temp.setPreferredSize(new java.awt.Dimension(100, 60));
 
         forecast2_icon.setPreferredSize(new java.awt.Dimension(60, 60));
 
@@ -693,11 +693,11 @@ public class MainGUI extends javax.swing.JFrame {
             forecast2_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(forecast2_date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(forecast2_panelLayout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
-                .addComponent(forecast2_temp, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE)
+                .addComponent(forecast2_temp, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(forecast2_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         forecast2_panelLayout.setVerticalGroup(
             forecast2_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

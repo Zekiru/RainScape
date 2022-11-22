@@ -125,9 +125,9 @@ public class WeatherAPI {
                         location = jsonLocation.getString("name") + ", " + jsonLocation.getString("country"); // e.g. Makati, Philippines (Makati, Manila, PH)
                 
                 if (!RainScape.temp_scale.equals("celsius"))
-                    temp = jsonCurrent.getInt("temp_f") + "°ꟳ"; // e.g. 86°
+                    temp = jsonCurrent.getInt("temp_f") + "°F"; // e.g. 86°
                 else
-                    temp = jsonCurrent.getInt("temp_c") + "°ꟲ"; // e.g. 30°
+                    temp = jsonCurrent.getInt("temp_c") + "°C"; // e.g. 30°
                 
                 status = jsonCurrentCondition.getString("text"); // e.g. Partly cloudy
                 icon_url = "https:" + jsonCurrentCondition.getString("icon"); // e.g. //cdn.weatherapi.com/weather/64x64/day/116.png
@@ -137,13 +137,13 @@ public class WeatherAPI {
                 forecast[2][0] = jsonForecastArray[2].getString("date");
                 
                 if (!RainScape.temp_scale.equals("celsius")) {
-                    forecast[0][1] = new JSONObject(jsonForecastArray[0].get("day").toString()).getInt("avgtemp_f")  + "°ꟳ";
-                    forecast[1][1] = new JSONObject(jsonForecastArray[1].get("day").toString()).getInt("avgtemp_f")  + "°ꟳ";
-                    forecast[2][1] = new JSONObject(jsonForecastArray[2].get("day").toString()).getInt("avgtemp_f")  + "°ꟳ";
+                    forecast[0][1] = new JSONObject(jsonForecastArray[0].get("day").toString()).getInt("avgtemp_f")  + "°F";
+                    forecast[1][1] = new JSONObject(jsonForecastArray[1].get("day").toString()).getInt("avgtemp_f")  + "°F";
+                    forecast[2][1] = new JSONObject(jsonForecastArray[2].get("day").toString()).getInt("avgtemp_f")  + "°F";
                 } else {
-                    forecast[0][1] = new JSONObject(jsonForecastArray[0].get("day").toString()).getInt("avgtemp_c")  + "°ꟲ";
-                    forecast[1][1] = new JSONObject(jsonForecastArray[1].get("day").toString()).getInt("avgtemp_c")  + "°ꟲ";
-                    forecast[2][1] = new JSONObject(jsonForecastArray[2].get("day").toString()).getInt("avgtemp_c")  + "°ꟲ";
+                    forecast[0][1] = new JSONObject(jsonForecastArray[0].get("day").toString()).getInt("avgtemp_c")  + "°C";
+                    forecast[1][1] = new JSONObject(jsonForecastArray[1].get("day").toString()).getInt("avgtemp_c")  + "°C";
+                    forecast[2][1] = new JSONObject(jsonForecastArray[2].get("day").toString()).getInt("avgtemp_c")  + "°C";
                 }
                 
                 forecast[0][2] = "https:" + jsonForecastConditionArray[0].getString("icon");

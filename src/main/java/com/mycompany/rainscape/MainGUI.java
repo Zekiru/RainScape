@@ -69,7 +69,8 @@ public class MainGUI extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         logout = new javax.swing.JButton();
         account = new javax.swing.JButton();
-        appearance = new javax.swing.JButton();
+        preference = new javax.swing.JButton();
+        weatherlogs = new javax.swing.JButton();
         rainscape = new javax.swing.JButton();
         tabbed_content = new javax.swing.JTabbedPane();
         weather_box = new javax.swing.JPanel();
@@ -482,19 +483,35 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        appearance.setBackground(new java.awt.Color(255, 255, 255));
-        appearance.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        appearance.setForeground(new java.awt.Color(0, 102, 102));
-        appearance.setText("   Appearance");
-        appearance.setBorder(null);
-        appearance.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        appearance.setFocusable(false);
-        appearance.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        appearance.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        appearance.setPreferredSize(new java.awt.Dimension(138, 50));
-        appearance.addActionListener(new java.awt.event.ActionListener() {
+        preference.setBackground(new java.awt.Color(255, 255, 255));
+        preference.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        preference.setForeground(new java.awt.Color(0, 102, 102));
+        preference.setText("   Preference");
+        preference.setBorder(null);
+        preference.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        preference.setFocusable(false);
+        preference.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        preference.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        preference.setPreferredSize(new java.awt.Dimension(138, 50));
+        preference.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                appearanceActionPerformed(evt);
+                preferenceActionPerformed(evt);
+            }
+        });
+
+        weatherlogs.setBackground(new java.awt.Color(255, 255, 255));
+        weatherlogs.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        weatherlogs.setForeground(new java.awt.Color(0, 102, 102));
+        weatherlogs.setText("   Weather Logs");
+        weatherlogs.setBorder(null);
+        weatherlogs.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        weatherlogs.setFocusable(false);
+        weatherlogs.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        weatherlogs.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        weatherlogs.setPreferredSize(new java.awt.Dimension(138, 50));
+        weatherlogs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                weatherlogsActionPerformed(evt);
             }
         });
 
@@ -524,22 +541,25 @@ public class MainGUI extends javax.swing.JFrame {
                     .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator3)
                     .addComponent(account, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(appearance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(preference, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator2)
                     .addComponent(rainscape, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator1)
-                    .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(weatherlogs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         sidebar_boxLayout.setVerticalGroup(
             sidebar_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sidebar_boxLayout.createSequentialGroup()
-                .addContainerGap(141, Short.MAX_VALUE)
+                .addContainerGap(107, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(account, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(appearance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(preference, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(weatherlogs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -550,7 +570,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         tabbed_content.setBackground(new java.awt.Color(255, 255, 255));
@@ -573,7 +593,7 @@ public class MainGUI extends javax.swing.JFrame {
 
         forecast_label.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         forecast_label.setForeground(new java.awt.Color(0, 51, 51));
-        forecast_label.setText("3 Day Weather Forecast");
+        forecast_label.setText("Three Day Weather Forecast");
         forecast_label.setPreferredSize(new java.awt.Dimension(710, 30));
 
         forecast0_panel.setBackground(new java.awt.Color(255, 255, 255));
@@ -713,10 +733,10 @@ public class MainGUI extends javax.swing.JFrame {
 
         cloud_progressbar.setForeground(new java.awt.Color(0, 204, 204));
         cloud_progressbar.setToolTipText("");
-        cloud_progressbar.setPreferredSize(new java.awt.Dimension(710, 30));
+        cloud_progressbar.setPreferredSize(new java.awt.Dimension(696, 30));
 
         humidity_progressbar.setForeground(new java.awt.Color(0, 102, 102));
-        humidity_progressbar.setPreferredSize(new java.awt.Dimension(710, 30));
+        humidity_progressbar.setPreferredSize(new java.awt.Dimension(696, 30));
 
         humidity_label.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         humidity_label.setForeground(new java.awt.Color(0, 51, 51));
@@ -750,32 +770,23 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(weather_boxLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(forecast_label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, weather_boxLayout.createSequentialGroup()
+                            .addComponent(forecast0_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(forecast1_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(forecast2_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(humidity_progressbar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cloud_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(humidity_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cloud_progressbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(weather_boxLayout.createSequentialGroup()
-                        .addGroup(weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(weather_boxLayout.createSequentialGroup()
-                                .addComponent(weather_label, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(refresh_weather, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, weather_boxLayout.createSequentialGroup()
-                                .addGroup(weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(forecast_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(weather_boxLayout.createSequentialGroup()
-                                        .addComponent(forecast0_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(forecast1_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(32, 32, 32)
-                                        .addComponent(forecast2_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(50, 50, 50))
-                    .addGroup(weather_boxLayout.createSequentialGroup()
-                        .addComponent(humidity_progressbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(weather_boxLayout.createSequentialGroup()
-                        .addGroup(weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cloud_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(humidity_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cloud_progressbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(weather_label, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(refresh_weather, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         weather_boxLayout.setVerticalGroup(
             weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -784,7 +795,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGroup(weather_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(weather_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(refresh_weather, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(cloud_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cloud_progressbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -799,7 +810,7 @@ public class MainGUI extends javax.swing.JFrame {
                     .addComponent(forecast0_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(forecast1_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(forecast2_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         tabbed_content.addTab("         Weather Dashboard                                                                                                   ", weather_box);
@@ -1153,9 +1164,9 @@ public class MainGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_accountActionPerformed
 
-    private void appearanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appearanceActionPerformed
+    private void preferenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_preferenceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_appearanceActionPerformed
+    }//GEN-LAST:event_preferenceActionPerformed
 
     private void rainscapeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rainscapeActionPerformed
         // TODO add your handling code here:
@@ -1218,6 +1229,10 @@ public class MainGUI extends javax.swing.JFrame {
         refresh_tropicalcyclone.setEnabled(true);
     }//GEN-LAST:event_refresh_tropicalcycloneActionPerformed
 
+    private void weatherlogsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_weatherlogsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_weatherlogsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1245,7 +1260,6 @@ public class MainGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton account;
-    private javax.swing.JButton appearance;
     private javax.swing.JPanel basicforecast_box;
     private javax.swing.JPanel body;
     public static javax.swing.JLabel cloud_label;
@@ -1285,6 +1299,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JButton logout;
     private javax.swing.JPanel mainBanner;
     private javax.swing.JPanel menuBar;
+    private javax.swing.JButton preference;
     private javax.swing.JButton rainscape;
     private javax.swing.JButton records2017;
     private javax.swing.JButton records2018;
@@ -1306,5 +1321,6 @@ public class MainGUI extends javax.swing.JFrame {
     public static javax.swing.JLabel typhoon_image;
     private javax.swing.JPanel weather_box;
     public static javax.swing.JLabel weather_label;
+    private javax.swing.JButton weatherlogs;
     // End of variables declaration//GEN-END:variables
 }

@@ -50,7 +50,6 @@ public class MainGUI extends javax.swing.JFrame {
         current_icon = new javax.swing.JLabel();
         localdate = new javax.swing.JLabel();
         location = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         body = new javax.swing.JPanel();
         menuBar = new javax.swing.JPanel();
         localtime = new javax.swing.JLabel();
@@ -126,7 +125,6 @@ public class MainGUI extends javax.swing.JFrame {
 
         mainBanner.setBackground(new java.awt.Color(153, 204, 255));
         mainBanner.setPreferredSize(new java.awt.Dimension(1188, 250));
-        mainBanner.setLayout(null);
 
         basicforecast_box.setBackground(new java.awt.Color(51, 51, 51));
         basicforecast_box.setForeground(new java.awt.Color(51, 51, 51));
@@ -200,12 +198,22 @@ public class MainGUI extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        mainBanner.add(basicforecast_box);
-        basicforecast_box.setBounds(54, 42, 489, 166);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\ADMIN\\Downloads\\RainScape-master-20221122T062237Z-001\\RainScape-master\\RainScape-master\\assets\\weather images\\CA.jpg")); // NOI18N
-        mainBanner.add(jLabel1);
-        jLabel1.setBounds(0, -200, 1190, 440);
+        javax.swing.GroupLayout mainBannerLayout = new javax.swing.GroupLayout(mainBanner);
+        mainBanner.setLayout(mainBannerLayout);
+        mainBannerLayout.setHorizontalGroup(
+            mainBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainBannerLayout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addComponent(basicforecast_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(645, Short.MAX_VALUE))
+        );
+        mainBannerLayout.setVerticalGroup(
+            mainBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainBannerLayout.createSequentialGroup()
+                .addContainerGap(42, Short.MAX_VALUE)
+                .addComponent(basicforecast_box, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
+        );
 
         body.setBackground(new java.awt.Color(225, 230, 236));
         body.setForeground(new java.awt.Color(225, 230, 236));
@@ -1250,7 +1258,6 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel hamburger_box;
     public static javax.swing.JLabel humidity_label;
     public static javax.swing.JProgressBar humidity_progressbar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

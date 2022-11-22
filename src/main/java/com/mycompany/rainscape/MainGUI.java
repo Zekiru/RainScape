@@ -1207,6 +1207,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void weatherlogsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_weatherlogsActionPerformed
         // TODO add your handling code here:
+        WeatherLogsGUI.main(null);
     }//GEN-LAST:event_weatherlogsActionPerformed
 
     /**

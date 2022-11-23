@@ -29,42 +29,7 @@ public class PreferencesGUI extends javax.swing.JFrame {
     public PreferencesGUI() {
         initComponents();
         
-        username.setText(RainScape.username);
-        address.setText(MySQL.defaultUserArea());
-        
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db", "root", "");
-            String sql;
-
-            sql = "select * from rs_preferences where username=? and temp_scale=?";
-
-            PreparedStatement psmt = conn.prepareStatement(sql);
-
-            psmt.setString(1, RainScape.username);
-            psmt.setString(2, "celsius");
-
-            ResultSet rs = psmt.executeQuery();
-            rs.next();
-
-            if (!rs.next()) {
-                celsius_checkbox.setEnabled(true);
-                celsius_checkbox.setState(false);
-                
-                fahrenheit_checkbox.setEnabled(false);
-                fahrenheit_checkbox.setState(true);
-                System.out.println("F");
-            } else {
-                fahrenheit_checkbox.setEnabled(true);
-                fahrenheit_checkbox.setState(false);
-
-                celsius_checkbox.setEnabled(false);
-                celsius_checkbox.setState(true);
-                System.out.println("C");
-            }
-        } catch (Exception e) {
-            // e.printStackTrace();
-        }
+        MySQL.setPreferences();
     }
 
     /**
@@ -475,12 +440,12 @@ public class PreferencesGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.TextField address;
-    private java.awt.Checkbox celsius_checkbox;
-    private javax.swing.JPasswordField changepassword;
+    public static java.awt.TextField address;
+    public static java.awt.Checkbox celsius_checkbox;
+    public static javax.swing.JPasswordField changepassword;
     private java.awt.Checkbox checkbox1;
     private javax.swing.JButton dressadd;
-    private java.awt.Checkbox fahrenheit_checkbox;
+    public static java.awt.Checkbox fahrenheit_checkbox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -492,6 +457,6 @@ public class PreferencesGUI extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JButton passwordchange;
-    private java.awt.TextField username;
+    public static java.awt.TextField username;
     // End of variables declaration//GEN-END:variables
 }

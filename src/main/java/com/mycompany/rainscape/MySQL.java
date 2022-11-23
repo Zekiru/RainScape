@@ -103,4 +103,27 @@ public class MySQL {
             e.printStackTrace();
         }
     }
+    
+    public static void setPreferences() {
+        try {
+            PreferencesGUI.username.setText(RainScape.username);
+            PreferencesGUI.address.setText(MySQL.defaultUserArea());
+            
+            if (!RainScape.temp_scale.equals("celsius")) {
+                PreferencesGUI.celsius_checkbox.setEnabled(true);
+                PreferencesGUI.celsius_checkbox.setState(false);
+
+                PreferencesGUI.fahrenheit_checkbox.setEnabled(false);
+                PreferencesGUI.fahrenheit_checkbox.setState(true);
+            } else {
+                PreferencesGUI.fahrenheit_checkbox.setEnabled(true);
+                PreferencesGUI.fahrenheit_checkbox.setState(false);
+
+                PreferencesGUI.celsius_checkbox.setEnabled(false);
+                PreferencesGUI.celsius_checkbox.setState(true);
+            }
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
+    }
 }

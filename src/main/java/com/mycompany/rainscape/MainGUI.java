@@ -50,7 +50,7 @@ public class MainGUI extends javax.swing.JFrame {
         current_icon = new javax.swing.JLabel();
         localdate = new javax.swing.JLabel();
         location = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        background_image = new javax.swing.JLabel();
         body = new javax.swing.JPanel();
         menuBar = new javax.swing.JPanel();
         localtime = new javax.swing.JLabel();
@@ -203,9 +203,9 @@ public class MainGUI extends javax.swing.JFrame {
         mainBanner.add(basicforecast_box);
         basicforecast_box.setBounds(54, 42, 489, 166);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\ADMIN\\Downloads\\RainScape-master-20221122T062237Z-001\\RainScape-master\\RainScape-master\\assets\\weather images\\CA.jpg")); // NOI18N
-        mainBanner.add(jLabel1);
-        jLabel1.setBounds(-460, -70, 1190, 440);
+        background_image.setIcon(new javax.swing.ImageIcon("C:\\Users\\ADMIN\\Downloads\\RainScape-master-20221122T062237Z-001\\RainScape-master\\RainScape-master\\assets\\weather images\\CA.jpg")); // NOI18N
+        mainBanner.add(background_image);
+        background_image.setBounds(0, 0, 1190, 250);
 
         body.setBackground(new java.awt.Color(225, 230, 236));
         body.setForeground(new java.awt.Color(225, 230, 236));
@@ -1227,6 +1227,7 @@ public class MainGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background_image;
     private javax.swing.JPanel basicforecast_box;
     private javax.swing.JPanel body;
     public static javax.swing.JLabel cloud_label;
@@ -1250,7 +1251,6 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel hamburger_box;
     public static javax.swing.JLabel humidity_label;
     public static javax.swing.JProgressBar humidity_progressbar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

@@ -203,6 +203,8 @@ public class WeatherAPI {
             MainGUI.humidity_label.setText("Humidity - " + forecast[3][1] + "%");
             MainGUI.humidity_progressbar.setValue(Integer.parseInt(forecast[3][1]));
             
+            MySQL.logWeather();
+            
             // System.out.println("WeatherAPI Data Set");
         } catch (Exception e) {
             try {

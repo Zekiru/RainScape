@@ -9,6 +9,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -70,6 +73,34 @@ public class MySQL {
             System.out.println("Exception: " + e);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Not Connected to the SQL Server.");
+        }
+    }
+    
+    public static void logWeather() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db", "root", "");
+            String sql = "insert into rs_weatherlogs value ( ?, ?, ?, ?, ?, ?, ?, ? )";
+
+            PreparedStatement psmt = conn.prepareStatement(sql);
+
+            psmt = conn.prepareStatement(sql);
+            
+            psmt.setString(1, RainScape.username);
+            psmt.setString(2, dateFormat.format(date));
+            psmt.setString(3, WeatherAPI.location);
+            psmt.setString(4, WeatherAPI.status);
+            psmt.setString(5, RainScape.temp_scale);
+            psmt.setString(6, WeatherAPI.temp);
+            psmt.setString(7, WeatherAPI.forecast[3][0]);
+            psmt.setString(8, WeatherAPI.forecast[3][1]);
+
+            psmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

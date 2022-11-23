@@ -240,6 +240,7 @@ public class MainGUI extends javax.swing.JFrame {
         searchbar.setNextFocusableComponent(searchbutton);
         searchbar.setOpaque(true);
         searchbar.setPreferredSize(new java.awt.Dimension(300, 36));
+        searchbar.setRequestFocusEnabled(false);
         searchbar.setSelectionColor(new java.awt.Color(0, 153, 153));
         searchbar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1207,6 +1208,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void weatherlogsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_weatherlogsActionPerformed
         // TODO add your handling code here:
+        WeatherLogsGUI.main(null);
     }//GEN-LAST:event_weatherlogsActionPerformed
 
     /**

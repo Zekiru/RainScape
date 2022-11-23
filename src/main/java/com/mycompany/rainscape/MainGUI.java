@@ -205,7 +205,7 @@ public class MainGUI extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\ADMIN\\Downloads\\RainScape-master-20221122T062237Z-001\\RainScape-master\\RainScape-master\\assets\\weather images\\CA.jpg")); // NOI18N
         mainBanner.add(jLabel1);
-        jLabel1.setBounds(0, -200, 1190, 440);
+        jLabel1.setBounds(-460, -70, 1190, 440);
 
         body.setBackground(new java.awt.Color(225, 230, 236));
         body.setForeground(new java.awt.Color(225, 230, 236));

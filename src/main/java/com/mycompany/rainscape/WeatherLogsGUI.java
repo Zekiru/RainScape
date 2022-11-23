@@ -5,18 +5,14 @@
 package com.mycompany.rainscape;
 
 import com.formdev.flatlaf.FlatDarkLaf;
-import java.awt.Component;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumnModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -59,6 +55,7 @@ public class WeatherLogsGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         content_box = new javax.swing.JPanel();
+        weatherlogs_label = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
         back = new javax.swing.JButton();
@@ -78,19 +75,27 @@ public class WeatherLogsGUI extends javax.swing.JFrame {
             }
         });
 
-        content_box.setBackground(new java.awt.Color(225, 230, 236));
+        content_box.setBackground(new java.awt.Color(51, 51, 51));
         content_box.setMaximumSize(new java.awt.Dimension(820, 550));
         content_box.setMinimumSize(new java.awt.Dimension(820, 550));
 
-        jScrollPane1.setBorder(null);
+        weatherlogs_label.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        weatherlogs_label.setForeground(new java.awt.Color(231, 246, 242));
+        weatherlogs_label.setText("Weather Data Logs:");
 
-        jTable.setBackground(new java.awt.Color(255, 255, 255));
-        jTable.setForeground(new java.awt.Color(102, 102, 102));
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(720, 400));
+
+        jTable.setAutoCreateRowSorter(true);
+        jTable.setBackground(new java.awt.Color(59, 64, 64));
+        jTable.setForeground(new java.awt.Color(255, 255, 255));
         jTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTable.setFocusable(false);
+        jTable.setRowSelectionAllowed(false);
         jScrollPane1.setViewportView(jTable);
 
-        back.setBackground(new java.awt.Color(255, 255, 255));
-        back.setForeground(new java.awt.Color(102, 102, 102));
+        back.setBackground(new java.awt.Color(0, 102, 102));
+        back.setForeground(new java.awt.Color(255, 255, 255));
         back.setText("Back");
         back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         back.setFocusable(false);
@@ -102,7 +107,7 @@ public class WeatherLogsGUI extends javax.swing.JFrame {
         });
 
         refresh.setBackground(new java.awt.Color(255, 255, 255));
-        refresh.setForeground(new java.awt.Color(102, 102, 102));
+        refresh.setForeground(new java.awt.Color(0, 102, 102));
         refresh.setText("Search / Refresh");
         refresh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         refresh.setFocusable(false);
@@ -113,8 +118,8 @@ public class WeatherLogsGUI extends javax.swing.JFrame {
             }
         });
 
-        search_field.setBackground(new java.awt.Color(255, 255, 255));
-        search_field.setForeground(new java.awt.Color(51, 51, 51));
+        search_field.setBackground(new java.awt.Color(59, 64, 64));
+        search_field.setForeground(new java.awt.Color(255, 255, 255));
         search_field.setPreferredSize(new java.awt.Dimension(180, 30));
         search_field.setRequestFocusEnabled(false);
         search_field.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -128,29 +133,33 @@ public class WeatherLogsGUI extends javax.swing.JFrame {
         content_boxLayout.setHorizontalGroup(
             content_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(content_boxLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(content_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(content_boxLayout.createSequentialGroup()
-                        .addComponent(search_field, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50))
+                .addGap(45, 45, 45)
+                .addGroup(content_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(weatherlogs_label)
+                    .addGroup(content_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(content_boxLayout.createSequentialGroup()
+                            .addComponent(search_field, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(45, 45, 45))
         );
         content_boxLayout.setVerticalGroup(
             content_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_boxLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
+            .addGroup(content_boxLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(weatherlogs_label)
+                .addGap(25, 25, 25)
                 .addGroup(content_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(search_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(content_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(refresh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addGap(45, 45, 45))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -163,10 +172,7 @@ public class WeatherLogsGUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(content_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(content_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -251,5 +257,6 @@ public class WeatherLogsGUI extends javax.swing.JFrame {
     private javax.swing.JTable jTable;
     private javax.swing.JButton refresh;
     private javax.swing.JTextField search_field;
+    private javax.swing.JLabel weatherlogs_label;
     // End of variables declaration//GEN-END:variables
 }

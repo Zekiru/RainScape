@@ -39,7 +39,7 @@ public class TropicalCyclone {
         //create a callable for each method
         Callable callable1 = () -> {
             try {
-                tc2017 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2017.png"))).getScaledInstance(700, 3000, Image.SCALE_SMOOTH);
+                tc2017 = ImageIO.read(new URL(RainScape.getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2017.png"))).getScaledInstance(700, 3000, Image.SCALE_SMOOTH);
             } catch (IOException e) {
                 // System.out.println("Cannot Load tc2017");
             }
@@ -47,7 +47,7 @@ public class TropicalCyclone {
         };
         Callable callable2 = () -> {
             try {
-                tc2018 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2018.png"))).getScaledInstance(700, 3000, Image.SCALE_SMOOTH);
+                tc2018 = ImageIO.read(new URL(RainScape.getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2018.png"))).getScaledInstance(700, 3000, Image.SCALE_SMOOTH);
             } catch (IOException e) {
                 // System.out.println("Cannot Load tc2018");
             }
@@ -55,7 +55,7 @@ public class TropicalCyclone {
         };
         Callable callable3 = () -> {
             try {
-                tc2019 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2019.png"))).getScaledInstance(700, 3000, Image.SCALE_SMOOTH);
+                tc2019 = ImageIO.read(new URL(RainScape.getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2019.png"))).getScaledInstance(700, 3000, Image.SCALE_SMOOTH);
             } catch (IOException e) {
                 // System.out.println("Cannot Load tc2019");
             }
@@ -63,7 +63,7 @@ public class TropicalCyclone {
         };
         Callable callable4 = () -> {
             try {
-                tc2020 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2020.png"))).getScaledInstance(700, 3000, Image.SCALE_SMOOTH);
+                tc2020 = ImageIO.read(new URL(RainScape.getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2020.png"))).getScaledInstance(700, 3000, Image.SCALE_SMOOTH);
             } catch (IOException e) {
                 // System.out.println("Cannot Load tc2020");
             }
@@ -71,7 +71,7 @@ public class TropicalCyclone {
         };
         Callable callable5 = () -> {
             try {
-                tc2021 = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2021.png"))).getScaledInstance(700, 3000, Image.SCALE_SMOOTH);
+                tc2021 = ImageIO.read(new URL(RainScape.getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tc2021.png"))).getScaledInstance(700, 3000, Image.SCALE_SMOOTH);
             } catch (IOException e) {
                 // System.out.println("Cannot Load tc2021");
             }
@@ -79,7 +79,7 @@ public class TropicalCyclone {
         };
         Callable callable6 = () -> {
             try {
-                tca = ImageIO.read(new URL(getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tca.png")));
+                tca = ImageIO.read(new URL(RainScape.getFinalURL("https://pubfiles.pagasa.dost.gov.ph/tamss/weather/tca.png")));
                 tca_resize = tca.getScaledInstance(MainGUI.typhoon_image.getWidth(), MainGUI.typhoon_image.getHeight(), Image.SCALE_SMOOTH);
             } catch (IOException e) {
                 // System.out.println("Cannot Load tca");
@@ -109,19 +109,6 @@ public class TropicalCyclone {
         if (tca_resize != null) {
             MainGUI.typhoon_image.setIcon(new ImageIcon(tca_resize));
         }
-    }
-    
-    public static String getFinalURL(String url) throws IOException {
-        HttpURLConnection con = (HttpURLConnection) new URL(url).openConnection();
-        con.setInstanceFollowRedirects(false);
-        con.connect();
-        con.getInputStream();
-
-        if (con.getResponseCode() == HttpURLConnection.HTTP_MOVED_PERM || con.getResponseCode() == HttpURLConnection.HTTP_MOVED_TEMP) {
-            String redirectUrl = con.getHeaderField("Location");
-            return getFinalURL(redirectUrl);
-        }
-        return url;
     }
     
     public static void openBigTCA() {

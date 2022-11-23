@@ -183,19 +183,19 @@ public class WeatherAPI {
             MainGUI.location.setText(location);
             MainGUI.temp.setText(temp);
             MainGUI.status.setText(status);
-            MainGUI.current_icon.setIcon(new ImageIcon(ImageIO.read(new URL(TropicalCyclone.getFinalURL(icon_url))).getScaledInstance(MainGUI.current_icon.getWidth(), MainGUI.current_icon.getHeight(), Image.SCALE_SMOOTH)));
+            MainGUI.current_icon.setIcon(new ImageIcon(ImageIO.read(new URL(RainScape.getFinalURL(icon_url))).getScaledInstance(MainGUI.current_icon.getWidth(), MainGUI.current_icon.getHeight(), Image.SCALE_SMOOTH)));
             
             MainGUI.forecast0_date.setText(forecast[0][0]);
             MainGUI.forecast0_temp.setText(forecast[0][1]);
-            MainGUI.forecast0_icon.setIcon(new ImageIcon(ImageIO.read(new URL(TropicalCyclone.getFinalURL(forecast[0][2]))).getScaledInstance(MainGUI.forecast0_icon.getWidth(), MainGUI.forecast0_icon.getHeight(), Image.SCALE_SMOOTH)));
+            MainGUI.forecast0_icon.setIcon(new ImageIcon(ImageIO.read(new URL(RainScape.getFinalURL(forecast[0][2]))).getScaledInstance(MainGUI.forecast0_icon.getWidth(), MainGUI.forecast0_icon.getHeight(), Image.SCALE_SMOOTH)));
             
             MainGUI.forecast1_date.setText(forecast[1][0]);
             MainGUI.forecast1_temp.setText(forecast[1][1]);
-            MainGUI.forecast1_icon.setIcon(new ImageIcon(ImageIO.read(new URL(TropicalCyclone.getFinalURL(forecast[1][2]))).getScaledInstance(MainGUI.forecast0_icon.getWidth(), MainGUI.forecast0_icon.getHeight(), Image.SCALE_SMOOTH)));
+            MainGUI.forecast1_icon.setIcon(new ImageIcon(ImageIO.read(new URL(RainScape.getFinalURL(forecast[1][2]))).getScaledInstance(MainGUI.forecast0_icon.getWidth(), MainGUI.forecast0_icon.getHeight(), Image.SCALE_SMOOTH)));
             
             MainGUI.forecast2_date.setText(forecast[2][0]);
             MainGUI.forecast2_temp.setText(forecast[2][1]);
-            MainGUI.forecast2_icon.setIcon(new ImageIcon(ImageIO.read(new URL(TropicalCyclone.getFinalURL(forecast[2][2]))).getScaledInstance(MainGUI.forecast0_icon.getWidth(), MainGUI.forecast0_icon.getHeight(), Image.SCALE_SMOOTH)));
+            MainGUI.forecast2_icon.setIcon(new ImageIcon(ImageIO.read(new URL(RainScape.getFinalURL(forecast[2][2]))).getScaledInstance(MainGUI.forecast0_icon.getWidth(), MainGUI.forecast0_icon.getHeight(), Image.SCALE_SMOOTH)));
             
             MainGUI.cloud_label.setText("Clouds - " + forecast[3][0] + "%");
             MainGUI.cloud_progressbar.setValue(Integer.parseInt(forecast[3][0]));

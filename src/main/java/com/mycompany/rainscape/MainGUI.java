@@ -50,6 +50,7 @@ public class MainGUI extends javax.swing.JFrame {
         current_icon = new javax.swing.JLabel();
         localdate = new javax.swing.JLabel();
         location = new javax.swing.JLabel();
+        background_image = new javax.swing.JLabel();
         body = new javax.swing.JPanel();
         menuBar = new javax.swing.JPanel();
         localtime = new javax.swing.JLabel();
@@ -215,6 +216,10 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(basicforecast_box, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(42, Short.MAX_VALUE))
         );
+
+        background_image.setIcon(new javax.swing.ImageIcon("C:\\Users\\ADMIN\\Downloads\\RainScape-master-20221122T062237Z-001\\RainScape-master\\RainScape-master\\assets\\weather images\\CA.jpg")); // NOI18N
+        mainBanner.add(background_image);
+        background_image.setBounds(0, 0, 1190, 250);
 
         body.setBackground(new java.awt.Color(225, 230, 236));
         body.setForeground(new java.awt.Color(225, 230, 236));
@@ -1262,6 +1267,7 @@ public class MainGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background_image;
     private javax.swing.JPanel basicforecast_box;
     private javax.swing.JPanel body;
     public static javax.swing.JLabel cloud_label;

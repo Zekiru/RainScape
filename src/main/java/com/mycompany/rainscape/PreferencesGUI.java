@@ -5,17 +5,8 @@
 package com.mycompany.rainscape;
 
 import com.formdev.flatlaf.FlatDarkLaf;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import org.json.JSONObject;
 
 /**
  *
@@ -41,201 +32,210 @@ public class PreferencesGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
-        jPanel2 = new javax.swing.JPanel();
-        jSeparator3 = new javax.swing.JSeparator();
-        username = new java.awt.TextField();
-        address = new java.awt.TextField();
-        dressadd = new javax.swing.JButton();
-        passwordchange = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        checkbox1 = new java.awt.Checkbox();
+        content_box = new javax.swing.JPanel();
+        banner_bg = new javax.swing.JPanel();
+        preferences_box = new javax.swing.JPanel();
+        username_label = new javax.swing.JLabel();
+        default_area = new javax.swing.JLabel();
+        username = new javax.swing.JLabel();
+        defaultarea_label = new javax.swing.JLabel();
+        password_label = new javax.swing.JLabel();
+        address_change = new javax.swing.JButton();
+        password_change = new javax.swing.JButton();
+        tempscale_label = new javax.swing.JLabel();
         fahrenheit_checkbox = new java.awt.Checkbox();
         celsius_checkbox = new java.awt.Checkbox();
-        changepassword = new javax.swing.JPasswordField();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setTitle("Preferences");
+        setPreferredSize(new java.awt.Dimension(600, 680));
+        setResizable(false);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+                formWindowLostFocus(evt);
+            }
+        });
 
-        jPanel1.setBackground(new java.awt.Color(57, 91, 100));
-        jPanel1.setPreferredSize(new java.awt.Dimension(500, 400));
+        content_box.setBackground(new java.awt.Color(51, 51, 51));
 
-        jLabel1.setForeground(new java.awt.Color(231, 246, 242));
-        jLabel1.setText("Username:");
+        banner_bg.setBackground(new java.awt.Color(225, 230, 236));
+        banner_bg.setPreferredSize(new java.awt.Dimension(600, 150));
 
-        jLabel2.setForeground(new java.awt.Color(231, 246, 242));
-        jLabel2.setText("Address:");
-
-        jLabel3.setForeground(new java.awt.Color(231, 246, 242));
-        jLabel3.setText("Password:");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        javax.swing.GroupLayout banner_bgLayout = new javax.swing.GroupLayout(banner_bg);
+        banner_bg.setLayout(banner_bgLayout);
+        banner_bgLayout.setHorizontalGroup(
+            banner_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        banner_bgLayout.setVerticalGroup(
+            banner_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
         );
 
-        username.setBackground(new java.awt.Color(231, 246, 242));
+        preferences_box.setBackground(new java.awt.Color(59, 64, 64));
+        preferences_box.setPreferredSize(new java.awt.Dimension(500, 390));
 
-        address.setBackground(new java.awt.Color(231, 246, 242));
-        address.addActionListener(new java.awt.event.ActionListener() {
+        username_label.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        username_label.setForeground(new java.awt.Color(231, 246, 242));
+        username_label.setText("Username:");
+
+        default_area.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        default_area.setForeground(new java.awt.Color(255, 255, 255));
+        default_area.setText("[Area]");
+
+        username.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        username.setForeground(new java.awt.Color(255, 255, 255));
+        username.setText("[Username]");
+
+        defaultarea_label.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        defaultarea_label.setForeground(new java.awt.Color(231, 246, 242));
+        defaultarea_label.setText("Default Area:");
+
+        password_label.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        password_label.setForeground(new java.awt.Color(231, 246, 242));
+        password_label.setText("Password");
+
+        address_change.setBackground(new java.awt.Color(91, 91, 91));
+        address_change.setForeground(new java.awt.Color(255, 255, 255));
+        address_change.setText("Edit");
+        address_change.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        address_change.setFocusable(false);
+        address_change.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addressActionPerformed(evt);
-            }
-        });
-        address.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                addressKeyTyped(evt);
+                address_changeActionPerformed(evt);
             }
         });
 
-        dressadd.setBackground(new java.awt.Color(185, 210, 210));
-        dressadd.setForeground(new java.awt.Color(0, 0, 0));
-        dressadd.setText("Change Address");
-        dressadd.addActionListener(new java.awt.event.ActionListener() {
+        password_change.setBackground(new java.awt.Color(91, 91, 91));
+        password_change.setForeground(new java.awt.Color(255, 255, 255));
+        password_change.setText("Edit");
+        password_change.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        password_change.setFocusable(false);
+        password_change.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dressaddActionPerformed(evt);
+                password_changeActionPerformed(evt);
             }
         });
 
-        passwordchange.setBackground(new java.awt.Color(185, 210, 210));
-        passwordchange.setForeground(new java.awt.Color(0, 0, 0));
-        passwordchange.setText("Change Password");
-        passwordchange.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordchangeActionPerformed(evt);
-            }
-        });
+        tempscale_label.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tempscale_label.setForeground(new java.awt.Color(231, 246, 242));
+        tempscale_label.setText("Temperature Scale:");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(231, 246, 242));
-        jLabel4.setText("©Rainscape2022");
-
-        jLabel5.setForeground(new java.awt.Color(231, 246, 242));
-        jLabel5.setText("Temperature Preference:");
-
-        checkbox1.setLabel("checkbox1");
-        checkbox1.setVisible(false);
-
+        fahrenheit_checkbox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        fahrenheit_checkbox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         fahrenheit_checkbox.setForeground(new java.awt.Color(231, 246, 242));
         fahrenheit_checkbox.setLabel("°F");
+        fahrenheit_checkbox.setPreferredSize(new java.awt.Dimension(38, 25));
         fahrenheit_checkbox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 fahrenheit_checkboxMouseClicked(evt);
             }
         });
 
+        celsius_checkbox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        celsius_checkbox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         celsius_checkbox.setForeground(new java.awt.Color(231, 246, 242));
         celsius_checkbox.setLabel("°C");
+        celsius_checkbox.setPreferredSize(new java.awt.Dimension(40, 25));
         celsius_checkbox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 celsius_checkboxMouseClicked(evt);
             }
         });
 
-        changepassword.setBackground(new java.awt.Color(231, 246, 242));
-        changepassword.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                changepasswordKeyTyped(evt);
+        javax.swing.GroupLayout preferences_boxLayout = new javax.swing.GroupLayout(preferences_box);
+        preferences_box.setLayout(preferences_boxLayout);
+        preferences_boxLayout.setHorizontalGroup(
+            preferences_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(preferences_boxLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(preferences_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(preferences_boxLayout.createSequentialGroup()
+                        .addComponent(username_label)
+                        .addGap(387, 387, 387))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, preferences_boxLayout.createSequentialGroup()
+                        .addGroup(preferences_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(preferences_boxLayout.createSequentialGroup()
+                                .addComponent(tempscale_label)
+                                .addGap(183, 183, 183)
+                                .addComponent(celsius_checkbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(fahrenheit_checkbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(preferences_boxLayout.createSequentialGroup()
+                                .addComponent(password_label)
+                                .addGap(292, 292, 292)
+                                .addComponent(password_change))
+                            .addGroup(preferences_boxLayout.createSequentialGroup()
+                                .addComponent(defaultarea_label)
+                                .addGap(266, 266, 266)
+                                .addComponent(address_change))
+                            .addComponent(default_area, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(username, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(30, 30, 30))))
+        );
+        preferences_boxLayout.setVerticalGroup(
+            preferences_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(preferences_boxLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(username_label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(username)
+                .addGap(50, 50, 50)
+                .addGroup(preferences_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(defaultarea_label)
+                    .addComponent(address_change, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(default_area)
+                .addGap(50, 50, 50)
+                .addGroup(preferences_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(password_label)
+                    .addComponent(password_change, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addGroup(preferences_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tempscale_label)
+                    .addComponent(celsius_checkbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fahrenheit_checkbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30))
+        );
+
+        back.setBackground(new java.awt.Color(0, 102, 102));
+        back.setForeground(new java.awt.Color(255, 255, 255));
+        back.setText("Back");
+        back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        back.setFocusable(false);
+        back.setPreferredSize(new java.awt.Dimension(150, 40));
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dressadd)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-                                        .addComponent(jLabel1)
-                                        .addComponent(jLabel3)
-                                        .addComponent(changepassword))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(checkbox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(passwordchange)
-                                        .addComponent(jLabel2))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 318, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(celsius_checkbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(51, 51, 51)
-                                                .addComponent(fahrenheit_checkbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jLabel5))))))
-                        .addGap(53, 53, 53))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+        javax.swing.GroupLayout content_boxLayout = new javax.swing.GroupLayout(content_box);
+        content_box.setLayout(content_boxLayout);
+        content_boxLayout.setHorizontalGroup(
+            content_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(content_boxLayout.createSequentialGroup()
+                .addComponent(banner_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_boxLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(content_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(preferences_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+        content_boxLayout.setVerticalGroup(
+            content_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_boxLayout.createSequentialGroup()
+                .addComponent(banner_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(changepassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(passwordchange)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(fahrenheit_checkbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(checkbox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(celsius_checkbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dressadd)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addComponent(preferences_box, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -243,178 +243,47 @@ public class PreferencesGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addComponent(content_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(163, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
+            .addComponent(content_box, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(616, 702));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void addressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addressActionPerformed
-
-    private void changepasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_changepasswordKeyTyped
-        // TODO add your handling code here:
-        if (changepassword.getText().equals("")) {
-            passwordchange.setEnabled(false);
-        } else {
-            passwordchange.setEnabled(true);
-        }
-    }//GEN-LAST:event_changepasswordKeyTyped
-
-    private void addressKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addressKeyTyped
-        // TODO add your handling code here:
-        if (address.getText().equals("")) {
-            dressadd.setEnabled(false);
-        } else {
-            dressadd.setEnabled(true);
-        }
-    }//GEN-LAST:event_addressKeyTyped
-
-    private void passwordchangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordchangeActionPerformed
-        // TODO add your handling code here:
-        try
-        {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db","root","");
-            String sql ="Update rs_accounts set password=? where username=?";
-
-            PreparedStatement psmt = conn.prepareStatement(sql);
-            psmt.setString(1,changepassword.getText());
-            psmt.setString(2, RainScape.username);
-            
-            psmt.executeUpdate();
-            
-            changepassword.setText("");
-            
-            JOptionPane.showMessageDialog(null, "Password Changed.");
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_passwordchangeActionPerformed
-
-    private void dressaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dressaddActionPerformed
-        // TODO add your handling code here:
-        try {
-            String api_url = "https://weatherapi-com.p.rapidapi.com/forecast.json?q=" + address.getText();
-
-            OkHttpClient client = new OkHttpClient();
-
-            Request request = new Request.Builder()
-                .url(api_url)
-                .get()
-                // <editor-fold defaultstate="collapsed" desc="RainScape WeatherAPI Key">
-                    .addHeader("X-RapidAPI-Key", "d2cd26e50fmshb105523acf4dea8p15c5eejsn5766f55f0f75")
-                    .addHeader("X-RapidAPI-Host", "weatherapi-com.p.rapidapi.com")
-                    // </editor-fold>
-                .build();
-
-            Response response = client.newCall(request).execute();
-
-            // Arranged Data Into Callable JSONObjects:
-            JSONObject jsonAPI = new JSONObject(response.body().string());
-
-            JSONObject jsonLocation = new JSONObject(jsonAPI.get("location").toString());
-            
-            String location = jsonLocation.getString("name");
-            
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db","root","");
-            String sql ="Update rs_preferences set area=? where username=?";
-
-            PreparedStatement psmt = conn.prepareStatement(sql);
-            psmt.setString(1, location);
-            psmt.setString(2, RainScape.username);
-            
-            psmt.executeUpdate();
-            
-            WeatherAPI.fetch(RainScape.currentSearchArea());
-            WeatherAPI.setValues();
-            
-            address.setText("");
-            
-            JOptionPane.showMessageDialog(null, "Area Changed.");
-        } catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Invalid Area.");
-        }
-    }//GEN-LAST:event_dressaddActionPerformed
 
     private void celsius_checkboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_celsius_checkboxMouseClicked
         // TODO add your handling code here:
-        if (!celsius_checkbox.getState()) {
-            celsius_checkbox.setEnabled(false);
-            fahrenheit_checkbox.setEnabled(true);
-            fahrenheit_checkbox.setState(false);
-        } else {
-            celsius_checkbox.setEnabled(true);
-            fahrenheit_checkbox.setEnabled(false);
-            celsius_checkbox.setEnabled(true);
-            celsius_checkbox.setState(false);
-        }
-        
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db", "root", "");
-            String sql = "Update rs_preferences set temp_scale=? where username=?";
-
-            PreparedStatement psmt = conn.prepareStatement(sql);
-            psmt.setString(1, "celsius");
-            psmt.setString(2, RainScape.username);
-
-            psmt.executeUpdate();
-
-            WeatherAPI.fetch(RainScape.currentSearchArea());
-            WeatherAPI.setValues();
-            
-            JOptionPane.showMessageDialog(null, "Temperature Scale Changed.");
-        } catch (Exception e) {
-            // e.printStackTrace();
-        }
+        MySQL.changeTempScale(true);
     }//GEN-LAST:event_celsius_checkboxMouseClicked
 
     private void fahrenheit_checkboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fahrenheit_checkboxMouseClicked
         // TODO add your handling code here:
-        if (!fahrenheit_checkbox.getState()) {
-            fahrenheit_checkbox.setEnabled(false);
-            celsius_checkbox.setEnabled(true);
-            celsius_checkbox.setState(false);
-        } else {
-            fahrenheit_checkbox.setEnabled(true);
-            celsius_checkbox.setEnabled(false);
-            fahrenheit_checkbox.setEnabled(true);
-            fahrenheit_checkbox.setState(false);
-        }
-        
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db", "root", "");
-            String sql = "Update rs_preferences set temp_scale=? where username=?";
-
-            PreparedStatement psmt = conn.prepareStatement(sql);
-            psmt.setString(1, "fahrenheit");
-            psmt.setString(2, RainScape.username);
-
-            psmt.executeUpdate();
-
-            WeatherAPI.fetch(RainScape.currentSearchArea());
-            WeatherAPI.setValues();
-            
-            JOptionPane.showMessageDialog(null, "Temperature Scale Changed.");
-        } catch (Exception e) {
-            // e.printStackTrace();
-        }
+        MySQL.changeTempScale(false);
     }//GEN-LAST:event_fahrenheit_checkboxMouseClicked
+
+    private void password_changeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password_changeActionPerformed
+        // TODO add your handling code here:
+        MySQL.changePassword();
+    }//GEN-LAST:event_password_changeActionPerformed
+
+    private void address_changeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_address_changeActionPerformed
+        // TODO add your handling code here:
+        MySQL.changeDefaultArea();
+    }//GEN-LAST:event_address_changeActionPerformed
+
+    private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_formWindowLostFocus
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_backActionPerformed
 
     /**
      * @param args the command line arguments
@@ -440,23 +309,19 @@ public class PreferencesGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static java.awt.TextField address;
+    private javax.swing.JButton address_change;
+    private javax.swing.JButton back;
+    private javax.swing.JPanel banner_bg;
     public static java.awt.Checkbox celsius_checkbox;
-    public static javax.swing.JPasswordField changepassword;
-    private java.awt.Checkbox checkbox1;
-    private javax.swing.JButton dressadd;
+    private javax.swing.JPanel content_box;
+    public static javax.swing.JLabel default_area;
+    private javax.swing.JLabel defaultarea_label;
     public static java.awt.Checkbox fahrenheit_checkbox;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JButton passwordchange;
-    public static java.awt.TextField username;
+    private javax.swing.JButton password_change;
+    private javax.swing.JLabel password_label;
+    private javax.swing.JPanel preferences_box;
+    private javax.swing.JLabel tempscale_label;
+    public static javax.swing.JLabel username;
+    private javax.swing.JLabel username_label;
     // End of variables declaration//GEN-END:variables
 }

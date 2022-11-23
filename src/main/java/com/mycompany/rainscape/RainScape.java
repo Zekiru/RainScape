@@ -6,13 +6,30 @@
 package com.mycompany.rainscape;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.Cursor;
 import java.awt.Desktop;
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.concurrent.*;
 import java.util.*;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -97,6 +114,83 @@ public class RainScape {
             Desktop.getDesktop().browse(new URL(urlString).toURI());
         } catch (IOException | URISyntaxException e) {
             System.out.println("Exception: " + e);
+        }
+    }
+    
+    public static String getFinalURL(String url) throws IOException {
+        HttpURLConnection con = (HttpURLConnection) new URL(url).openConnection();
+        con.setInstanceFollowRedirects(false);
+        con.connect();
+        con.getInputStream();
+
+        if (con.getResponseCode() == HttpURLConnection.HTTP_MOVED_PERM || con.getResponseCode() == HttpURLConnection.HTTP_MOVED_TEMP) {
+            String redirectUrl = con.getHeaderField("Location");
+            return getFinalURL(redirectUrl);
+        }
+        return url;
+    }
+    
+    public static void openRainScapePNG() {
+        try {
+            JFrame frame = new JFrame("RainScape");
+            JPanel panel = new JPanel();
+            JLabel image = new JLabel();
+
+            frame.add(panel);
+            panel.add(image);
+            panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.setResizable(false);
+
+            image.setPreferredSize(new Dimension(540, 900));
+            image.setSize(image.getPreferredSize());
+            
+            Image img = new ImageIcon("rainscape_infographic.png").getImage().getScaledInstance(image.getWidth(), image.getHeight(), Image.SCALE_SMOOTH);
+            
+            image.setIcon(new ImageIcon(img));
+
+            frame.pack();
+            frame.setVisible(true);
+            frame.setLocationRelativeTo(null);
+
+            frame.addFocusListener(new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                }
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+                }
+            });
+
+            image.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                }
+            });
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, "Failed to Fetch RainScape PNG.");
+            e.printStackTrace();
         }
     }
     

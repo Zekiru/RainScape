@@ -68,8 +68,8 @@ public class MainGUI extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
-        preferences = new javax.swing.JButton();
         forum = new javax.swing.JButton();
+        preferences = new javax.swing.JButton();
         weatherlogs = new javax.swing.JButton();
         rainscape = new javax.swing.JButton();
         logout = new javax.swing.JButton();
@@ -200,26 +200,25 @@ public class MainGUI extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
+        background_image.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        background_image.setPreferredSize(new java.awt.Dimension(1190, 250));
+
         javax.swing.GroupLayout mainBannerLayout = new javax.swing.GroupLayout(mainBanner);
         mainBanner.setLayout(mainBannerLayout);
         mainBannerLayout.setHorizontalGroup(
             mainBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(background_image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(mainBannerLayout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addComponent(basicforecast_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(645, Short.MAX_VALUE))
+                .addComponent(basicforecast_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         mainBannerLayout.setVerticalGroup(
             mainBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(background_image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(mainBannerLayout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
-                .addComponent(basicforecast_box, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addComponent(basicforecast_box, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        background_image.setIcon(new javax.swing.ImageIcon("C:\\Users\\ADMIN\\Downloads\\RainScape-master-20221122T062237Z-001\\RainScape-master\\RainScape-master\\assets\\weather images\\CA.jpg")); // NOI18N
-        mainBanner.add(background_image);
-        background_image.setBounds(0, 0, 1190, 250);
 
         body.setBackground(new java.awt.Color(225, 230, 236));
         body.setForeground(new java.awt.Color(225, 230, 236));
@@ -424,7 +423,7 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(menuBarLayout.createSequentialGroup()
                 .addGap(88, 88, 88)
                 .addComponent(localtime, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 249, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(searchbar_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(112, 112, 112)
                 .addComponent(hamburger_box, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -457,22 +456,6 @@ public class MainGUI extends javax.swing.JFrame {
         jSeparator4.setBackground(new java.awt.Color(102, 102, 102));
         jSeparator4.setForeground(new java.awt.Color(204, 204, 204));
 
-        preferences.setBackground(new java.awt.Color(255, 255, 255));
-        preferences.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        preferences.setForeground(new java.awt.Color(0, 102, 102));
-        preferences.setText("   Preferences");
-        preferences.setBorder(null);
-        preferences.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        preferences.setFocusable(false);
-        preferences.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        preferences.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        preferences.setPreferredSize(new java.awt.Dimension(138, 50));
-        preferences.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                preferencesActionPerformed(evt);
-            }
-        });
-
         forum.setBackground(new java.awt.Color(255, 255, 255));
         forum.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         forum.setForeground(new java.awt.Color(0, 102, 102));
@@ -486,6 +469,22 @@ public class MainGUI extends javax.swing.JFrame {
         forum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 forumActionPerformed(evt);
+            }
+        });
+
+        preferences.setBackground(new java.awt.Color(255, 255, 255));
+        preferences.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        preferences.setForeground(new java.awt.Color(0, 102, 102));
+        preferences.setText("   Preferences");
+        preferences.setBorder(null);
+        preferences.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        preferences.setFocusable(false);
+        preferences.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        preferences.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        preferences.setPreferredSize(new java.awt.Dimension(138, 50));
+        preferences.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                preferencesActionPerformed(evt);
             }
         });
 
@@ -552,18 +551,18 @@ public class MainGUI extends javax.swing.JFrame {
                     .addComponent(jSeparator1)
                     .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(weatherlogs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(forum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(forum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         sidebar_boxLayout.setVerticalGroup(
             sidebar_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sidebar_boxLayout.createSequentialGroup()
-                .addContainerGap(107, Short.MAX_VALUE)
+                .addContainerGap(105, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(preferences, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(forum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(preferences, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(weatherlogs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -576,7 +575,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         tabbed_content.setBackground(new java.awt.Color(255, 255, 255));
@@ -737,10 +736,12 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
+        cloud_progressbar.setBackground(new java.awt.Color(225, 230, 236));
         cloud_progressbar.setForeground(new java.awt.Color(0, 204, 204));
         cloud_progressbar.setToolTipText("");
         cloud_progressbar.setPreferredSize(new java.awt.Dimension(696, 30));
 
+        humidity_progressbar.setBackground(new java.awt.Color(225, 230, 236));
         humidity_progressbar.setForeground(new java.awt.Color(0, 102, 102));
         humidity_progressbar.setPreferredSize(new java.awt.Dimension(696, 30));
 
@@ -1173,6 +1174,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void rainscapeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rainscapeActionPerformed
         // TODO add your handling code here:
+        RainScape.openRainScapePNG();
     }//GEN-LAST:event_rainscapeActionPerformed
 
     private void records2021ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_records2021ActionPerformed

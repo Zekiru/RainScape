@@ -1168,6 +1168,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void preferencesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_preferencesActionPerformed
         // TODO add your handling code here:
+        PreferencesGUI.main(null);
     }//GEN-LAST:event_preferencesActionPerformed
 
     private void rainscapeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rainscapeActionPerformed

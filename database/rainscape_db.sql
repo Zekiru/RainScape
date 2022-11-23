@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2022 at 01:46 AM
+-- Generation Time: Nov 24, 2022 at 12:29 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -28,8 +28,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `rs_accounts` (
-  `username` varchar(24) NOT NULL,
-  `password` varchar(24) NOT NULL
+  `username` varchar(40) NOT NULL,
+  `password` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -54,7 +54,7 @@ INSERT INTO `rs_accounts` (`username`, `password`) VALUES
 --
 
 CREATE TABLE `rs_preferences` (
-  `username` varchar(24) NOT NULL,
+  `username` varchar(40) NOT NULL,
   `area` varchar(60) NOT NULL,
   `temp_scale` varchar(12) NOT NULL,
   `dark_mode` tinyint(1) NOT NULL
@@ -73,7 +73,7 @@ INSERT INTO `rs_preferences` (`username`, `area`, `temp_scale`, `dark_mode`) VAL
 ('Mozes', 'Hongkong', 'fahrenheit', 1),
 ('Raden', 'Manila', 'fahrenheit', 0),
 ('Wilson', 'Manila', 'celsius', 0),
-('Zeke', 'Albuquerque', 'celsius', 1);
+('Zeke', 'Quezon City', 'celsius', 1);
 
 -- --------------------------------------------------------
 
@@ -82,10 +82,10 @@ INSERT INTO `rs_preferences` (`username`, `area`, `temp_scale`, `dark_mode`) VAL
 --
 
 CREATE TABLE `rs_weatherlogs` (
-  `username` varchar(24) NOT NULL,
+  `username` varchar(40) NOT NULL,
   `date_time` varchar(24) NOT NULL,
-  `area` varchar(24) NOT NULL,
-  `status` varchar(24) NOT NULL,
+  `area` varchar(60) NOT NULL,
+  `status` varchar(60) NOT NULL,
   `temp_scale` varchar(24) NOT NULL,
   `temp` varchar(24) NOT NULL,
   `clouds` varchar(24) NOT NULL,
@@ -97,55 +97,35 @@ CREATE TABLE `rs_weatherlogs` (
 --
 
 INSERT INTO `rs_weatherlogs` (`username`, `date_time`, `area`, `status`, `temp_scale`, `temp`, `clouds`, `humidity`) VALUES
-('Jay', '2022-11-22 15:08:05', 'Makati, Philippines', 'Partly cloudy', 'celsius', '32°C', '25', '56'),
-('Jay', '2022-11-22 15:08:12', 'Manila, Philippines', 'Partly cloudy', 'celsius', '32°C', '25', '56'),
-('Zeke', '2022-11-22 15:08:32', 'Albuquerque, USA', 'Clear', 'celsius', '1°C', '0', '36'),
-('Zeke', '2022-11-22 15:08:39', 'Manila, Philippines', 'Partly cloudy', 'celsius', '32°C', '25', '56'),
-('Zeke', '2022-11-22 15:08:47', 'Hongkong', 'Partly cloudy', 'celsius', '26°C', '50', '74'),
-('Zeke', '2022-11-22 15:14:54', 'Albuquerque, USA', 'Clear', 'celsius', '1°C', '0', '36'),
-('Zeke', '2022-11-22 15:15:17', 'Makati, Philippines', 'Partly cloudy', 'celsius', '32°C', '25', '56'),
-('Zeke', '2022-11-22 15:17:11', 'Makati, Philippines', 'Partly cloudy', 'celsius', '32°C', '25', '56'),
-('Zeke', '2022-11-22 21:54:08', 'Albuquerque, USA', 'Partly cloudy', 'celsius', '-3°C', '50', '46'),
-('Jay', '2022-11-22 22:03:11', 'Makati, Philippines', 'Partly cloudy', 'celsius', '28°C', '25', '79'),
-('Jay', '2022-11-22 22:04:42', 'Makati, Philippines', 'Partly cloudy', 'celsius', '28°C', '25', '79'),
-('Jay', '2022-11-22 22:04:47', 'Michigan City, USA', 'Sunny', 'celsius', '-3°C', '0', '78'),
-('Zeke', '2022-11-22 22:23:02', 'Albuquerque, USA', 'Partly cloudy', 'celsius', '-3°C', '50', '48'),
-('Jay', '2022-11-22 22:33:01', 'Makati, Philippines', 'Partly cloudy', 'celsius', '28°C', '25', '79'),
-('Zeke', '2022-11-22 22:46:55', 'Albuquerque, USA', 'Partly cloudy', 'celsius', '-2°C', '75', '43'),
-('Jay', '2022-11-22 22:49:59', 'Makati, Philippines', 'Partly cloudy', 'celsius', '28°C', '25', '79'),
-('Jay', '2022-11-22 22:53:38', 'Makati, Philippines', 'Partly cloudy', 'celsius', '28°C', '25', '79'),
-('Zeke', '2022-11-22 22:56:04', 'Albuquerque, USA', 'Partly cloudy', 'celsius', '-2°C', '75', '43'),
-('Zeke', '2022-11-22 22:56:11', 'Mississippi State, USA', 'Overcast', 'celsius', '6°C', '100', '76'),
-('Zeke', '2022-11-22 22:56:20', 'Albuquerque, USA', 'Partly cloudy', 'celsius', '-2°C', '75', '43'),
-('Jay', '2022-11-22 23:04:23', 'Makati, Philippines', 'Partly cloudy', 'celsius', '28°C', '25', '79'),
-('Justin', '2022-11-22 23:06:51', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '28°C', '25', '79'),
-('Justin', '2022-11-22 23:06:57', 'Quezon, Philippines', 'Clear', 'celsius', '24°C', '8', '88'),
-('Justin', '2022-11-22 23:07:04', 'Baligang, Philippines', 'Patchy rain possible', 'celsius', '24°C', '73', '94'),
-('Justin', '2022-11-22 23:07:11', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '28°C', '25', '79'),
-('Justin', '2022-11-22 23:09:00', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '28°C', '25', '79'),
-('Justin', '2022-11-22 23:14:29', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '28°C', '25', '79'),
-('Zeke', '2022-11-22 23:16:09', 'Albuquerque, USA', 'Partly cloudy', 'celsius', '-2°C', '75', '43'),
-('Zeke', '2022-11-22 23:22:43', 'Albuquerque, USA', 'Partly cloudy', 'celsius', '-2°C', '75', '48'),
-('Zeke', '2022-11-22 23:22:50', 'Istanbul, Turkey', 'Clear', 'celsius', '13°C', '0', '77'),
-('Zeke', '2022-11-22 23:24:07', 'Albuquerque, USA', 'Partly cloudy', 'celsius', '-2°C', '75', '48'),
-('Jay', '2022-11-22 23:26:25', 'Makati, Philippines', 'Partly cloudy', 'celsius', '28°C', '25', '79'),
-('Zeke', '2022-11-22 23:37:20', 'Albuquerque, USA', 'Partly cloudy', 'celsius', '-2°C', '75', '48'),
-('Zeke', '2022-11-22 23:40:39', 'Albuquerque, USA', 'Partly cloudy', 'celsius', '-2°C', '75', '48'),
-('Zeke', '2022-11-22 23:41:57', 'Albuquerque, USA', 'Partly cloudy', 'celsius', '-2°C', '75', '48'),
-('Zeke', '2022-11-22 23:43:53', 'Albuquerque, USA', 'Partly cloudy', 'celsius', '-2°C', '75', '48'),
-('Zeke', '2022-11-23 00:06:49', 'Albuquerque, USA', 'Partly cloudy', 'celsius', '-2°C', '75', '48'),
-('Zeke', '2022-11-23 00:11:09', 'Albuquerque, USA', 'Partly cloudy', 'celsius', '-2°C', '75', '48'),
-('Zeke', '2022-11-23 00:11:36', 'Albuquerque, USA', 'Partly cloudy', 'celsius', '-2°C', '75', '48'),
-('Justin', '2022-11-23 00:12:32', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '28°C', '25', '79'),
-('Zeke', '2022-11-23 00:21:37', 'Albuquerque, USA', 'Partly cloudy', 'celsius', '-2°C', '75', '48'),
-('Zeke', '2022-11-23 00:25:35', 'Albuquerque, USA', 'Partly cloudy', 'celsius', '-2°C', '75', '48'),
-('Zeke', '2022-11-23 08:23:40', 'Albuquerque, USA', 'Partly cloudy', 'celsius', '8°C', '75', '25'),
-('Zeke', '2022-11-23 08:23:53', 'Albuquerque, USA', 'Partly cloudy', 'celsius', '8°C', '75', '25'),
-('Zeke', '2022-11-23 08:23:57', 'Manila, Philippines', 'Partly cloudy', 'celsius', '27°C', '75', '84'),
-('Jay', '2022-11-23 08:40:04', 'Makati, Philippines', 'Partly cloudy', 'celsius', '27°C', '75', '84'),
-('Justin', '2022-11-23 08:41:23', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '27°C', '75', '84'),
-('Zeke', '2022-11-23 08:44:20', 'Albuquerque, USA', 'Partly cloudy', 'celsius', '8°C', '75', '25'),
-('Zeke', '2022-11-23 08:44:36', 'Manila, Philippines', 'Partly cloudy', 'celsius', '27°C', '75', '84');
+('Zeke', '2022-11-24 04:05:46', 'Tacloban City, Philippines', 'Light rain shower', 'celsius', '24°C', '54', '92'),
+('Zeke', '2022-11-24 04:07:27', 'Tacloban City, Philippines', 'Light rain shower', 'celsius', '24°C', '54', '92'),
+('Zeke', '2022-11-24 04:07:44', 'Tacloban City, Philippines', 'Light rain shower', 'celsius', '24°C', '54', '92'),
+('Zeke', '2022-11-24 04:09:48', 'Tacloban City, Philippines', 'Light rain shower', 'celsius', '24°C', '54', '92'),
+('Zeke', '2022-11-24 04:13:25', 'Tacloban City, Philippines', 'Light rain shower', 'celsius', '24°C', '54', '92'),
+('Zeke', '2022-11-24 04:14:37', 'Tacloban City, Philippines', 'Light rain shower', 'celsius', '24°C', '54', '92'),
+('Zeke', '2022-11-24 04:16:11', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '27°C', '25', '79'),
+('Zeke', '2022-11-24 04:18:45', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '27°C', '25', '79'),
+('Zeke', '2022-11-24 04:19:21', 'Cavite, Philippines', 'Partly cloudy', 'celsius', '27°C', '25', '79'),
+('Zeke', '2022-11-24 04:20:04', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '27°C', '25', '79'),
+('Zeke', '2022-11-24 04:21:18', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '27°C', '25', '79'),
+('Zeke', '2022-11-24 04:21:38', 'Quezon City, Philippines', 'Partly cloudy', 'fahrenheit', '80°F', '25', '79'),
+('Zeke', '2022-11-24 04:22:51', 'Quezon City, Philippines', 'Partly cloudy', 'fahrenheit', '80°F', '25', '79'),
+('Zeke', '2022-11-24 04:23:16', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '27°C', '25', '79'),
+('Zeke', '2022-11-24 04:25:50', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '27°C', '25', '79'),
+('Zeke', '2022-11-24 04:28:20', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '27°C', '25', '79'),
+('Zeke', '2022-11-24 04:29:02', 'Brasilia, Brazil', 'Partly cloudy', 'celsius', '23°C', '75', '73'),
+('Zeke', '2022-11-24 04:29:12', 'Colorado Springs, USA', 'Partly cloudy', 'celsius', '12°C', '25', '5'),
+('Zeke', '2022-11-24 04:29:18', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '27°C', '25', '79'),
+('Zeke', '2022-11-24 04:30:40', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '27°C', '25', '79'),
+('Zeke', '2022-11-24 04:57:10', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '27°C', '25', '79'),
+('Zeke', '2022-11-24 05:08:40', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '27°C', '25', '79'),
+('Zeke', '2022-11-24 05:15:04', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '27°C', '25', '79'),
+('Zeke', '2022-11-24 05:59:28', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '27°C', '25', '79'),
+('Zeke', '2022-11-24 06:57:26', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '27°C', '25', '79'),
+('Zeke', '2022-11-24 07:09:10', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '27°C', '25', '79'),
+('Zeke', '2022-11-24 07:10:11', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '27°C', '25', '79'),
+('Zeke', '2022-11-24 07:24:03', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '28°C', '25', '74'),
+('Zeke', '2022-11-24 07:28:06', 'Quezon City, Philippines', 'Partly cloudy', 'celsius', '28°C', '25', '74');
 
 --
 -- Indexes for dumped tables

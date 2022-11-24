@@ -22,7 +22,7 @@ public class ResponsiveBG {
 
             String[] keywords = {"Thundery", "thunder", "rain", "cloudy", "Cloudy", "Sunny", "Clear", "Overcast"};
 
-            String str = "Partly cloudy";
+            String str = WeatherAPI.status;
             int x = -1, y = -1;
         
             while (x <= 0) {

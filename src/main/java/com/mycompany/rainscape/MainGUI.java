@@ -127,6 +127,7 @@ public class MainGUI extends javax.swing.JFrame {
 
         mainBanner.setBackground(new java.awt.Color(153, 204, 255));
         mainBanner.setPreferredSize(new java.awt.Dimension(1188, 250));
+        mainBanner.setLayout(null);
 
         basicforecast_box.setBackground(new java.awt.Color(51, 51, 51));
         basicforecast_box.setForeground(new java.awt.Color(51, 51, 51));
@@ -179,7 +180,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(current_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(basicforecast_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                     .addComponent(location, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(localdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(40, 40, 40))
@@ -200,25 +201,15 @@ public class MainGUI extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        background_image.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        background_image.setPreferredSize(new java.awt.Dimension(1190, 250));
+        mainBanner.add(basicforecast_box);
+        basicforecast_box.setBounds(54, 42, 650, 166);
 
-        javax.swing.GroupLayout mainBannerLayout = new javax.swing.GroupLayout(mainBanner);
-        mainBanner.setLayout(mainBannerLayout);
-        mainBannerLayout.setHorizontalGroup(
-            mainBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background_image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(mainBannerLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(basicforecast_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        mainBannerLayout.setVerticalGroup(
-            mainBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background_image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(mainBannerLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(basicforecast_box, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        background_image.setFocusable(false);
+        background_image.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        background_image.setMaximumSize(new java.awt.Dimension(1190, 250));
+        background_image.setPreferredSize(new java.awt.Dimension(1190, 250));
+        mainBanner.add(background_image);
+        background_image.setBounds(0, 0, 1190, 250);
 
         body.setBackground(new java.awt.Color(225, 230, 236));
         body.setForeground(new java.awt.Color(225, 230, 236));
@@ -1036,8 +1027,8 @@ public class MainGUI extends javax.swing.JFrame {
         content_box.setLayout(content_boxLayout);
         content_boxLayout.setHorizontalGroup(
             content_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(mainBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, 1190, Short.MAX_VALUE)
+            .addComponent(mainBanner, 1190, 1190, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         content_boxLayout.setVerticalGroup(
             content_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1270,7 +1261,7 @@ public class MainGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel background_image;
+    public static javax.swing.JLabel background_image;
     private javax.swing.JPanel basicforecast_box;
     private javax.swing.JPanel body;
     public static javax.swing.JLabel cloud_label;

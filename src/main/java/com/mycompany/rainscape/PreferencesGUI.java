@@ -5,6 +5,7 @@
 package com.mycompany.rainscape;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -19,6 +20,7 @@ public class PreferencesGUI extends javax.swing.JFrame {
      */
     public PreferencesGUI() {
         initComponents();
+        bg_img.setIcon(MainGUI.background_image.getIcon());
         
         MySQL.setPreferences();
     }
@@ -34,6 +36,7 @@ public class PreferencesGUI extends javax.swing.JFrame {
 
         content_box = new javax.swing.JPanel();
         banner_bg = new javax.swing.JPanel();
+        bg_img = new javax.swing.JLabel();
         preferences_box = new javax.swing.JPanel();
         username_label = new javax.swing.JLabel();
         default_area = new javax.swing.JLabel();
@@ -45,11 +48,11 @@ public class PreferencesGUI extends javax.swing.JFrame {
         tempscale_label = new javax.swing.JLabel();
         fahrenheit_checkbox = new java.awt.Checkbox();
         celsius_checkbox = new java.awt.Checkbox();
+        delete_account = new javax.swing.JButton();
         back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Preferences");
-        setPreferredSize(new java.awt.Dimension(600, 680));
         setResizable(false);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
@@ -68,11 +71,11 @@ public class PreferencesGUI extends javax.swing.JFrame {
         banner_bg.setLayout(banner_bgLayout);
         banner_bgLayout.setHorizontalGroup(
             banner_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addComponent(bg_img, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
         banner_bgLayout.setVerticalGroup(
             banner_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+            .addComponent(bg_img, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
         );
 
         preferences_box.setBackground(new java.awt.Color(59, 64, 64));
@@ -146,6 +149,18 @@ public class PreferencesGUI extends javax.swing.JFrame {
             }
         });
 
+        delete_account.setBackground(new java.awt.Color(255, 102, 102));
+        delete_account.setForeground(new java.awt.Color(255, 255, 255));
+        delete_account.setText("Delete Account");
+        delete_account.setToolTipText("");
+        delete_account.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        delete_account.setFocusable(false);
+        delete_account.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delete_accountActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout preferences_boxLayout = new javax.swing.GroupLayout(preferences_box);
         preferences_box.setLayout(preferences_boxLayout);
         preferences_boxLayout.setHorizontalGroup(
@@ -155,32 +170,36 @@ public class PreferencesGUI extends javax.swing.JFrame {
                 .addGroup(preferences_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(preferences_boxLayout.createSequentialGroup()
                         .addComponent(username_label)
-                        .addGap(387, 387, 387))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(delete_account))
+                    .addComponent(default_area, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, preferences_boxLayout.createSequentialGroup()
-                        .addGroup(preferences_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(preferences_boxLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(preferences_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, preferences_boxLayout.createSequentialGroup()
                                 .addComponent(tempscale_label)
                                 .addGap(183, 183, 183)
                                 .addComponent(celsius_checkbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
                                 .addComponent(fahrenheit_checkbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(preferences_boxLayout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, preferences_boxLayout.createSequentialGroup()
                                 .addComponent(password_label)
                                 .addGap(292, 292, 292)
                                 .addComponent(password_change))
-                            .addGroup(preferences_boxLayout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, preferences_boxLayout.createSequentialGroup()
                                 .addComponent(defaultarea_label)
                                 .addGap(266, 266, 266)
-                                .addComponent(address_change))
-                            .addComponent(default_area, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(username, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(30, 30, 30))))
+                                .addComponent(address_change)))))
+                .addGap(30, 30, 30))
         );
         preferences_boxLayout.setVerticalGroup(
             preferences_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(preferences_boxLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(username_label)
+                .addGroup(preferences_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(username_label)
+                    .addComponent(delete_account, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(username)
                 .addGap(50, 50, 50)
@@ -285,6 +304,17 @@ public class PreferencesGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backActionPerformed
 
+    private void delete_accountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_accountActionPerformed
+        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(null, "Delete Your Account?") == 0) {
+            MySQL.deleteAccount();
+            JOptionPane.showMessageDialog(null, "Account Deleted.");
+            System.exit(0);
+        } else {
+            main(null);
+        }
+    }//GEN-LAST:event_delete_accountActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -312,10 +342,12 @@ public class PreferencesGUI extends javax.swing.JFrame {
     private javax.swing.JButton address_change;
     private javax.swing.JButton back;
     private javax.swing.JPanel banner_bg;
+    private javax.swing.JLabel bg_img;
     public static java.awt.Checkbox celsius_checkbox;
     private javax.swing.JPanel content_box;
     public static javax.swing.JLabel default_area;
     private javax.swing.JLabel defaultarea_label;
+    private javax.swing.JButton delete_account;
     public static java.awt.Checkbox fahrenheit_checkbox;
     private javax.swing.JButton password_change;
     private javax.swing.JLabel password_label;

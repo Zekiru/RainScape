@@ -91,7 +91,7 @@ public class Account {
             psmt.setString(1, username);
             psmt.setString(2, MySQL.default_area);
             psmt.setString(3, MySQL.default_temp_scale);
-            psmt.setBoolean(3, MySQL.default_mode);
+            psmt.setBoolean(4, MySQL.default_mode);
             
             psmt.executeUpdate();
             

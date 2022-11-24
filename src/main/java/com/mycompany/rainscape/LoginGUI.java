@@ -5,6 +5,8 @@
 package com.mycompany.rainscape;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -19,6 +21,8 @@ public class LoginGUI extends javax.swing.JFrame {
      */
     public LoginGUI() {
         initComponents();
+        
+        bg_image.setIcon(new ImageIcon(new ImageIcon("CN.jpg").getImage().getScaledInstance(bg_image.getWidth(), bg_image.getHeight(), Image.SCALE_SMOOTH)));
     }
 
     /**
@@ -30,6 +34,7 @@ public class LoginGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        content_box = new javax.swing.JPanel();
         login_bg = new javax.swing.JPanel();
         login_tite = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -40,13 +45,21 @@ public class LoginGUI extends javax.swing.JFrame {
         signup = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        bg_image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("RainScape");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setIconImages(null);
+        setMinimumSize(new java.awt.Dimension(755, 500));
         setName("Log In / Sign Up"); // NOI18N
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
+
+        content_box.setBackground(new java.awt.Color(0, 0, 0));
+        content_box.setMaximumSize(new java.awt.Dimension(755, 500));
+        content_box.setMinimumSize(new java.awt.Dimension(755, 500));
+        content_box.setLayout(null);
 
         login_bg.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -164,24 +177,23 @@ public class LoginGUI extends javax.swing.JFrame {
                 .addGap(60, 60, 60))
         );
 
+        content_box.add(login_bg);
+        login_bg.setBounds(200, 36, 355, 428);
+        content_box.add(bg_image);
+        bg_image.setBounds(-10, -10, 780, 540);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(login_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(content_box, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(login_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(content_box, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(771, 528));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -252,6 +264,8 @@ public class LoginGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bg_image;
+    private javax.swing.JPanel content_box;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;

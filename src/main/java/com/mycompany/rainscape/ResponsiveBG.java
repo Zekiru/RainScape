@@ -15,9 +15,16 @@ public class ResponsiveBG {
     public static void setCondition() {
         try {
             ImageIcon[][] bgs = {
-                {new ImageIcon("RS.jpg"), new ImageIcon("RN.jpg"), new ImageIcon("TH.jpg")}, 
-                {new ImageIcon("CM.jpg"), new ImageIcon("CA.jpg"), new ImageIcon("CN.jpg")}, 
-                {new ImageIcon("SA.jpg"), new ImageIcon("SCM.jpg"), new ImageIcon("SCA.jpg")}
+                {new ImageIcon(new ImageIcon("RS.jpg").getImage().getScaledInstance(1188, 250, Image.SCALE_SMOOTH)), 
+                new ImageIcon(new ImageIcon("RN.jpg").getImage().getScaledInstance(1188, 250, Image.SCALE_SMOOTH)), 
+                new ImageIcon(new ImageIcon("TH.jpg").getImage().getScaledInstance(1188, 250, Image.SCALE_SMOOTH))}, 
+                {new ImageIcon(new ImageIcon("CM.jpg").getImage().getScaledInstance(1188, 250, Image.SCALE_SMOOTH)), 
+                new ImageIcon(new ImageIcon("CA.jpg").getImage().getScaledInstance(1188, 250, Image.SCALE_SMOOTH)), 
+                new ImageIcon(new ImageIcon("CN.jpg").getImage().getScaledInstance(1188, 250, Image.SCALE_SMOOTH))}, 
+                {new ImageIcon(new ImageIcon("SM.jpg").getImage().getScaledInstance(1188, 250, Image.SCALE_SMOOTH)), 
+                new ImageIcon(new ImageIcon("SA.jpg").getImage().getScaledInstance(1188, 250, Image.SCALE_SMOOTH)), 
+                new ImageIcon(new ImageIcon("SCM.jpg").getImage().getScaledInstance(1188, 250, Image.SCALE_SMOOTH)), 
+                new ImageIcon(new ImageIcon("SCA.jpg").getImage().getScaledInstance(1188, 250, Image.SCALE_SMOOTH))}
             };
 
             String[] keywords = {"Thundery", "thunder", "rain", "cloudy", "Cloudy", "Sunny", "Clear", "Overcast"};
@@ -38,9 +45,9 @@ public class ResponsiveBG {
                         else if (DateTime.localTimeOfDay().equals("Evening")) {
                             MainGUI.background_image.setIcon(bgs[0][1]);
                         } else {
-                            MainGUI.background_image.setIcon(bgs[2][1]);
+                            MainGUI.background_image.setIcon(bgs[2][2]);
                         }
-                    } else if (keywords[y].equals(keywords[3]) || keywords[y].equals(keywords[4])) {
+                    } else if (keywords[y].equals(keywords[3]) || keywords[y].equals(keywords[4]) || keywords[y].equals(keywords[7])) {
                         if (DateTime.localTimeOfDay().equals("Morning"))
                             MainGUI.background_image.setIcon(bgs[1][0]);
                         else if (DateTime.localTimeOfDay().equals("Afternoon"))
@@ -48,44 +55,26 @@ public class ResponsiveBG {
                         else if (DateTime.localTimeOfDay().equals("Evening")) {
                             MainGUI.background_image.setIcon(bgs[1][2]);
                         } else {
-                            MainGUI.background_image.setIcon(bgs[2][1]);
+                            MainGUI.background_image.setIcon(bgs[2][2]);
                         }
-                    } else if (keywords[y].equals(keywords[5])) {
+                    } else if (keywords[y].equals(keywords[5]) || keywords[y].equals(keywords[6])) {
                         if (DateTime.localTimeOfDay().equals("Morning"))
-                            MainGUI.background_image.setIcon(bgs[2][1]);
-                        else if (DateTime.localTimeOfDay().equals("Afternoon"))
                             MainGUI.background_image.setIcon(bgs[2][0]);
-                        else if (DateTime.localTimeOfDay().equals("Evening")) {
-                            MainGUI.background_image.setIcon(bgs[1][2]);
-                        } else {
-                            MainGUI.background_image.setIcon(bgs[2][1]);
-                        }
-                    } else if (keywords[y].equals(keywords[6])) {
-                        if (DateTime.localTimeOfDay().equals("Morning") || DateTime.localTimeOfDay().equals("Afternoon"))
-                            MainGUI.background_image.setIcon(bgs[2][1]);
-                        else if (DateTime.localTimeOfDay().equals("Evening")) {
-                            MainGUI.background_image.setIcon(bgs[1][2]);
-                        } else {
-                            MainGUI.background_image.setIcon(bgs[2][1]);
-                        }
-                    } else if (keywords[y].equals(keywords[7])) {
-                        if (DateTime.localTimeOfDay().equals("Morning"))
-                            MainGUI.background_image.setIcon(bgs[1][0]);
                         else if (DateTime.localTimeOfDay().equals("Afternoon"))
-                            MainGUI.background_image.setIcon(bgs[1][1]);
+                            MainGUI.background_image.setIcon(bgs[2][1]);
                         else if (DateTime.localTimeOfDay().equals("Evening")) {
                             MainGUI.background_image.setIcon(bgs[1][2]);
                         } else {
-                            MainGUI.background_image.setIcon(bgs[2][1]);
+                            MainGUI.background_image.setIcon(bgs[2][2]);
                         }
                     } else {
-                        MainGUI.background_image.setIcon(bgs[2][1]);
+                        MainGUI.background_image.setIcon(bgs[2][2]);
                     }
                     break;
                 }
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("default");
+            MainGUI.background_image.setIcon(new ImageIcon(new ImageIcon("SCM.jpg").getImage().getScaledInstance(1188, 250, Image.SCALE_SMOOTH)));
         } catch (Exception e) {
             //e.printStackTrace();
         }

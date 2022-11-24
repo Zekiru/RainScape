@@ -133,6 +133,40 @@ public class MySQL {
         }
     }
     
+    public static void deleteAccount() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db","root","");
+            String sql;
+            
+            sql ="delete from rs_weatherlogs where username =?";
+            
+            PreparedStatement psmt = conn.prepareStatement(sql);
+            
+            psmt.setString(1, RainScape.username);
+            
+            psmt.executeUpdate();
+            
+            sql ="delete from rs_preferences where username =?";
+            
+            psmt = conn.prepareStatement(sql);
+            
+            psmt.setString(1, RainScape.username);
+            
+            psmt.executeUpdate();
+            
+            sql ="delete from rs_accounts where username =?";
+            
+            psmt = conn.prepareStatement(sql);
+            
+            psmt.setString(1, RainScape.username);
+            
+            psmt.executeUpdate();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     public static void changePassword() {
         String newpass = JOptionPane.showInputDialog("Input New Password:");
         

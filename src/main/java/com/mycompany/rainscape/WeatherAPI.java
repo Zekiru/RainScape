@@ -176,6 +176,7 @@ public class WeatherAPI {
             status = "Not Connected";
             temp = "N/A";
         }
+        ResponsiveBG.setCondition();
     } // </editor-fold>
     
     public static void setValues() {

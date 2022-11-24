@@ -180,7 +180,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(current_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(basicforecast_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                     .addComponent(location, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(localdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(40, 40, 40))
@@ -202,7 +202,7 @@ public class MainGUI extends javax.swing.JFrame {
         );
 
         mainBanner.add(basicforecast_box);
-        basicforecast_box.setBounds(54, 42, 489, 166);
+        basicforecast_box.setBounds(54, 42, 650, 166);
 
         background_image.setFocusable(false);
         background_image.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);

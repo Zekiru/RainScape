@@ -116,6 +116,11 @@ public class MainGUI extends javax.swing.JFrame {
         setName(""); // NOI18N
         setResizable(false);
         setSize(new java.awt.Dimension(1200, 675));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         content_box_scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         content_box_scroll.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -125,7 +130,6 @@ public class MainGUI extends javax.swing.JFrame {
         content_box_scroll.setRequestFocusEnabled(false);
 
         content_box.setBackground(new java.awt.Color(51, 51, 51));
-        content_box.setForeground(new java.awt.Color(0, 0, 0));
         content_box.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         content_box.setPreferredSize(new java.awt.Dimension(1188, 925));
 
@@ -164,6 +168,7 @@ public class MainGUI extends javax.swing.JFrame {
         localdate.setText("XX/XX/XXXX");
         localdate.setMaximumSize(new java.awt.Dimension(500, 32));
         localdate.setMinimumSize(new java.awt.Dimension(50, 32));
+        localdate.setPreferredSize(new java.awt.Dimension(153, 32));
 
         location.setBackground(new java.awt.Color(237, 249, 244));
         location.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -172,6 +177,7 @@ public class MainGUI extends javax.swing.JFrame {
         location.setText("Xxxxx, Xxxxx");
         location.setMaximumSize(new java.awt.Dimension(500, 32));
         location.setMinimumSize(new java.awt.Dimension(50, 32));
+        location.setPreferredSize(new java.awt.Dimension(153, 32));
 
         javax.swing.GroupLayout basicforecast_boxLayout = new javax.swing.GroupLayout(basicforecast_box);
         basicforecast_box.setLayout(basicforecast_boxLayout);
@@ -205,7 +211,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        mainBanner.add(basicforecast_box, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 42, 730, -1));
+        mainBanner.add(basicforecast_box, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 42, -1, -1));
 
         rainscape_logo.setFocusable(false);
         rainscape_logo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -287,7 +293,6 @@ public class MainGUI extends javax.swing.JFrame {
         );
 
         hamburger_box.setBackground(new java.awt.Color(0, 0, 0));
-        hamburger_box.setForeground(new java.awt.Color(0, 0, 0));
         hamburger_box.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hamburger_box.setOpaque(false);
         hamburger_box.setPreferredSize(new java.awt.Dimension(36, 35));
@@ -1246,6 +1251,11 @@ public class MainGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         RainScape.openWebpage("https://2021sha01091.wixsite.com/rainscape-forum");
     }//GEN-LAST:event_forumActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        ImageIcon icon = new ImageIcon("rainscape_logo2.png");
+        setIconImage(icon.getImage());
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments

@@ -21,6 +21,7 @@ public class LoginGUI extends javax.swing.JFrame {
      */
     public LoginGUI() {
         initComponents();
+    
         
         bg_image.setIcon(new ImageIcon(new ImageIcon("CN.jpg").getImage().getScaledInstance(bg_image.getWidth(), bg_image.getHeight(), Image.SCALE_SMOOTH)));
     }
@@ -55,6 +56,11 @@ public class LoginGUI extends javax.swing.JFrame {
         setName("Log In / Sign Up"); // NOI18N
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         content_box.setBackground(new java.awt.Color(0, 0, 0));
         content_box.setMaximumSize(new java.awt.Dimension(755, 500));
@@ -202,6 +208,7 @@ public class LoginGUI extends javax.swing.JFrame {
             this.dispose();
         }
     }
+
     
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
@@ -236,6 +243,11 @@ public class LoginGUI extends javax.swing.JFrame {
             process(true);
         }
     }//GEN-LAST:event_passwordKeyPressed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        ImageIcon icon = new ImageIcon("rainscape_logo2.png");
+        setIconImage(icon.getImage());
+    }//GEN-LAST:event_formWindowActivated
     
     /**
      * @param args the command line arguments

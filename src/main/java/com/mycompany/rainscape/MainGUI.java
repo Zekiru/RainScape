@@ -116,6 +116,11 @@ public class MainGUI extends javax.swing.JFrame {
         setName(""); // NOI18N
         setResizable(false);
         setSize(new java.awt.Dimension(1200, 675));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         content_box_scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         content_box_scroll.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -125,7 +130,6 @@ public class MainGUI extends javax.swing.JFrame {
         content_box_scroll.setRequestFocusEnabled(false);
 
         content_box.setBackground(new java.awt.Color(51, 51, 51));
-        content_box.setForeground(new java.awt.Color(0, 0, 0));
         content_box.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         content_box.setPreferredSize(new java.awt.Dimension(1188, 925));
 
@@ -287,7 +291,6 @@ public class MainGUI extends javax.swing.JFrame {
         );
 
         hamburger_box.setBackground(new java.awt.Color(0, 0, 0));
-        hamburger_box.setForeground(new java.awt.Color(0, 0, 0));
         hamburger_box.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hamburger_box.setOpaque(false);
         hamburger_box.setPreferredSize(new java.awt.Dimension(36, 35));
@@ -455,7 +458,6 @@ public class MainGUI extends javax.swing.JFrame {
         jSeparator4.setBackground(new java.awt.Color(102, 102, 102));
         jSeparator4.setForeground(new java.awt.Color(204, 204, 204));
 
-        forum.setBackground(new java.awt.Color(255, 255, 255));
         forum.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         forum.setForeground(new java.awt.Color(0, 102, 102));
         forum.setText("   Forum");
@@ -471,7 +473,6 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        preferences.setBackground(new java.awt.Color(255, 255, 255));
         preferences.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         preferences.setForeground(new java.awt.Color(0, 102, 102));
         preferences.setText("   Preferences");
@@ -487,7 +488,6 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        weatherlogs.setBackground(new java.awt.Color(255, 255, 255));
         weatherlogs.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         weatherlogs.setForeground(new java.awt.Color(0, 102, 102));
         weatherlogs.setText("   Weather Logs");
@@ -503,7 +503,6 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        rainscape.setBackground(new java.awt.Color(255, 255, 255));
         rainscape.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rainscape.setForeground(new java.awt.Color(0, 102, 102));
         rainscape.setText("   RainScape");
@@ -519,7 +518,6 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        logout.setBackground(new java.awt.Color(255, 255, 255));
         logout.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         logout.setForeground(new java.awt.Color(255, 102, 102));
         logout.setText("   Log Out");
@@ -755,7 +753,6 @@ public class MainGUI extends javax.swing.JFrame {
         cloud_label.setText("Clouds - %");
         cloud_label.setPreferredSize(new java.awt.Dimension(820, 30));
 
-        refresh_weather.setBackground(new java.awt.Color(255, 255, 255));
         refresh_weather.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         refresh_weather.setForeground(new java.awt.Color(111, 154, 154));
         refresh_weather.setText("Refresh");
@@ -840,7 +837,6 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        tcadvisory.setBackground(new java.awt.Color(255, 255, 255));
         tcadvisory.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tcadvisory.setForeground(new java.awt.Color(0, 102, 102));
         tcadvisory.setText("Latest Details");
@@ -855,7 +851,6 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        records2021.setBackground(new java.awt.Color(255, 255, 255));
         records2021.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         records2021.setForeground(new java.awt.Color(0, 102, 102));
         records2021.setText("2021 Records");
@@ -870,7 +865,6 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        records2020.setBackground(new java.awt.Color(255, 255, 255));
         records2020.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         records2020.setForeground(new java.awt.Color(0, 102, 102));
         records2020.setText("2020 Records");
@@ -885,7 +879,6 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        records2019.setBackground(new java.awt.Color(255, 255, 255));
         records2019.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         records2019.setForeground(new java.awt.Color(0, 102, 102));
         records2019.setText("2019 Records");
@@ -900,7 +893,6 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        records2018.setBackground(new java.awt.Color(255, 255, 255));
         records2018.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         records2018.setForeground(new java.awt.Color(0, 102, 102));
         records2018.setText("2018 Records");
@@ -915,7 +907,6 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        records2017.setBackground(new java.awt.Color(255, 255, 255));
         records2017.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         records2017.setForeground(new java.awt.Color(0, 102, 102));
         records2017.setText("2017 Records");
@@ -934,7 +925,6 @@ public class MainGUI extends javax.swing.JFrame {
         jSeparator5.setForeground(new java.awt.Color(204, 204, 204));
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        refresh_tropicalcyclone.setBackground(new java.awt.Color(255, 255, 255));
         refresh_tropicalcyclone.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         refresh_tropicalcyclone.setForeground(new java.awt.Color(111, 154, 154));
         refresh_tropicalcyclone.setText("Refresh");
@@ -1246,6 +1236,11 @@ public class MainGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         RainScape.openWebpage("https://2021sha01091.wixsite.com/rainscape-forum");
     }//GEN-LAST:event_forumActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        ImageIcon icon = new ImageIcon("rainscape_logo2.png");
+        setIconImage(icon.getImage());
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments

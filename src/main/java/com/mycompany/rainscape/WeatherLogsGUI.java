@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -74,6 +75,11 @@ public class WeatherLogsGUI extends javax.swing.JFrame {
                 formWindowLostFocus(evt);
             }
         });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         content_box.setBackground(new java.awt.Color(51, 51, 51));
         content_box.setMaximumSize(new java.awt.Dimension(820, 550));
@@ -106,7 +112,6 @@ public class WeatherLogsGUI extends javax.swing.JFrame {
             }
         });
 
-        refresh.setBackground(new java.awt.Color(255, 255, 255));
         refresh.setForeground(new java.awt.Color(0, 102, 102));
         refresh.setText("Search / Refresh");
         refresh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -226,6 +231,11 @@ public class WeatherLogsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         queryLogs();
     }//GEN-LAST:event_refreshActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        ImageIcon icon = new ImageIcon("rainscape_logo2.png");
+        setIconImage(icon.getImage());
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments

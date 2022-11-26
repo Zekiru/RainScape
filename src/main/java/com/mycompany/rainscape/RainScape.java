@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.concurrent.*;
@@ -59,18 +60,13 @@ public class RainScape extends MySQL{
                 System.out.println("Look and Feel Exception: " + e);
             }
             
-            // conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db","root","");
-            conn = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/ikKSSAVuHj","ikKSSAVuHj","r2kJmQaXMS");
+            if (mySqlHandler() == null) {
+                System.out.println("Project Not Launched");
+                System.exit(0);
+            }
             
             LoginGUI.main(null);
             System.out.println("Project Launched");
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Failed to Connect to the Database.");
-            
-            e.printStackTrace();
-            
-            System.out.println("Project Not Launched");
-            System.exit(0);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Failed to Launch RainScape.");
             
@@ -78,6 +74,27 @@ public class RainScape extends MySQL{
             
             System.out.println("Project Not Launched");
             System.exit(0);
+        }
+    }
+    
+    public static Connection mySqlHandler() {
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/ikKSSAVuHj","ikKSSAVuHj","r2kJmQaXMS");
+            System.out.println("Initialized Online Database.");
+            return conn;
+        } catch (SQLException e) {
+            // e.printStackTrace();
+        }
+        
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db","root","");
+            System.out.println("Initialized Local Database.");
+            return conn;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Database Connection Unavailable.");
+            e.printStackTrace();
+            System.exit(0);
+            return null;
         }
     }
     

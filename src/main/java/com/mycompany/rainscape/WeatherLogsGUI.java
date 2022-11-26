@@ -32,11 +32,7 @@ public class WeatherLogsGUI extends javax.swing.JFrame {
     public WeatherLogsGUI() {
         initComponents();
         
-        try {
-            conn = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/ikKSSAVuHj","ikKSSAVuHj","r2kJmQaXMS");
-        } catch (SQLException e) {
-            // e.printStackTrace();
-        }
+        conn = RainScape.mySqlHandler();
         
         DisplayTable();
     }

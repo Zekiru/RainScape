@@ -25,7 +25,7 @@ public class Account extends MySQL{
         try {
             Class.forName("com.mysql.jdbc.Driver");
             
-            conn = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/ikKSSAVuHj","ikKSSAVuHj","r2kJmQaXMS");
+            conn = RainScape.mySqlHandler();
             
             String sql;
             

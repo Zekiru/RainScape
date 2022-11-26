@@ -28,9 +28,9 @@ public class Account {
             String sql;
             
             if (login)
-                sql ="select * from rs_accounts where username=? and password=?";
+                sql ="select * from rs_accounts where binary username=? and binary password=?";
             else
-                sql ="select * from rs_accounts where username=?";
+                sql ="select * from rs_accounts where binary username=?";
             
             PreparedStatement psmt = conn.prepareStatement(sql);
             

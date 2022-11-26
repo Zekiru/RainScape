@@ -5,12 +5,14 @@
 package com.mycompany.rainscape;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -234,8 +236,12 @@ public class WeatherLogsGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_refreshActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        ImageIcon icon = new ImageIcon("rainscape_logo2.png");
-        setIconImage(icon.getImage());
+        try {
+            BufferedImage img = ImageIO.read(new File("images/rainscape_logo2.png"));
+            setIconImage(img);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_formWindowActivated
 
     /**

@@ -15,12 +15,15 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.concurrent.*;
 import java.util.*;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -142,7 +145,8 @@ public class RainScape {
             image.setPreferredSize(new Dimension(540, 900));
             image.setSize(image.getPreferredSize());
             
-            Image img = new ImageIcon("rainscape_infographic.png").getImage().getScaledInstance(image.getWidth(), image.getHeight(), Image.SCALE_SMOOTH);
+            BufferedImage buff_img = ImageIO.read(new File("images/rainscape_infographic.png"));
+            Image img = buff_img.getScaledInstance(image.getWidth(), image.getHeight(), Image.SCALE_SMOOTH);
             
             image.setIcon(new ImageIcon(img));
 

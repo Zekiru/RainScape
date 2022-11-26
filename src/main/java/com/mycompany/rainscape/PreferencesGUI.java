@@ -5,7 +5,9 @@
 package com.mycompany.rainscape;
 
 import com.formdev.flatlaf.FlatDarkLaf;
-import javax.swing.ImageIcon;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -69,6 +71,7 @@ public class PreferencesGUI extends javax.swing.JFrame {
         });
 
         content_box.setBackground(new java.awt.Color(51, 51, 51));
+        content_box.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         banner_bg.setBackground(new java.awt.Color(225, 230, 236));
         banner_bg.setPreferredSize(new java.awt.Dimension(600, 150));
@@ -77,12 +80,14 @@ public class PreferencesGUI extends javax.swing.JFrame {
         banner_bg.setLayout(banner_bgLayout);
         banner_bgLayout.setHorizontalGroup(
             banner_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg_img, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(bg_img, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
         banner_bgLayout.setVerticalGroup(
             banner_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg_img, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+            .addComponent(bg_img, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
         );
+
+        content_box.add(banner_bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         preferences_box.setBackground(new java.awt.Color(59, 64, 64));
         preferences_box.setPreferredSize(new java.awt.Dimension(500, 390));
@@ -226,6 +231,8 @@ public class PreferencesGUI extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
+        content_box.add(preferences_box, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
+
         back.setBackground(new java.awt.Color(0, 102, 102));
         back.setForeground(new java.awt.Color(255, 255, 255));
         back.setText("Back");
@@ -237,31 +244,7 @@ public class PreferencesGUI extends javax.swing.JFrame {
                 backActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout content_boxLayout = new javax.swing.GroupLayout(content_box);
-        content_box.setLayout(content_boxLayout);
-        content_boxLayout.setHorizontalGroup(
-            content_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(content_boxLayout.createSequentialGroup()
-                .addComponent(banner_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_boxLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(content_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(preferences_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50))
-        );
-        content_boxLayout.setVerticalGroup(
-            content_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_boxLayout.createSequentialGroup()
-                .addComponent(banner_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(preferences_box, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
-        );
+        content_box.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 610, 500, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -273,10 +256,10 @@ public class PreferencesGUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(content_box, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(content_box, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(616, 702));
+        pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -322,8 +305,12 @@ public class PreferencesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_delete_accountActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        ImageIcon icon = new ImageIcon("rainscape_logo2.png");
-        setIconImage(icon.getImage());
+        try {
+            BufferedImage img = ImageIO.read(new File("images/rainscape_logo2.png"));
+            setIconImage(img);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_formWindowActivated
 
     /**

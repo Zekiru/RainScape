@@ -7,6 +7,9 @@ package com.mycompany.rainscape;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -24,7 +27,15 @@ public class MainGUI extends javax.swing.JFrame {
     public MainGUI() {
         initComponents();
         content_box_scroll.getVerticalScrollBar().setUnitIncrement(16);
-        rainscape_logo.setIcon(new ImageIcon(new ImageIcon("rainscape_logo1.png").getImage().getScaledInstance(rainscape_logo.getWidth(), rainscape_logo.getHeight(), Image.SCALE_SMOOTH)));
+        
+        try {
+            BufferedImage buff_img = ImageIO.read(new File("images/rainscape_logo1.png"));
+            Image img = buff_img.getScaledInstance(rainscape_logo.getWidth(), rainscape_logo.getHeight(), Image.SCALE_SMOOTH);
+            rainscape_logo.setIcon(new ImageIcon(img));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+            
         sidebar_box.setVisible(false);
         
         WeatherAPI.fetch(RainScape.currentSearchArea());
@@ -47,14 +58,14 @@ public class MainGUI extends javax.swing.JFrame {
         content_box_scroll = new javax.swing.JScrollPane();
         content_box = new javax.swing.JPanel();
         mainBanner = new javax.swing.JPanel();
+        background_image = new javax.swing.JLabel();
+        rainscape_logo = new javax.swing.JLabel();
         basicforecast_box = new javax.swing.JPanel();
         status = new javax.swing.JLabel();
-        temp = new javax.swing.JLabel();
-        current_icon = new javax.swing.JLabel();
         localdate = new javax.swing.JLabel();
         location = new javax.swing.JLabel();
-        rainscape_logo = new javax.swing.JLabel();
-        background_image = new javax.swing.JLabel();
+        temp = new javax.swing.JLabel();
+        current_icon = new javax.swing.JLabel();
         body = new javax.swing.JPanel();
         menuBar = new javax.swing.JPanel();
         localtime = new javax.swing.JLabel();
@@ -135,7 +146,16 @@ public class MainGUI extends javax.swing.JFrame {
 
         mainBanner.setBackground(new java.awt.Color(153, 204, 255));
         mainBanner.setPreferredSize(new java.awt.Dimension(1188, 250));
-        mainBanner.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        background_image.setFocusable(false);
+        background_image.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        background_image.setMaximumSize(new java.awt.Dimension(1188, 250));
+        background_image.setPreferredSize(new java.awt.Dimension(1188, 250));
+
+        rainscape_logo.setFocusable(false);
+        rainscape_logo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        rainscape_logo.setMaximumSize(new java.awt.Dimension(1188, 250));
+        rainscape_logo.setPreferredSize(new java.awt.Dimension(1188, 250));
 
         basicforecast_box.setBackground(new java.awt.Color(51, 51, 51));
         basicforecast_box.setForeground(new java.awt.Color(51, 51, 51));
@@ -151,16 +171,6 @@ public class MainGUI extends javax.swing.JFrame {
         status.setMaximumSize(new java.awt.Dimension(500, 32));
         status.setMinimumSize(new java.awt.Dimension(50, 32));
 
-        temp.setBackground(new java.awt.Color(237, 249, 244));
-        temp.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
-        temp.setForeground(new java.awt.Color(237, 249, 244));
-        temp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        temp.setText("XX°");
-        temp.setMaximumSize(new java.awt.Dimension(200, 81));
-        temp.setPreferredSize(new java.awt.Dimension(101, 110));
-
-        current_icon.setPreferredSize(new java.awt.Dimension(110, 110));
-
         localdate.setBackground(new java.awt.Color(237, 249, 244));
         localdate.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         localdate.setForeground(new java.awt.Color(237, 249, 244));
@@ -174,10 +184,19 @@ public class MainGUI extends javax.swing.JFrame {
         location.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         location.setForeground(new java.awt.Color(237, 249, 244));
         location.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        location.setText("Xxxxx, Xxxxx");
+        location.setText("Xxxxx xxxxxx");
         location.setMaximumSize(new java.awt.Dimension(500, 32));
         location.setMinimumSize(new java.awt.Dimension(50, 32));
-        location.setPreferredSize(new java.awt.Dimension(153, 32));
+
+        temp.setBackground(new java.awt.Color(237, 249, 244));
+        temp.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
+        temp.setForeground(new java.awt.Color(237, 249, 244));
+        temp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        temp.setText("XX°");
+        temp.setMaximumSize(new java.awt.Dimension(200, 81));
+        temp.setPreferredSize(new java.awt.Dimension(101, 110));
+
+        current_icon.setPreferredSize(new java.awt.Dimension(110, 110));
 
         javax.swing.GroupLayout basicforecast_boxLayout = new javax.swing.GroupLayout(basicforecast_box);
         basicforecast_box.setLayout(basicforecast_boxLayout);
@@ -190,9 +209,9 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(current_icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addGroup(basicforecast_boxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
-                    .addComponent(location, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(localdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(localdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(location, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(40, 40, 40))
         );
         basicforecast_boxLayout.setVerticalGroup(
@@ -211,19 +230,39 @@ public class MainGUI extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        mainBanner.add(basicforecast_box, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 42, -1, -1));
-
-        rainscape_logo.setFocusable(false);
-        rainscape_logo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        rainscape_logo.setMaximumSize(new java.awt.Dimension(1188, 250));
-        rainscape_logo.setPreferredSize(new java.awt.Dimension(1188, 250));
-        mainBanner.add(rainscape_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 80, 230, 100));
-
-        background_image.setFocusable(false);
-        background_image.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        background_image.setMaximumSize(new java.awt.Dimension(1188, 250));
-        background_image.setPreferredSize(new java.awt.Dimension(1188, 250));
-        mainBanner.add(background_image, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        javax.swing.GroupLayout mainBannerLayout = new javax.swing.GroupLayout(mainBanner);
+        mainBanner.setLayout(mainBannerLayout);
+        mainBannerLayout.setHorizontalGroup(
+            mainBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainBannerLayout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addComponent(basicforecast_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(rainscape_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
+            .addGroup(mainBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mainBannerLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(background_image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        mainBannerLayout.setVerticalGroup(
+            mainBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainBannerLayout.createSequentialGroup()
+                .addGroup(mainBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainBannerLayout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(basicforecast_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(mainBannerLayout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(rainscape_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(42, 42, 42))
+            .addGroup(mainBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mainBannerLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(background_image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
 
         body.setBackground(new java.awt.Color(225, 230, 236));
         body.setForeground(new java.awt.Color(225, 230, 236));
@@ -1017,9 +1056,9 @@ public class MainGUI extends javax.swing.JFrame {
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(menuBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(bodyLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addComponent(tabbed_content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(sidebar_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         bodyLayout.setVerticalGroup(
@@ -1253,8 +1292,12 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_forumActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        ImageIcon icon = new ImageIcon("rainscape_logo2.png");
-        setIconImage(icon.getImage());
+        try {
+            BufferedImage img = ImageIO.read(new File("images/rainscape_logo2.png"));
+            setIconImage(img);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_formWindowActivated
 
     /**

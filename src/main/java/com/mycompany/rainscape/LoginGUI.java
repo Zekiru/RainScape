@@ -6,6 +6,9 @@ package com.mycompany.rainscape;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -23,7 +26,17 @@ public class LoginGUI extends javax.swing.JFrame {
         initComponents();
     
         
-        bg_image.setIcon(new ImageIcon(new ImageIcon("CN.jpg").getImage().getScaledInstance(bg_image.getWidth(), bg_image.getHeight(), Image.SCALE_SMOOTH)));
+        try {
+            BufferedImage buff_img = ImageIO.read(new File("images/OE.jpg"));
+            Image img = buff_img.getScaledInstance(bg_image.getWidth(), bg_image.getHeight(), Image.SCALE_SMOOTH);
+            bg_image.setIcon(new ImageIcon(img));
+            
+            buff_img = ImageIO.read(new File("images/rainscape_logo1.png"));
+            img = buff_img.getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH);
+            logo.setIcon(new ImageIcon(img));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     /**
@@ -46,6 +59,7 @@ public class LoginGUI extends javax.swing.JFrame {
         signup = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        logo = new javax.swing.JLabel();
         bg_image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,7 +79,7 @@ public class LoginGUI extends javax.swing.JFrame {
         content_box.setBackground(new java.awt.Color(0, 0, 0));
         content_box.setMaximumSize(new java.awt.Dimension(755, 500));
         content_box.setMinimumSize(new java.awt.Dimension(755, 500));
-        content_box.setLayout(null);
+        content_box.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         login_bg.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -183,23 +197,22 @@ public class LoginGUI extends javax.swing.JFrame {
                 .addGap(60, 60, 60))
         );
 
-        content_box.add(login_bg);
-        login_bg.setBounds(200, 36, 355, 428);
-        content_box.add(bg_image);
-        bg_image.setBounds(-10, -10, 780, 540);
+        content_box.add(login_bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, -1, -1));
+        content_box.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 230, 100));
+        content_box.add(bg_image, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1220, 490));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(content_box, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(content_box, javax.swing.GroupLayout.PREFERRED_SIZE, 875, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(content_box, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(content_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        setSize(new java.awt.Dimension(771, 528));
+        pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -245,8 +258,12 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordKeyPressed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        ImageIcon icon = new ImageIcon("rainscape_logo2.png");
-        setIconImage(icon.getImage());
+        try {
+            BufferedImage img = ImageIO.read(new File("images/rainscape_logo2.png"));
+            setIconImage(img);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_formWindowActivated
     
     /**
@@ -285,6 +302,7 @@ public class LoginGUI extends javax.swing.JFrame {
     private javax.swing.JButton login;
     private javax.swing.JPanel login_bg;
     private javax.swing.JLabel login_tite;
+    public static javax.swing.JLabel logo;
     private javax.swing.JPasswordField password;
     private javax.swing.JButton signup;
     private javax.swing.JTextField username;

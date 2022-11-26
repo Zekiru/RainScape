@@ -6,6 +6,7 @@
 package com.mycompany.rainscape;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import static com.mycompany.rainscape.MySQL.conn;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
@@ -21,6 +22,8 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.concurrent.*;
 import java.util.*;
 import javax.imageio.ImageIO;
@@ -36,33 +39,45 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author Ezekiel
  */
-public class RainScape {
+public class RainScape extends MySQL{
     
     public static String username, temp_scale = null;
     public static boolean access, dark_mode = false;
     
     public static String search_area = "";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { 
         runThreads();
     }
     
     public static void start() {
         System.out.println("Project Initializing");
         try {
+            try {
+                UIManager.setLookAndFeel(new FlatDarkLaf());
+            } catch (UnsupportedLookAndFeelException e) {
+                System.out.println("Look and Feel Exception: " + e);
+            }
+            
+            // conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db","root","");
+            conn = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/ikKSSAVuHj","ikKSSAVuHj","r2kJmQaXMS");
+            
             LoginGUI.main(null);
             System.out.println("Project Launched");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Failed to Launch RainScape.");
-
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Failed to Connect to the Database.");
+            
+            e.printStackTrace();
+            
             System.out.println("Project Not Launched");
             System.exit(0);
-        }
-
-        try {
-            UIManager.setLookAndFeel(new FlatDarkLaf());
-        } catch (UnsupportedLookAndFeelException e) {
-            System.out.println("Look and Feel Exception: " + e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Failed to Launch RainScape.");
+            
+            e.printStackTrace();
+            
+            System.out.println("Project Not Launched");
+            System.exit(0);
         }
     }
     

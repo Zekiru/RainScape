@@ -5,8 +5,6 @@
 package com.mycompany.rainscape;
 
 import java.awt.HeadlessException;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +14,7 @@ import javax.swing.JOptionPane;
  *
  * @author Ezekiel
  */
-public class Account {
+public class Account extends MySQL{
     
     public static boolean login(boolean login, String username, String password) {
         
@@ -24,7 +22,7 @@ public class Account {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db","root","");
+            
             String sql;
             
             if (login)
@@ -71,7 +69,6 @@ public class Account {
     public static void create(String username, String password) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db","root","");
             String sql = "insert into rs_accounts value ( ?, ? )";
             
             PreparedStatement psmt = conn.prepareStatement(sql);

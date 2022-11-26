@@ -24,6 +24,8 @@ import org.json.JSONObject;
  * @author Ezekiel
  */
 public class MySQL {
+    public static Connection conn = null;
+    
     public static String default_area = "Manila"; // Default New Account Area
     public static String default_temp_scale = "celsius"; // Default New Account Area
     public static boolean default_mode = false; // Default New Account Area
@@ -34,7 +36,6 @@ public class MySQL {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db", "root", "");
             String sql;
 
             sql = "select * from rs_preferences where username=?";
@@ -60,7 +61,6 @@ public class MySQL {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db", "root", "");
             
             String sql;
 
@@ -88,7 +88,6 @@ public class MySQL {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db", "root", "");
             String sql = "insert into rs_weatherlogs value ( ?, ?, ?, ?, ?, ?, ?, ? )";
 
             PreparedStatement psmt = conn.prepareStatement(sql);
@@ -136,7 +135,6 @@ public class MySQL {
     public static void deleteAccount() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db","root","");
             String sql;
             
             sql ="delete from rs_weatherlogs where username =?";
@@ -176,7 +174,6 @@ public class MySQL {
             else
                 try {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db", "root", "");
                 String sql = "Update rs_accounts set password=? where username=?";
 
                 PreparedStatement psmt = conn.prepareStatement(sql);
@@ -220,7 +217,6 @@ public class MySQL {
                 String location = jsonLocation.getString("name");
 
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db", "root", "");
                 String sql = "Update rs_preferences set area=? where username=?";
 
                 PreparedStatement psmt = conn.prepareStatement(sql);
@@ -263,7 +259,6 @@ public class MySQL {
             }
 
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db", "root", "");
             String sql = "Update rs_preferences set temp_scale=? where username=?";
 
             PreparedStatement psmt = conn.prepareStatement(sql);

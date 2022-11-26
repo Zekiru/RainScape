@@ -23,6 +23,8 @@ import net.proteanit.sql.DbUtils;
  * @author Ezekiel
  */
 public class WeatherLogsGUI extends javax.swing.JFrame {
+    
+    public static Connection conn = MySQL.conn;
 
     /**
      * Creates new form WeatherLogsGUI
@@ -35,7 +37,6 @@ public class WeatherLogsGUI extends javax.swing.JFrame {
     private void DisplayTable() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db", "root", "");
             String sql = "select * from rs_weatherlogs where username=? order by date_time desc";
             PreparedStatement psmt = conn.prepareStatement(sql);
             psmt.setString(1, RainScape.username);
@@ -193,7 +194,6 @@ public class WeatherLogsGUI extends javax.swing.JFrame {
                 DisplayTable();
             } else {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rainscape_db", "root", "");
                 String sql = "select * from rs_weatherlogs where username=? and date_time like ? or username=? and area like ? order by date_time desc";
 
                 PreparedStatement psmt = conn.prepareStatement(sql);

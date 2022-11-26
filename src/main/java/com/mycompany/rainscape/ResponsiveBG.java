@@ -49,7 +49,9 @@ public class ResponsiveBG {
                             buff_img = ImageIO.read(img_file[1][0]);
                         else
                             buff_img = ImageIO.read(img_file[1][1]);
-                    } else if (keywords[y].equals(keywords[5]) || keywords[y].equals(keywords[6])) {
+                    } else if ( keywords[y].equals(keywords[5])) {
+                        buff_img = ImageIO.read(img_file[2][0]);
+                    } else if ( keywords[y].equals(keywords[6])) {
                         if (DateTime.localTimeOfDay().equals("Morning") || DateTime.localTimeOfDay().equals("Afternoon"))
                             buff_img = ImageIO.read(img_file[2][0]);
                         else

@@ -8,7 +8,6 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,6 +29,7 @@ public class WeatherLogsGUI extends javax.swing.JFrame {
      * Creates new form WeatherLogsGUI
      */
     public WeatherLogsGUI() {
+        conn = MySQL.conn;
         initComponents();
         DisplayTable();
     }

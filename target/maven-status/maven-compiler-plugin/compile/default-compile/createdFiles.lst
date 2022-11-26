@@ -5,6 +5,7 @@ com\mycompany\rainscape\PreferencesGUI$2.class
 com\mycompany\rainscape\TropicalCyclone.class
 com\mycompany\rainscape\WeatherLogsGUI$1.class
 com\mycompany\rainscape\MainGUI$9.class
+com\mycompany\rainscape\PreferencesGUI$9.class
 com\mycompany\rainscape\PreferencesGUI$5.class
 com\mycompany\rainscape\WeatherLogsGUI$5.class
 com\mycompany\rainscape\ResponsiveBG.class
@@ -26,6 +27,8 @@ com\mycompany\rainscape\Account.class
 com\mycompany\rainscape\LoginGUI$1.class
 com\mycompany\rainscape\TropicalCyclone$4.class
 com\mycompany\rainscape\RainScape.class
+com\mycompany\rainscape\WeatherLogsGUI$6.class
+com\mycompany\rainscape\MainGUI$19.class
 com\mycompany\rainscape\MainGUI$7.class
 com\mycompany\rainscape\TropicalCyclone$1.class
 com\mycompany\rainscape\WeatherLogsGUI$3.class

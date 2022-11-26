@@ -4,10 +4,15 @@
  */
 package com.mycompany.rainscape;
 
+import static com.mycompany.rainscape.MySQL.conn;
 import java.awt.HeadlessException;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -72,6 +77,12 @@ public class WeatherAPI {
     all, and if you are still reading, how's the weather there? */
     
     public static void fetch(String area) {
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/ikKSSAVuHj","ikKSSAVuHj","r2kJmQaXMS");
+        } catch (SQLException e) {
+            // e.printStackTrace()
+        }
+        
         MySQL.fetch();
         
         try {

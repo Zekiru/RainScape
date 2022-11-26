@@ -4,7 +4,9 @@
  */
 package com.mycompany.rainscape;
 
+import static com.mycompany.rainscape.MySQL.conn;
 import java.awt.HeadlessException;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,6 +24,8 @@ public class Account extends MySQL{
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
+            
+            conn = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/ikKSSAVuHj","ikKSSAVuHj","r2kJmQaXMS");
             
             String sql;
             
